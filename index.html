@@ -3,74 +3,275 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AKKIVEX STORE</title>
+  <title>AKKIVEX MODS</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- SECURITY LOADER -->
   <div id="loader" class="loader">
     <div class="shield">◆</div>
-    <div class="loader-title">AKKIVEX STORE</div>
+
+    <div class="loader-title">AKKIVEX MODS</div>
     <div class="loader-sub">SECURITY CHECK</div>
-    <div class="bar"><span id="barFill"></span></div>
-    <div id="loaderText">Initializing secure interface...</div>
+
+    <div class="bar">
+      <span id="barFill"></span>
+    </div>
+
+    <div id="loaderText">Initializing security...</div>
     <div id="percent">0%</div>
   </div>
 
+
+  <!-- MAIN APP -->
   <main id="app" class="hidden">
+
+    <!-- TOP BAR -->
     <header class="topbar">
-      <div class="brand"><span>AKV</span> AKKIVEX STORE</div>
-      <button id="profileBtn" class="icon-btn">◎</button>
+      <div class="brand">
+        <span>AKV</span> AKKIVEX MODS
+      </div>
+
+      <button id="profileBtn" class="icon-btn">
+        ◎
+      </button>
     </header>
 
+
+    <!-- HERO -->
     <section class="hero">
-      <p class="eyebrow">WELCOME</p>
-      <h1>Future-ready shopping.</h1>
-      <p class="muted">A clean storefront demo with secure checkout planning.</p>
+      <p class="eyebrow">WELCOME TO</p>
+
+      <h1>
+        AKKIVEX<br>
+        <span>MODS</span>
+      </h1>
+
+      <p class="muted">
+        Premium digital store experience.
+      </p>
     </section>
 
-    <section class="panel">
+
+    <!-- STORE -->
+    <section class="panel" id="store">
+
       <div class="panel-head">
-        <h2>Store</h2>
-        <input id="search" type="search" placeholder="Search products...">
+        <div>
+          <p class="section-label">STORE</p>
+          <h2>Demo Products</h2>
+        </div>
+
+        <input
+          id="search"
+          type="search"
+          placeholder="Search..."
+        >
       </div>
+
+
+      <!-- CATEGORY BUTTONS -->
       <div id="filters" class="filters"></div>
+
+
+      <!-- PRODUCTS -->
       <div id="products" class="grid"></div>
+
     </section>
 
-    <section class="panel free-coins">
-      <div class="panel-head"><h2>🪙 Free Coins</h2><span class="pill">₹0.50 / task</span></div>
-      <p class="muted">Join a channel, then claim the reward after verification. Each task can be claimed once.</p>
+
+    <!-- FREE COINS -->
+    <section class="panel free-coins" id="free">
+
+      <div class="panel-head">
+        <div>
+          <p class="section-label">REWARDS</p>
+          <h2>🪙 Free Coins</h2>
+        </div>
+
+        <span class="pill">
+          ₹0.50 / task
+        </span>
+      </div>
+
+      <p class="muted">
+        Complete an eligible task and claim your reward
+        after verification.
+      </p>
+
       <div id="channels"></div>
+
     </section>
 
-    <section class="panel refer">
-      <div class="panel-head"><h2>Refer & Earn</h2><span class="code">AKV8457</span></div>
-      <p class="muted">Share your referral code and track eligible rewards.</p>
-      <button class="primary" id="copyRef">Copy referral code</button>
+
+    <!-- REFER -->
+    <section class="panel refer" id="refer">
+
+      <div class="panel-head">
+        <div>
+          <p class="section-label">REFERRAL</p>
+          <h2>Refer & Earn</h2>
+        </div>
+
+        <span class="code">
+          AKV8457
+        </span>
+      </div>
+
+      <p class="muted">
+        Share your referral code and track eligible rewards.
+      </p>
+
+      <button
+        class="primary"
+        id="copyRef"
+      >
+        Copy Referral Code
+      </button>
+
     </section>
+
+
+    <!-- PROFILE -->
+    <section class="panel profile-panel" id="profile">
+
+      <p class="section-label">ACCOUNT</p>
+
+      <h2>Profile</h2>
+
+      <p class="muted">
+        Login and account features can be connected later.
+      </p>
+
+    </section>
+
   </main>
 
+
+  <!-- CHECKOUT MODAL -->
   <div id="modal" class="modal hidden">
+
     <div class="modal-card">
-      <button id="closeModal" class="close">×</button>
-      <h2>Checkout</h2>
-      <p id="selectedProduct" class="muted"></p>
+
+      <button
+        id="closeModal"
+        class="close"
+      >
+        ×
+      </button>
+
+      <p class="section-label">
+        CHECKOUT
+      </p>
+
+      <h2>Order Checkout</h2>
+
+      <p
+        id="selectedProduct"
+        class="muted"
+      ></p>
+
+
       <div class="payment-box">
-        <div class="label">UPI ID</div>
-        <button id="copyUpi" class="upi">kaivexstore@ybl <span>Copy</span></button>
-        <div class="label">QR / UPI payment</div>
-        <div class="qr-placeholder">SCAN QR</div>
-        <label>UTR / Transaction ID<input id="utr" placeholder="Enter UTR"></label>
-        <label>Delivery email<input id="email" type="email" placeholder="you@example.com"></label>
-        <button id="submitPayment" class="primary">Submit for verification</button>
-        <p class="tiny">Payment status will remain pending until merchant/admin verification.</p>
+
+        <div class="label">
+          UPI ID
+        </div>
+
+        <button
+          id="copyUpi"
+          class="upi"
+        >
+          <span>kaivexstore@ybl</span>
+          <span>Copy</span>
+        </button>
+
+
+        <div class="label">
+          QR / UPI PAYMENT
+        </div>
+
+        <div class="qr-placeholder">
+          QR PLACEHOLDER
+        </div>
+
+
+        <label>
+          UTR / Transaction ID
+
+          <input
+            id="utr"
+            type="text"
+            placeholder="Enter transaction ID"
+          >
+        </label>
+
+
+        <label>
+          Delivery Email
+
+          <input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+          >
+        </label>
+
+
+        <button
+          id="submitPayment"
+          class="primary"
+        >
+          Submit for Verification
+        </button>
+
+
+        <p class="tiny">
+          Payment remains pending until merchant/admin
+          verification.
+        </p>
+
       </div>
+
     </div>
+
   </div>
 
+
+  <!-- BOTTOM NAV -->
   <nav class="bottom-nav">
-    <a href="#">Home</a><a href="#store">Store</a><a href="#free">Free Coin</a><a href="#refer">Refer</a><a href="#profile">Profile</a>
+
+    <a href="#">
+      <span>⌂</span>
+      Home
+    </a>
+
+    <a href="#store">
+      <span>▣</span>
+      Store
+    </a>
+
+    <a href="#free">
+      <span>◈</span>
+      Free Coin
+    </a>
+
+    <a href="#refer">
+      <span>↗</span>
+      Refer
+    </a>
+
+    <a href="#profile">
+      <span>◎</span>
+      Profile
+    </a>
+
   </nav>
+
+
   <script src="script.js"></script>
+
 </body>
 </html>
