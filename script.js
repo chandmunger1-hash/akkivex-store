@@ -834,21 +834,37 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   const channels = [
-    "Channel Task 01",
-    "Channel Task 02",
-    "Channel Task 03",
-    "Channel Task 04",
-    "Channel Task 05"
+    {
+      name: "Channel Task 01",
+      link: "https://t.me/+lIJ6-tAMwBdiYTU1"
+    },
+    {
+      name: "Channel Task 02",
+      link: "https://t.me/+cpHtijIv1eM4ZDM1"
+    },
+    {
+      name: "Channel Task 03",
+      link: "https://t.me/kaivexmodssetup"
+    },
+    {
+      name: "Channel Task 04",
+      link: "https://t.me/+F_wsXeD3Dt8zMjll"
+    },
+    {
+      name: "Channel Task 05",
+      link: "https://t.me/+GIXruxf0uFVkNDdl"
+    }
   ];
 
+
   $("channels").innerHTML =
-    channels.map((name, index) => `
+    channels.map((channel, index) => `
 
       <div class="channel">
 
         <div>
 
-          <strong>${name}</strong>
+          <strong>${channel.name}</strong>
 
           <div class="tiny">
             Task ${index + 1} · ₹0.50
@@ -858,7 +874,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <button
           class="task-btn"
-          onclick="alert('Task opened. Reward is subject to verification.')"
+          data-telegram="${channel.link}"
         >
           JOIN
         </button>
@@ -866,6 +882,22 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
     `).join("");
+
+
+  document
+    .querySelectorAll("[data-telegram]")
+    .forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const link =
+          button.dataset.telegram;
+
+        window.open(link, "_blank");
+
+      });
+
+    });
 
 
   /* =========================
