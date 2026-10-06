@@ -3,55 +3,75 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AKKIVEX MODS</title>
+  <title>KAIVEX STORE</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- SECURITY LOADER -->
-  <div id="loader" class="loader">
-    <div class="shield">◆</div>
+<!-- SECURITY LOADER -->
+<div id="loader" class="loader">
+  <div class="shield">◆</div>
+  <div class="loader-title">KAIVEX STORE</div>
+  <div class="loader-sub">SECURITY CHECK</div>
 
-    <div class="loader-title">AKKIVEX MODS</div>
-    <div class="loader-sub">SECURITY CHECK</div>
-
-    <div class="bar">
-      <span id="barFill"></span>
-    </div>
-
-    <div id="loaderText">Initializing security...</div>
-    <div id="percent">0%</div>
+  <div class="bar">
+    <span id="barFill"></span>
   </div>
 
+  <div id="loaderText">Initializing security...</div>
+  <div id="percent">0%</div>
+</div>
 
-  <!-- MAIN APP -->
-  <main id="app" class="hidden">
 
-    <!-- TOP BAR -->
-    <header class="topbar">
-      <div class="brand">
-        <span>AKV</span> AKKIVEX MODS
+<!-- APP -->
+<main id="app" class="hidden">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <span>KX</span> KAIVEX STORE
+    </div>
+
+    <button id="profileBtn" class="icon-btn">
+      ◎
+    </button>
+  </header>
+
+
+  <!-- HOME -->
+  <section id="homePage">
+
+    <!-- VAULT HEADER -->
+    <section class="vault-head">
+      <div>
+        <p class="section-label">CARD VAULT</p>
+        <h1>SECURE ACCOUNT</h1>
+        <p class="muted">NODE: GLOBAL-01</p>
       </div>
 
-      <button id="profileBtn" class="icon-btn">
-        ◎
-      </button>
-    </header>
+      <div class="vault-mark">KX</div>
+    </section>
 
 
-    <!-- HERO -->
-    <section class="hero">
-      <p class="eyebrow">WELCOME TO</p>
+    <!-- STATS -->
+    <section class="stats">
 
-      <h1>
-        AKKIVEX<br>
-        <span>MODS</span>
-      </h1>
+      <div class="stat">
+        <span>VERIFIED REGISTRY</span>
+        <strong>DEMO</strong>
+      </div>
 
-      <p class="muted">
-        Premium digital store experience.
-      </p>
+      <div class="stat">
+        <span>TERMINAL USERS</span>
+        <strong>210</strong>
+      </div>
+
+      <div class="stat">
+        <span>30D TRAFFIC</span>
+        <strong>12,628+</strong>
+      </div>
+
     </section>
 
 
@@ -60,8 +80,8 @@
 
       <div class="panel-head">
         <div>
-          <p class="section-label">STORE</p>
-          <h2>Demo Products</h2>
+          <p class="section-label">ACTIVE STOCK PRODUCTS</p>
+          <h2>Premium Collection</h2>
         </div>
 
         <input
@@ -71,136 +91,200 @@
         >
       </div>
 
-
-      <!-- CATEGORY BUTTONS -->
       <div id="filters" class="filters"></div>
 
-
-      <!-- PRODUCTS -->
       <div id="products" class="grid"></div>
 
     </section>
 
+  </section>
 
-    <!-- FREE COINS -->
-    <section class="panel free-coins" id="free">
 
-      <div class="panel-head">
-        <div>
-          <p class="section-label">REWARDS</p>
-          <h2>🪙 Free Coins</h2>
-        </div>
+  <!-- PROFILE PAGE -->
+  <section id="profilePage" class="page hidden">
 
-        <span class="pill">
-          ₹0.50 / task
-        </span>
-      </div>
+    <button class="back-btn" id="backHome">
+      ← Back
+    </button>
+
+    <section class="panel profile-main">
+
+      <div class="profile-avatar">KX</div>
+
+      <p class="section-label">ACCOUNT</p>
+      <h2>My Profile</h2>
 
       <p class="muted">
-        Complete an eligible task and claim your reward
-        after verification.
+        Manage your account and referral information.
       </p>
 
-      <div id="channels"></div>
+      <div class="profile-list">
+
+        <button class="profile-item" id="referOpen">
+          <div>
+            <strong>↗ Refer & Earn</strong>
+            <span>View your referral code</span>
+          </div>
+          <b>›</b>
+        </button>
+
+        <button class="profile-item" id="ordersOpen">
+          <div>
+            <strong>▣ Orders</strong>
+            <span>View your order information</span>
+          </div>
+          <b>›</b>
+        </button>
+
+        <button class="profile-item" id="accountOpen">
+          <div>
+            <strong>◎ Account</strong>
+            <span>Account information</span>
+          </div>
+          <b>›</b>
+        </button>
+
+      </div>
 
     </section>
 
 
-    <!-- REFER -->
-    <section class="panel refer" id="refer">
+    <!-- REFERRAL -->
+    <section id="referBox" class="panel hidden">
 
-      <div class="panel-head">
-        <div>
-          <p class="section-label">REFERRAL</p>
-          <h2>Refer & Earn</h2>
-        </div>
+      <p class="section-label">REFERRAL</p>
+      <h2>Refer & Earn</h2>
 
-        <span class="code">
-          AKV8457
-        </span>
+      <div class="ref-code">
+        <span>Your Referral Code</span>
+        <strong>AKV8457</strong>
       </div>
 
       <p class="muted">
-        Share your referral code and track eligible rewards.
+        Share your code with genuine referrals and track
+        eligible rewards.
       </p>
 
-      <button
-        class="primary"
-        id="copyRef"
-      >
+      <button id="copyRef" class="primary">
         Copy Referral Code
       </button>
 
     </section>
 
 
-    <!-- PROFILE -->
-    <section class="panel profile-panel" id="profile">
+    <!-- ORDERS -->
+    <section id="ordersBox" class="panel hidden">
 
-      <p class="section-label">ACCOUNT</p>
+      <p class="section-label">ORDERS</p>
+      <h2>Order History</h2>
 
-      <h2>Profile</h2>
-
-      <p class="muted">
-        Login and account features can be connected later.
-      </p>
+      <div class="empty-box">
+        No orders yet.
+      </div>
 
     </section>
 
-  </main>
+
+    <!-- ACCOUNT -->
+    <section id="accountBox" class="panel hidden">
+
+      <p class="section-label">ACCOUNT</p>
+      <h2>Account Information</h2>
+
+      <div class="info-row">
+        <span>Status</span>
+        <strong>DEMO ACCOUNT</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Node</span>
+        <strong>GLOBAL-01</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Registry</span>
+        <strong>VERIFIED DEMO</strong>
+      </div>
+
+    </section>
+
+  </section>
 
 
-  <!-- CHECKOUT MODAL -->
+  <!-- FREE COINS PAGE -->
+  <section id="freePage" class="page hidden">
+
+    <button class="back-btn" id="backHomeFree">
+      ← Back
+    </button>
+
+    <section class="panel">
+
+      <p class="section-label">REWARDS</p>
+      <h2>🪙 Free Coins</h2>
+
+      <p class="muted">
+        Complete eligible tasks and claim rewards after
+        verification.
+      </p>
+
+      <div id="channels"></div>
+
+    </section>
+
+  </section>
+
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div id="productModal" class="modal hidden">
+
+    <div class="modal-card">
+
+      <button id="closeProduct" class="close">×</button>
+
+      <p class="section-label">PRODUCT INFORMATION</p>
+
+      <div id="productDetail"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CHECKOUT -->
   <div id="modal" class="modal hidden">
 
     <div class="modal-card">
 
-      <button
-        id="closeModal"
-        class="close"
-      >
-        ×
-      </button>
+      <button id="closeModal" class="close">×</button>
 
-      <p class="section-label">
-        CHECKOUT
-      </p>
-
+      <p class="section-label">CHECKOUT</p>
       <h2>Order Checkout</h2>
 
-      <p
-        id="selectedProduct"
-        class="muted"
-      ></p>
-
+      <p id="selectedProduct" class="muted"></p>
 
       <div class="payment-box">
 
-        <div class="label">
-          UPI ID
-        </div>
+        <div class="label">UPI ID</div>
 
-        <button
-          id="copyUpi"
-          class="upi"
-        >
+        <button id="copyUpi" class="upi">
           <span>kaivexstore@ybl</span>
           <span>Copy</span>
         </button>
 
 
-        <div class="label">
-          QR / UPI PAYMENT
-        </div>
+        <div class="label">SCAN & PAY</div>
 
-        <div class="qr-placeholder">
-          QR PLACEHOLDER
+        <div class="qr-box">
+          <img
+            src="upi-qr.png"
+            alt="KAIVEX STORE UPI QR"
+          >
         </div>
 
 
         <label>
           UTR / Transaction ID
-
           <input
             id="utr"
             type="text"
@@ -211,7 +295,6 @@
 
         <label>
           Delivery Email
-
           <input
             id="email"
             type="email"
@@ -220,13 +303,9 @@
         </label>
 
 
-        <button
-          id="submitPayment"
-          class="primary"
-        >
+        <button id="submitPayment" class="primary">
           Submit for Verification
         </button>
-
 
         <p class="tiny">
           Payment remains pending until merchant/admin
@@ -239,39 +318,36 @@
 
   </div>
 
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-
-    <a href="#">
-      <span>⌂</span>
-      Home
-    </a>
-
-    <a href="#store">
-      <span>▣</span>
-      Store
-    </a>
-
-    <a href="#free">
-      <span>◈</span>
-      Free Coin
-    </a>
-
-    <a href="#refer">
-      <span>↗</span>
-      Refer
-    </a>
-
-    <a href="#profile">
-      <span>◎</span>
-      Profile
-    </a>
-
-  </nav>
+</main>
 
 
-  <script src="script.js"></script>
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+
+  <button data-page="home">
+    <span>⌂</span>
+    Home
+  </button>
+
+  <button data-page="store">
+    <span>▣</span>
+    Store
+  </button>
+
+  <button data-page="free">
+    <span>◈</span>
+    Free Coin
+  </button>
+
+  <button data-page="profile">
+    <span>◎</span>
+    Profile
+  </button>
+
+</nav>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>

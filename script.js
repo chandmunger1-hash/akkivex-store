@@ -1,266 +1,369 @@
-// AKKIVEX MODS
-// Frontend demo store interactions
+// KAIVEX STORE
+// Fictional/demo frontend data only.
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =========================
-  // DEMO PRODUCT DATA
-  // =========================
-
-  // Fictional/demo data only.
-  // Card numbers are intentionally masked.
-
   const products = [
-    // VISA
+
     {
       id: 1,
       category: "VISA",
-      name: "VISA Demo 3000",
       price: 150,
       balance: 3000,
-      holder: "Michael Carter",
-      card: "3548 •••• •••• ••••"
+      holder: "Alex Carter",
+      card: "DEMO •••• 3548",
+      expiry: "09/32",
+      type: "DEBIT CARD",
+      level: "HOFC PREMIUM",
+      stock: 8
     },
+
     {
       id: 2,
       category: "VISA",
-      name: "VISA Demo 5000",
       price: 210,
       balance: 5000,
       holder: "Daniel Wilson",
-      card: "4821 •••• •••• ••••"
+      card: "DEMO •••• 4821",
+      expiry: "07/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 6
     },
+
     {
       id: 3,
       category: "VISA",
-      name: "VISA Demo 6000",
       price: 270,
       balance: 6000,
       holder: "James Anderson",
-      card: "4217 •••• •••• ••••"
+      card: "DEMO •••• 4217",
+      expiry: "11/32",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 5
     },
+
     {
       id: 4,
       category: "VISA",
-      name: "VISA Demo 8000",
       price: 330,
       balance: 8000,
       holder: "Robert Miller",
-      card: "4532 •••• •••• ••••"
+      card: "DEMO •••• 4532",
+      expiry: "04/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 4
     },
+
     {
       id: 5,
       category: "VISA",
-      name: "VISA Demo 9000",
       price: 390,
       balance: 9000,
       holder: "William Davis",
-      card: "4916 •••• •••• ••••"
+      card: "DEMO •••• 4916",
+      expiry: "12/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 3
     },
 
-    // MASTERCARD
     {
       id: 6,
       category: "MASTERCARD",
-      name: "MASTERCARD Demo 3200",
       price: 170,
       balance: 3200,
-      holder: "Christopher Brown",
-      card: "5234 •••• •••• ••••"
+      holder: "Chris Brown",
+      card: "DEMO •••• 5234",
+      expiry: "08/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 8
     },
+
     {
       id: 7,
       category: "MASTERCARD",
-      name: "MASTERCARD Demo 4000",
       price: 230,
       balance: 4000,
       holder: "Matthew Johnson",
-      card: "5487 •••• •••• ••••"
+      card: "DEMO •••• 5487",
+      expiry: "03/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 7
     },
+
     {
       id: 8,
       category: "MASTERCARD",
-      name: "MASTERCARD Demo 6000",
       price: 290,
       balance: 6000,
       holder: "Andrew Thompson",
-      card: "5271 •••• •••• ••••"
+      card: "DEMO •••• 5271",
+      expiry: "10/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 6
     },
+
     {
       id: 9,
       category: "MASTERCARD",
-      name: "MASTERCARD Demo 8000",
       price: 350,
       balance: 8000,
       holder: "Joseph Martinez",
-      card: "5548 •••• •••• ••••"
+      card: "DEMO •••• 5548",
+      expiry: "06/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 4
     },
+
     {
       id: 10,
       category: "MASTERCARD",
-      name: "MASTERCARD Demo 10000",
       price: 410,
       balance: 10000,
       holder: "Anthony Taylor",
-      card: "5103 •••• •••• ••••"
+      card: "DEMO •••• 5103",
+      expiry: "01/35",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 3
     },
 
-    // RUPAY
     {
       id: 11,
       category: "RUPAY",
-      name: "RUPAY Demo 3500",
       price: 190,
       balance: 3500,
       holder: "Joshua Thomas",
-      card: "6071 •••• •••• ••••"
+      card: "DEMO •••• 6071",
+      expiry: "05/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 8
     },
+
     {
       id: 12,
       category: "RUPAY",
-      name: "RUPAY Demo 4500",
       price: 250,
       balance: 4500,
       holder: "Ryan Jackson",
-      card: "6521 •••• •••• ••••"
+      card: "DEMO •••• 6521",
+      expiry: "09/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 6
     },
+
     {
       id: 13,
       category: "RUPAY",
-      name: "RUPAY Demo 6000",
       price: 310,
       balance: 6000,
       holder: "Brandon White",
-      card: "6384 •••• •••• ••••"
+      card: "DEMO •••• 6384",
+      expiry: "02/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 5
     },
+
     {
       id: 14,
       category: "RUPAY",
-      name: "RUPAY Demo 8000",
       price: 370,
       balance: 8000,
       holder: "Kevin Harris",
-      card: "6214 •••• •••• ••••"
+      card: "DEMO •••• 6214",
+      expiry: "07/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 4
     },
+
     {
       id: 15,
       category: "RUPAY",
-      name: "RUPAY Demo 10000",
       price: 430,
       balance: 10000,
       holder: "Jason Martin",
-      card: "6528 •••• •••• ••••"
+      card: "DEMO •••• 6528",
+      expiry: "11/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 3
     },
+
     {
       id: 16,
       category: "RUPAY",
-      name: "RUPAY Demo 15000",
       price: 500,
       balance: 15000,
       holder: "Eric Robinson",
-      card: "6712 •••• •••• ••••"
+      card: "DEMO •••• 6712",
+      expiry: "12/35",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 2
     }
+
   ];
 
 
-  // =========================
-  // ELEMENTS
-  // =========================
+  const $ = id => document.getElementById(id);
 
-  const loader = document.getElementById("loader");
-  const app = document.getElementById("app");
-  const percent = document.getElementById("percent");
-  const loaderText = document.getElementById("loaderText");
-  const barFill = document.getElementById("barFill");
+  const loader = $("loader");
+  const app = $("app");
+  const barFill = $("barFill");
+  const percent = $("percent");
+  const loaderText = $("loaderText");
 
-  const productsBox = document.getElementById("products");
-  const filtersBox = document.getElementById("filters");
-  const searchBox = document.getElementById("search");
+  const productsBox = $("products");
+  const filtersBox = $("filters");
+  const searchBox = $("search");
 
-  const modal = document.getElementById("modal");
-  const closeModal = document.getElementById("closeModal");
-  const selectedProduct = document.getElementById("selectedProduct");
+  const profileBtn = $("profileBtn");
 
-  const copyUpi = document.getElementById("copyUpi");
-  const submitPayment = document.getElementById("submitPayment");
+  const homePage = $("homePage");
+  const profilePage = $("profilePage");
+  const freePage = $("freePage");
 
-  const utrInput = document.getElementById("utr");
-  const emailInput = document.getElementById("email");
+  const productModal = $("productModal");
+  const productDetail = $("productDetail");
 
-  const copyRef = document.getElementById("copyRef");
+  const modal = $("modal");
+  const selectedProduct = $("selectedProduct");
+
+  const copyUpi = $("copyUpi");
+  const submitPayment = $("submitPayment");
+
+  const utrInput = $("utr");
+  const emailInput = $("email");
+
+  const copyRef = $("copyRef");
 
   let selectedCategory = "ALL";
 
 
-  // =========================
-  // SECURITY LOADER
-  // =========================
+  /* =========================
+     LOADER
+  ========================= */
 
   let progress = 0;
 
-  const loadingMessages = [
+  const messages = [
     "Initializing security...",
     "Checking system...",
     "Verifying connection...",
-    "Loading AKKIVEX MODS...",
+    "Loading KAIVEX STORE...",
     "Security check complete."
   ];
 
-  const loaderTimer = setInterval(() => {
+  const timer = setInterval(() => {
 
     progress++;
 
-    if (percent) {
-      percent.textContent = progress + "%";
-    }
+    percent.textContent = progress + "%";
+    barFill.style.width = progress + "%";
 
-    if (barFill) {
-      barFill.style.width = progress + "%";
-    }
+    const index = Math.min(
+      Math.floor(progress / 20),
+      messages.length - 1
+    );
 
-    if (loaderText) {
-      const index = Math.min(
-        Math.floor(progress / 20),
-        loadingMessages.length - 1
-      );
-
-      loaderText.textContent = loadingMessages[index];
-    }
+    loaderText.textContent = messages[index];
 
     if (progress >= 100) {
 
-      clearInterval(loaderTimer);
+      clearInterval(timer);
 
       setTimeout(() => {
 
-        if (app) {
-          app.classList.remove("hidden");
-        }
+        app.classList.remove("hidden");
 
-        if (loader) {
+        loader.style.opacity = "0";
+        loader.style.pointerEvents = "none";
 
-          loader.style.opacity = "0";
-          loader.style.pointerEvents = "none";
-
-          setTimeout(() => {
-            loader.style.display = "none";
-          }, 500);
-
-        }
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 500);
 
       }, 300);
     }
 
-  }, 25);
+  }, 20);
 
 
-  // =========================
-  // CATEGORY BUTTONS
-  // =========================
+  /* =========================
+     NAVIGATION
+  ========================= */
+
+  function showPage(page) {
+
+    homePage.classList.add("hidden");
+    profilePage.classList.add("hidden");
+    freePage.classList.add("hidden");
+
+    if (page === "profile") {
+      profilePage.classList.remove("hidden");
+    }
+    else if (page === "free") {
+      freePage.classList.remove("hidden");
+    }
+    else {
+      homePage.classList.remove("hidden");
+
+      if (page === "store") {
+        setTimeout(() => {
+          $("store").scrollIntoView({
+            behavior: "smooth"
+          });
+        }, 50);
+      }
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+  document.querySelectorAll("[data-page]")
+    .forEach(button => {
+
+      button.addEventListener("click", () => {
+        showPage(button.dataset.page);
+      });
+
+    });
+
+
+  profileBtn.addEventListener("click", () => {
+    showPage("profile");
+  });
+
+
+  $("backHome").addEventListener("click", () => {
+    showPage("home");
+  });
+
+  $("backHomeFree").addEventListener("click", () => {
+    showPage("home");
+  });
+
+
+  /* =========================
+     FILTERS
+  ========================= */
 
   function renderFilters() {
-
-    if (!filtersBox) return;
 
     const categories = [
       "ALL",
@@ -269,19 +372,16 @@ document.addEventListener("DOMContentLoaded", () => {
       "RUPAY"
     ];
 
-    filtersBox.innerHTML = categories
-      .map(category => `
-        <button
-          class="filter ${category === "ALL" ? "active" : ""}"
-          data-category="${category}"
-        >
-          ${category}
-        </button>
-      `)
-      .join("");
+    filtersBox.innerHTML = categories.map(category => `
+      <button
+        class="filter ${category === "ALL" ? "active" : ""}"
+        data-category="${category}"
+      >
+        ${category}
+      </button>
+    `).join("");
 
-    document
-      .querySelectorAll("[data-category]")
+    document.querySelectorAll("[data-category]")
       .forEach(button => {
 
         button.addEventListener("click", () => {
@@ -291,9 +391,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
           document
             .querySelectorAll("[data-category]")
-            .forEach(btn => {
-              btn.classList.remove("active");
-            });
+            .forEach(btn =>
+              btn.classList.remove("active")
+            );
 
           button.classList.add("active");
 
@@ -304,42 +404,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // =========================
-  // PRODUCT CARDS
-  // =========================
+  /* =========================
+     PRODUCTS
+  ========================= */
 
   function renderProducts() {
 
-    if (!productsBox) return;
+    const text =
+      searchBox.value.trim().toLowerCase();
 
-    const searchText =
-      searchBox
-        ? searchBox.value.trim().toLowerCase()
-        : "";
-
-    const filteredProducts = products.filter(product => {
+    const list = products.filter(product => {
 
       const categoryMatch =
         selectedCategory === "ALL" ||
         product.category === selectedCategory;
 
       const searchMatch =
-        searchText === "" ||
-        product.name.toLowerCase().includes(searchText) ||
-        product.category.toLowerCase().includes(searchText) ||
-        product.holder.toLowerCase().includes(searchText);
+        text === "" ||
+        product.category.toLowerCase().includes(text) ||
+        product.holder.toLowerCase().includes(text);
 
       return categoryMatch && searchMatch;
     });
 
 
-    if (filteredProducts.length === 0) {
+    if (!list.length) {
 
       productsBox.innerHTML = `
         <div class="empty-state">
           <div>⌕</div>
           <h3>No products found</h3>
-          <p>Try another search or category.</p>
+          <p>Try another category or search.</p>
         </div>
       `;
 
@@ -347,198 +442,303 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    productsBox.innerHTML =
-      filteredProducts
-        .map(product => `
+    productsBox.innerHTML = list.map(product => `
 
-          <article
-            class="product"
-            data-product-card
-            data-category="${product.category}"
+      <article class="product">
+
+        <div class="product-top">
+          <span class="tag">
+            ${product.category}
+          </span>
+
+          <span class="demo-badge">
+            DEMO
+          </span>
+        </div>
+
+
+        <div
+          class="demo-card"
+          data-info="${product.id}"
+        >
+
+          <div class="demo-card-top">
+            <span>KX</span>
+            <span>${product.category}</span>
+          </div>
+
+          <div class="demo-number">
+            ${product.card}
+          </div>
+
+          <div class="card-mid">
+
+            <div>
+              <small>MONTH/YEAR</small>
+              <strong>${product.expiry}</strong>
+            </div>
+
+            <div>
+              <small>BALANCE</small>
+              <strong>
+                ${product.balance.toLocaleString("en-IN")}
+              </strong>
+            </div>
+
+          </div>
+
+          <div class="demo-card-bottom">
+            <span>${product.holder}</span>
+            <span>${product.type}</span>
+          </div>
+
+        </div>
+
+
+        <div class="product-meta">
+
+          <div>
+            <span>LEVEL</span>
+            <strong>${product.level}</strong>
+          </div>
+
+          <div>
+            <span>BAL</span>
+            <strong>
+              ${product.balance.toLocaleString("en-IN")}
+            </strong>
+          </div>
+
+        </div>
+
+
+        <div class="stock-line">
+          <span>STOCK PROTOCOL</span>
+          <strong>ONLY ${product.stock} LEFT</strong>
+        </div>
+
+
+        <div class="product-actions">
+
+          <button
+            class="details-btn"
+            data-info="${product.id}"
           >
+            DETAILS
+          </button>
 
-            <div class="product-top">
+          <button
+            class="primary buy-btn"
+            data-buy="${product.id}"
+          >
+            BUY NOW · ₹${product.price}
+          </button>
 
-              <span class="tag">
-                ${product.category}
-              </span>
-
-              <span class="demo-badge">
-                DEMO
-              </span>
-
-            </div>
-
-
-            <div class="demo-card">
-
-              <div class="demo-card-top">
-                <span>AKV</span>
-                <span>${product.category}</span>
-              </div>
-
-              <div class="demo-number">
-                ${product.card}
-              </div>
-
-              <div class="demo-card-bottom">
-                <span>
-                  ${product.holder}
-                </span>
-
-                <span>
-                  DEMO
-                </span>
-              </div>
-
-            </div>
+        </div>
 
 
-            <h3>
-              ${product.name}
-            </h3>
+        <p class="demo-note">
+          Fictional demo product • no real credentials
+        </p>
+
+      </article>
+
+    `).join("");
 
 
-            <div class="product-info">
-
-              <div>
-                <span class="info-label">
-                  DEMO BALANCE
-                </span>
-
-                <strong>
-                  ₹${product.balance.toLocaleString("en-IN")}
-                </strong>
-              </div>
-
-              <div>
-                <span class="info-label">
-                  PRICE
-                </span>
-
-                <strong>
-                  ₹${product.price}
-                </strong>
-              </div>
-
-            </div>
-
-
-            <button
-              class="primary buy-btn"
-              data-buy="${product.id}"
-            >
-              Buy Demo
-            </button>
-
-
-            <p class="demo-note">
-              Fictional demo product •
-              no real card credentials
-            </p>
-
-          </article>
-
-        `)
-        .join("");
-
-
-    document
-      .querySelectorAll("[data-buy]")
+    document.querySelectorAll("[data-info]")
       .forEach(button => {
 
         button.addEventListener("click", () => {
 
-          const id =
-            Number(button.dataset.buy);
+          const product = products.find(
+            p => p.id === Number(button.dataset.info)
+          );
 
-          const product =
-            products.find(item => item.id === id);
+          if (product) {
+            openProduct(product);
+          }
 
-          if (!product) return;
-
-          openCheckout(product);
         });
 
       });
+
+
+    document.querySelectorAll("[data-buy]")
+      .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+          const product = products.find(
+            p => p.id === Number(button.dataset.buy)
+          );
+
+          if (product) {
+            openCheckout(product);
+          }
+
+        });
+
+      });
+
   }
 
 
-  // =========================
-  // SEARCH
-  // =========================
+  searchBox.addEventListener(
+    "input",
+    renderProducts
+  );
 
-  if (searchBox) {
 
-    searchBox.addEventListener("input", () => {
-      renderProducts();
-    });
+  /* =========================
+     PRODUCT DETAILS
+  ========================= */
 
+  function openProduct(product) {
+
+    productDetail.innerHTML = `
+
+      <div class="detail-card">
+
+        <div class="detail-brand">
+          <span>KX</span>
+          <strong>${product.category}</strong>
+        </div>
+
+        <div class="detail-number">
+          ${product.card}
+        </div>
+
+        <div class="detail-grid">
+
+          <div>
+            <small>MONTH/YEAR</small>
+            <strong>${product.expiry}</strong>
+          </div>
+
+          <div>
+            <small>BALANCE</small>
+            <strong>
+              ${product.balance.toLocaleString("en-IN")}
+            </strong>
+          </div>
+
+          <div>
+            <small>CARD TYPE</small>
+            <strong>${product.type}</strong>
+          </div>
+
+          <div>
+            <small>LEVEL</small>
+            <strong>${product.level}</strong>
+          </div>
+
+        </div>
+
+        <div class="detail-holder">
+          <small>DEMO HOLDER</small>
+          <strong>${product.holder}</strong>
+        </div>
+
+        <div class="detail-stock">
+          STOCK PROTOCOL · ONLY ${product.stock} LEFT
+        </div>
+
+        <button
+          class="primary"
+          id="detailBuy"
+        >
+          BUY NOW · ₹${product.price}
+        </button>
+
+      </div>
+
+      <p class="tiny">
+        All displayed card information is fictional demo data.
+      </p>
+    `;
+
+
+    $("detailBuy").addEventListener(
+      "click",
+      () => {
+        closeProductModal();
+        openCheckout(product);
+      }
+    );
+
+
+    productModal.classList.remove("hidden");
   }
 
 
-  // =========================
-  // CHECKOUT
-  // =========================
+  function closeProductModal() {
+    productModal.classList.add("hidden");
+  }
+
+
+  $("closeProduct").addEventListener(
+    "click",
+    closeProductModal
+  );
+
+
+  productModal.addEventListener(
+    "click",
+    event => {
+
+      if (event.target === productModal) {
+        closeProductModal();
+      }
+
+    }
+  );
+
+
+  /* =========================
+     CHECKOUT
+  ========================= */
 
   function openCheckout(product) {
 
-    if (!modal) return;
-
-    if (selectedProduct) {
-
-      selectedProduct.innerHTML = `
-        <strong>${product.name}</strong><br>
-        Demo balance: ₹${product.balance.toLocaleString("en-IN")}<br>
-        Price: ₹${product.price}
-      `;
-
-    }
+    selectedProduct.innerHTML = `
+      <strong>${product.category} Demo Product</strong><br>
+      Demo balance:
+      ₹${product.balance.toLocaleString("en-IN")}<br>
+      Price: ₹${product.price}
+    `;
 
     modal.classList.remove("hidden");
-
   }
 
 
-  function closeCheckout() {
-
-    if (modal) {
-      modal.classList.add("hidden");
-    }
-
-  }
+  $("closeModal").addEventListener(
+    "click",
+    () => modal.classList.add("hidden")
+  );
 
 
-  if (closeModal) {
-    closeModal.addEventListener(
-      "click",
-      closeCheckout
-    );
-  }
-
-
-  if (modal) {
-
-    modal.addEventListener("click", event => {
+  modal.addEventListener(
+    "click",
+    event => {
 
       if (event.target === modal) {
-        closeCheckout();
+        modal.classList.add("hidden");
       }
 
-    });
+    }
+  );
 
-  }
 
-
-  // =========================
-  // UPI COPY
-  // =========================
+  /* =========================
+     UPI
+  ========================= */
 
   const upiId = "kaivexstore@ybl";
 
-  if (copyUpi) {
-
-    copyUpi.addEventListener("click", async () => {
+  copyUpi.addEventListener(
+    "click",
+    async () => {
 
       try {
 
@@ -554,34 +754,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }, 1500);
 
-      } catch (error) {
+      } catch {
 
         alert("UPI ID: " + upiId);
 
       }
 
-    });
+    }
+  );
 
-  }
 
+  /* =========================
+     PAYMENT
+  ========================= */
 
-  // =========================
-  // PAYMENT SUBMISSION
-  // =========================
-
-  if (submitPayment) {
-
-    submitPayment.addEventListener("click", () => {
+  submitPayment.addEventListener(
+    "click",
+    () => {
 
       const utr =
-        utrInput
-          ? utrInput.value.trim()
-          : "";
+        utrInput.value.trim();
 
       const email =
-        emailInput
-          ? emailInput.value.trim()
-          : "";
+        emailInput.value.trim();
 
 
       if (!utr || !email) {
@@ -599,87 +794,102 @@ document.addEventListener("DOMContentLoaded", () => {
         "Status: Pending Verification"
       );
 
-    });
+    }
+  );
 
-  }
 
-
-  // =========================
-  // FREE COIN TASKS
-  // =========================
+  /* =========================
+     FREE COINS
+  ========================= */
 
   const channels = [
-    {
-      name: "Channel Task 01",
-      url: "#"
-    },
-    {
-      name: "Channel Task 02",
-      url: "#"
-    },
-    {
-      name: "Channel Task 03",
-      url: "#"
-    },
-    {
-      name: "Channel Task 04",
-      url: "#"
-    },
-    {
-      name: "Channel Task 05",
-      url: "#"
-    }
+    "Channel Task 01",
+    "Channel Task 02",
+    "Channel Task 03",
+    "Channel Task 04",
+    "Channel Task 05"
   ];
 
+  $("channels").innerHTML =
+    channels.map((name, index) => `
 
-  const channelsBox =
-    document.getElementById("channels");
+      <div class="channel">
 
-
-  if (channelsBox) {
-
-    channelsBox.innerHTML =
-      channels.map((channel, index) => `
-
-        <div class="channel">
-
-          <div>
-            <strong>
-              ${channel.name}
-            </strong>
-
-            <div class="tiny">
-              Task ${index + 1} • ₹0.50
-            </div>
+        <div>
+          <strong>${name}</strong>
+          <div class="tiny">
+            Task ${index + 1} · ₹0.50
           </div>
-
-          <a
-            href="${channel.url}"
-            class="task-btn"
-          >
-            Join
-          </a>
-
         </div>
 
-      `).join("");
+        <button
+          class="task-btn"
+          onclick="alert('Task opened. Reward is subject to verification.')"
+        >
+          JOIN
+        </button>
+
+      </div>
+
+    `).join("");
+
+
+  /* =========================
+     PROFILE SUB-SECTIONS
+  ========================= */
+
+  function closeProfileBoxes() {
+
+    $("referBox").classList.add("hidden");
+    $("ordersBox").classList.add("hidden");
+    $("accountBox").classList.add("hidden");
 
   }
 
 
-  // =========================
-  // REFERRAL COPY
-  // =========================
+  $("referOpen").addEventListener(
+    "click",
+    () => {
 
-  if (copyRef) {
+      closeProfileBoxes();
 
-    copyRef.addEventListener("click", async () => {
+      $("referBox").classList.remove("hidden");
 
-      const code = "AKV8457";
+    }
+  );
+
+
+  $("ordersOpen").addEventListener(
+    "click",
+    () => {
+
+      closeProfileBoxes();
+
+      $("ordersBox").classList.remove("hidden");
+
+    }
+  );
+
+
+  $("accountOpen").addEventListener(
+    "click",
+    () => {
+
+      closeProfileBoxes();
+
+      $("accountBox").classList.remove("hidden");
+
+    }
+  );
+
+
+  copyRef.addEventListener(
+    "click",
+    async () => {
 
       try {
 
-        await navigator.clipboard.writeText(code);
+        await navigator.clipboard.writeText("AKV8457");
 
         copyRef.textContent =
           "Referral Code Copied ✓";
@@ -689,20 +899,19 @@ document.addEventListener("DOMContentLoaded", () => {
             "Copy Referral Code";
         }, 1500);
 
-      } catch (error) {
+      } catch {
 
-        alert("Referral Code: " + code);
+        alert("Referral Code: AKV8457");
 
       }
 
-    });
+    }
+  );
 
-  }
 
-
-  // =========================
-  // INITIAL RENDER
-  // =========================
+  /* =========================
+     START
+  ========================= */
 
   renderFilters();
   renderProducts();
