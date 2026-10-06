@@ -1,7 +1,5 @@
 // AKKIVEX STORE
 // Fictional/demo frontend data only.
-// Authentication: GitHub Pages + localStorage.
-// No Supabase / Firebase required.
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -267,666 +265,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     AUTH ELEMENTS
+     REFERRAL CODE
   ========================= */
 
-  const authPage = $("authPage");
-
-  const loginForm = $("loginForm");
-  const signupForm = $("signupForm");
-
-  const authTitle = $("authTitle");
-  const authSubtitle = $("authSubtitle");
-
-  const loginEmail = $("loginEmail");
-  const loginPassword = $("loginPassword");
-  const loginBtn = $("loginBtn");
-  const loginMessage = $("loginMessage");
-
-  const signupName = $("signupName");
-  const signupEmail = $("signupEmail");
-  const signupPassword = $("signupPassword");
-  const signupConfirm = $("signupConfirm");
-  const signupBtn = $("signupBtn");
-  const signupMessage = $("signupMessage");
-
-  const showSignup = $("showSignup");
-  const showLogin = $("showLogin");
-
-  const logoutBtn = $("logoutBtn");
-
-  const profileGreeting = $("profileGreeting");
-
-  const accountName = $("accountName");
-  const accountEmail = $("accountEmail");
-
-  const orderHistory = $("orderHistory");
+  let referralCode =
+    localStorage.getItem("kaivexReferralCode");
 
 
-  /* =========================
-     AUTH STORAGE
-  ========================= */
+  if (!referralCode) {
 
-  const USERS_KEY =
-    "akkivexUsers";
-
-  const SESSION_KEY =
-    "akkivexCurrentUser";
-
-
-  function getUsers() {
-
-    try {
-
-      return JSON.parse(
-        localStorage.getItem(
-          USERS_KEY
-        )
-      ) || {};
-
-    }
-
-    catch {
-
-      return {};
-
-    }
-
-  }
-
-
-  function saveUsers(users) {
-
-    localStorage.setItem(
-      USERS_KEY,
-      JSON.stringify(users)
-    );
-
-  }
-
-
-  function normalizeEmail(email) {
-
-    return email
-      .trim()
-      .toLowerCase();
-
-  }
-
-
-  /* =========================
-     PASSWORD HASH
-  ========================= */
-
-  async function hashPassword(
-    password,
-    salt
-  ) {
-
-    const data =
-      new TextEncoder().encode(
-        salt + ":" + password
-      );
-
-
-    const hash =
-      await crypto.subtle.digest(
-        "SHA-256",
-        data
-      );
-
-
-    return Array.from(
-      new Uint8Array(hash)
-    )
-      .map(byte =>
-        byte
-          .toString(16)
-          .padStart(2, "0")
-      )
-      .join("");
-
-  }
-
-
-  function createSalt() {
-
-    const array =
-      new Uint8Array(16);
-
-    crypto.getRandomValues(array);
-
-
-    return Array.from(array)
-      .map(byte =>
-        byte
-          .toString(16)
-          .padStart(2, "0")
-      )
-      .join("");
-
-  }
-
-
-  /* =========================
-     REFERRAL
-  ========================= */
-
-  function generateReferralCode() {
-
-    return (
+    referralCode =
       "KS" +
       Math.floor(
         100000 +
         Math.random() * 900000
-      )
+      );
+
+    localStorage.setItem(
+      "kaivexReferralCode",
+      referralCode
     );
 
   }
 
 
-  let referralCode =
-    "KS000000";
+  const referralDisplay =
+    $("referralDisplay");
 
 
-  /* =========================
-     CURRENT USER
-  ========================= */
+  if (referralDisplay) {
 
-  let currentUser = null;
-
-
-  /* =========================
-     SHOW LOGIN
-  ========================= */
-
-  function showLoginForm() {
-
-    loginForm.classList.remove(
-      "hidden"
-    );
-
-    signupForm.classList.add(
-      "hidden"
-    );
-
-    authTitle.textContent =
-      "Welcome Back";
-
-    authSubtitle.textContent =
-      "Login to access your AKKIVEX STORE account.";
-
-    loginMessage.textContent = "";
-
-    signupMessage.textContent = "";
+    referralDisplay.textContent =
+      referralCode;
 
   }
-
-
-  /* =========================
-     SHOW SIGNUP
-  ========================= */
-
-  function showSignupForm() {
-
-    signupForm.classList.remove(
-      "hidden"
-    );
-
-    loginForm.classList.add(
-      "hidden"
-    );
-
-    authTitle.textContent =
-      "Create Account";
-
-    authSubtitle.textContent =
-      "Create your AKKIVEX STORE account.";
-
-    loginMessage.textContent = "";
-
-    signupMessage.textContent = "";
-
-  }
-
-
-  showSignup.addEventListener(
-    "click",
-    showSignupForm
-  );
-
-
-  showLogin.addEventListener(
-    "click",
-    showLoginForm
-  );
-
-
-  /* =========================
-     SIGNUP
-  ========================= */
-
-  signupBtn.addEventListener(
-    "click",
-    async () => {
-
-      const name =
-        signupName.value.trim();
-
-      const email =
-        normalizeEmail(
-          signupEmail.value
-        );
-
-      const password =
-        signupPassword.value;
-
-      const confirm =
-        signupConfirm.value;
-
-
-      if (!name) {
-
-        signupMessage.textContent =
-          "Please enter your name.";
-
-        return;
-
-      }
-
-
-      if (!email) {
-
-        signupMessage.textContent =
-          "Please enter your email.";
-
-        return;
-
-      }
-
-
-      if (
-        !email.includes("@") ||
-        !email.includes(".")
-      ) {
-
-        signupMessage.textContent =
-          "Please enter a valid email.";
-
-        return;
-
-      }
-
-
-      if (password.length < 6) {
-
-        signupMessage.textContent =
-          "Password must be at least 6 characters.";
-
-        return;
-
-      }
-
-
-      if (password !== confirm) {
-
-        signupMessage.textContent =
-          "Passwords do not match.";
-
-        return;
-
-      }
-
-
-      const users =
-        getUsers();
-
-
-      if (users[email]) {
-
-        signupMessage.textContent =
-          "Account already exists. Please login.";
-
-        return;
-
-      }
-
-
-      const salt =
-        createSalt();
-
-
-      const passwordHash =
-        await hashPassword(
-          password,
-          salt
-        );
-
-
-      users[email] = {
-
-        name: name,
-
-        email: email,
-
-        passwordHash:
-          passwordHash,
-
-        salt: salt,
-
-        referralCode:
-          generateReferralCode(),
-
-        coinBalance: 0,
-
-        claimedTasks: [],
-
-        orders: [],
-
-        createdAt:
-          new Date().toISOString()
-
-      };
-
-
-      saveUsers(users);
-
-
-      localStorage.setItem(
-        SESSION_KEY,
-        email
-      );
-
-
-      currentUser =
-        users[email];
-
-
-      signupMessage.textContent =
-        "Account created successfully ✓";
-
-
-      setTimeout(() => {
-
-        authPage.classList.add(
-          "hidden"
-        );
-
-        app.classList.remove(
-          "hidden"
-        );
-
-        loadCurrentUser();
-
-      }, 500);
-
-    }
-  );
-
-
-  /* =========================
-     LOGIN
-  ========================= */
-
-  loginBtn.addEventListener(
-    "click",
-    async () => {
-
-      const email =
-        normalizeEmail(
-          loginEmail.value
-        );
-
-      const password =
-        loginPassword.value;
-
-
-      if (!email || !password) {
-
-        loginMessage.textContent =
-          "Enter email and password.";
-
-        return;
-
-      }
-
-
-      const users =
-        getUsers();
-
-
-      const user =
-        users[email];
-
-
-      if (!user) {
-
-        loginMessage.textContent =
-          "Account not found.";
-
-        return;
-
-      }
-
-
-      const passwordHash =
-        await hashPassword(
-          password,
-          user.salt
-        );
-
-
-      if (
-        passwordHash !==
-        user.passwordHash
-      ) {
-
-        loginMessage.textContent =
-          "Incorrect email or password.";
-
-        return;
-
-      }
-
-
-      localStorage.setItem(
-        SESSION_KEY,
-        email
-      );
-
-
-      currentUser =
-        user;
-
-
-      loginMessage.textContent =
-        "Login successful ✓";
-
-
-      setTimeout(() => {
-
-        authPage.classList.add(
-          "hidden"
-        );
-
-        app.classList.remove(
-          "hidden"
-        );
-
-        loadCurrentUser();
-
-      }, 400);
-
-    }
-  );
-
-
-  /* =========================
-     LOAD CURRENT USER
-  ========================= */
-
-  function loadCurrentUser() {
-
-    const users =
-      getUsers();
-
-
-    const email =
-      localStorage.getItem(
-        SESSION_KEY
-      );
-
-
-    if (
-      !email ||
-      !users[email]
-    ) {
-
-      currentUser = null;
-
-
-      app.classList.add(
-        "hidden"
-      );
-
-
-      authPage.classList.remove(
-        "hidden"
-      );
-
-
-      showLoginForm();
-
-      return;
-
-    }
-
-
-    currentUser =
-      users[email];
-
-
-    app.classList.remove(
-      "hidden"
-    );
-
-
-    authPage.classList.add(
-      "hidden"
-    );
-
-
-    referralCode =
-      currentUser.referralCode;
-
-
-    if (referralDisplay) {
-
-      referralDisplay.textContent =
-        referralCode;
-
-    }
-
-
-    if (profileGreeting) {
-
-      profileGreeting.textContent =
-        "Welcome, " +
-        currentUser.name +
-        ". Manage your account and referral information.";
-
-    }
-
-
-    if (accountName) {
-
-      accountName.textContent =
-        currentUser.name;
-
-    }
-
-
-    if (accountEmail) {
-
-      accountEmail.textContent =
-        currentUser.email;
-
-    }
-
-
-    updateCoinStats();
-
-    renderOrderHistory();
-
-  }
-
-
-  /* =========================
-     SAVE CURRENT USER
-  ========================= */
-
-  function saveCurrentUser() {
-
-    if (!currentUser) {
-      return;
-    }
-
-
-    const users =
-      getUsers();
-
-
-    users[
-      currentUser.email
-    ] = currentUser;
-
-
-    saveUsers(users);
-
-  }
-
-
-  /* =========================
-     LOGOUT
-  ========================= */
-
-  logoutBtn.addEventListener(
-    "click",
-    () => {
-
-      localStorage.removeItem(
-        SESSION_KEY
-      );
-
-
-      currentUser = null;
-
-
-      loginEmail.value = "";
-
-      loginPassword.value = "";
-
-
-      app.classList.add(
-        "hidden"
-      );
-
-
-      authPage.classList.remove(
-        "hidden"
-      );
-
-
-      showLoginForm();
-
-
-      window.scrollTo({
-        top: 0,
-        behavior: "instant"
-      });
-
-    }
-  );
 
 
   /* =========================
@@ -934,7 +306,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   let progress = 0;
-
 
   const messages = [
 
@@ -956,10 +327,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       progress++;
 
-
       percent.textContent =
         progress + "%";
-
 
       barFill.style.width =
         progress + "%";
@@ -983,8 +352,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
 
-          loader.classList.add(
-            "loader-finished"
+          app.classList.remove(
+            "hidden"
           );
 
           loader.style.opacity =
@@ -1014,17 +383,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showPage(page) {
 
-    homePage.classList.add(
-      "hidden"
-    );
-
-    profilePage.classList.add(
-      "hidden"
-    );
-
-    freePage.classList.add(
-      "hidden"
-    );
+    homePage.classList.add("hidden");
+    profilePage.classList.add("hidden");
+    freePage.classList.add("hidden");
 
 
     if (page === "profile") {
@@ -1042,7 +403,6 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       renderFreeTasks();
-
       updateCoinStats();
 
     }
@@ -1085,10 +445,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         () => {
 
-          if (!currentUser) {
-            return;
-          }
-
           showPage(
             button.dataset.page
           );
@@ -1102,10 +458,6 @@ document.addEventListener("DOMContentLoaded", () => {
   profileBtn.addEventListener(
     "click",
     () => {
-
-      if (!currentUser) {
-        return;
-      }
 
       showPage("profile");
 
@@ -1148,19 +500,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function hideProfileSections() {
 
-    profileSections.forEach(
-      section => {
+    profileSections.forEach(section => {
 
-        if (section) {
-
-          section.classList.add(
-            "hidden"
-          );
-
-        }
-
+      if (section) {
+        section.classList.add(
+          "hidden"
+        );
       }
-    );
+
+    });
 
   }
 
@@ -1188,8 +536,6 @@ document.addEventListener("DOMContentLoaded", () => {
       $("ordersBox").classList.remove(
         "hidden"
       );
-
-      renderOrderHistory();
 
     }
   );
@@ -1222,7 +568,6 @@ document.addEventListener("DOMContentLoaded", () => {
         await navigator.clipboard.writeText(
           referralCode
         );
-
 
         copyRef.textContent =
           "Referral Code Copied ✓";
@@ -1271,8 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     filtersBox.innerHTML =
-      categories.map(
-        category => `
+      categories.map(category => `
 
         <button
           class="filter ${
@@ -1285,8 +629,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ${category}
         </button>
 
-      `
-      ).join("");
+      `).join("");
 
 
     document
@@ -1396,8 +739,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     productsBox.innerHTML =
-      list.map(
-        product => `
+      list.map(product => `
 
         <article class="product">
 
@@ -1548,8 +890,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         </article>
 
-      `
-      ).join("");
+      `).join("");
 
 
     document
@@ -1808,15 +1149,7 @@ document.addEventListener("DOMContentLoaded", () => {
      CHECKOUT
   ========================= */
 
-  let selectedCheckoutProduct =
-    null;
-
-
   function openCheckout(product) {
-
-    selectedCheckoutProduct =
-      product;
-
 
     selectedProduct.innerHTML = `
 
@@ -1824,20 +1157,14 @@ document.addEventListener("DOMContentLoaded", () => {
       <strong>
         ${product.category}
       </strong>
-      · Balance ₹${product.balance
-        .toLocaleString("en-IN")}
+      · Balance ₹${product.balance.toLocaleString("en-IN")}
       · Price ₹${product.price}
 
     `;
 
 
     utrInput.value = "";
-
-
-    emailInput.value =
-      currentUser
-        ? currentUser.email
-        : "";
+    emailInput.value = "";
 
 
     modal.classList.remove(
@@ -1895,9 +1222,7 @@ document.addEventListener("DOMContentLoaded", () => {
           upi
         );
 
-
         copyUpi.innerHTML = `
-
           <span>
             ${upi}
           </span>
@@ -1905,14 +1230,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <span>
             Copied ✓
           </span>
-
         `;
 
 
         setTimeout(() => {
 
           copyUpi.innerHTML = `
-
             <span>
               ${upi}
             </span>
@@ -1920,7 +1243,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <span>
               Copy
             </span>
-
           `;
 
         }, 1500);
@@ -1954,17 +1276,6 @@ document.addEventListener("DOMContentLoaded", () => {
         emailInput.value.trim();
 
 
-      if (!currentUser) {
-
-        alert(
-          "Please login first."
-        );
-
-        return;
-
-      }
-
-
       if (!utr) {
 
         alert(
@@ -1987,64 +1298,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-      if (!selectedCheckoutProduct) {
-
-        alert(
-          "No product selected."
-        );
-
-        return;
-
-      }
-
-
-      const order = {
-
-        id:
-          "ORD-" +
-          Date.now(),
-
-        productId:
-          selectedCheckoutProduct.id,
-
-        category:
-          selectedCheckoutProduct.category,
-
-        price:
-          selectedCheckoutProduct.price,
-
-        email:
-          email,
-
-        utr:
-          utr,
-
-        status:
-          "PENDING",
-
-        createdAt:
-          new Date().toISOString()
-
-      };
-
-
-      if (!Array.isArray(
-        currentUser.orders
-      )) {
-
-        currentUser.orders = [];
-
-      }
-
-
-      currentUser.orders.unshift(
-        order
-      );
-
-
-      saveCurrentUser();
-
-
       alert(
         "Payment submitted for verification.\n\n" +
         "Status: PENDING\n\n" +
@@ -2056,116 +1309,321 @@ document.addEventListener("DOMContentLoaded", () => {
         "hidden"
       );
 
-
-      renderOrderHistory();
-
     }
   );
 
 
   /* =========================
-     ORDER HISTORY
+     FREE COIN TASKS
   ========================= */
 
-  function renderOrderHistory() {
+  const freeTasks = [
 
-    if (!orderHistory) {
-      return;
+    {
+      id: "telegram-01",
+      type: "telegram",
+      title: "Join Telegram Channel 01",
+      reward: 0.50,
+      link: "https://t.me/+lIJ6-tAMwBdiYTU1"
+    },
+
+    {
+      id: "telegram-02",
+      type: "telegram",
+      title: "Join Telegram Channel 02",
+      reward: 0.50,
+      link: "https://t.me/+cpHtijIv1eM4ZDM1"
+    },
+
+    {
+      id: "telegram-03",
+      type: "telegram",
+      title: "Join Telegram Channel 03",
+      reward: 0.50,
+      link: "https://t.me/kaivexmodssetup"
+    },
+
+    {
+      id: "telegram-04",
+      type: "telegram",
+      title: "Join Telegram Channel 04",
+      reward: 0.50,
+      link: "https://t.me/+F_wsXeD3Dt8zMjll"
+    },
+
+    {
+      id: "telegram-05",
+      type: "telegram",
+      title: "Join Telegram Channel 05",
+      reward: 0.50,
+      link: "https://t.me/+GIXruxf0uFVkNDdl"
+    },
+
+    {
+      id: "youtube-01",
+      type: "youtube",
+      title: "Subscribe to KAIVEX MODS",
+      reward: 0.50,
+      link: "https://youtube.com/@kaivexmods?si=y0TTNew1OQTvaxOi"
+    },
+
+    {
+      id: "youtube-02",
+      type: "youtube",
+      title: "Subscribe to AKKI MODS",
+      reward: 0.50,
+      link: "https://youtube.com/@akki.mods.2.0?si=uO0h-gd01DYcNS3g"
+    },
+
+    {
+      id: "youtube-like-01",
+      type: "youtube-like",
+      title: "Like YouTube Video",
+      reward: 0.50,
+      link: "https://youtu.be/sqChhCblg5w?si=ah4UFAx6pL-L3rqt"
     }
 
-
-    if (!currentUser) {
-
-      orderHistory.innerHTML = `
-
-        <div class="empty-box">
-          Please login first.
-        </div>
-
-      `;
-
-      return;
-
-    }
+  ];
 
 
-    const orders =
-      Array.isArray(
-        currentUser.orders
+  let coinBalance =
+    Number(
+      localStorage.getItem(
+        "kaivexCoins"
+      ) || 0
+    );
+
+
+  let claimedTasks =
+    JSON.parse(
+      localStorage.getItem(
+        "kaivexClaimedTasks"
+      ) || "[]"
+    );
+
+
+  let openedTasks =
+    JSON.parse(
+      localStorage.getItem(
+        "kaivexOpenedTasks"
+      ) || "[]"
+    );
+
+
+  function saveCoinData() {
+
+    localStorage.setItem(
+      "kaivexCoins",
+      coinBalance.toFixed(2)
+    );
+
+
+    localStorage.setItem(
+      "kaivexClaimedTasks",
+      JSON.stringify(
+        claimedTasks
       )
-        ? currentUser.orders
-        : [];
+    );
 
 
-    if (!orders.length) {
+    localStorage.setItem(
+      "kaivexOpenedTasks",
+      JSON.stringify(
+        openedTasks
+      )
+    );
 
-      orderHistory.innerHTML = `
+  }
 
-        <div class="empty-box">
-          No orders yet.
-        </div>
 
-      `;
+  function updateCoinStats() {
 
-      return;
+    const balanceBox =
+      $("coinBalance");
+
+    const availableBox =
+      $("availableTasks");
+
+    const claimedBox =
+      $("claimedTasks");
+
+
+    if (balanceBox) {
+
+      balanceBox.textContent =
+        coinBalance.toFixed(2);
 
     }
 
 
-    orderHistory.innerHTML =
-      orders.map(order => {
+    if (availableBox) {
 
-        const date =
-          new Date(
-            order.createdAt
-          ).toLocaleString(
-            "en-IN"
+      availableBox.textContent =
+        freeTasks.filter(
+          task =>
+            !claimedTasks.includes(
+              task.id
+            )
+        ).length;
+
+    }
+
+
+    if (claimedBox) {
+
+      claimedBox.textContent =
+        claimedTasks.length;
+
+    }
+
+  }
+
+
+  function taskIcon(type) {
+
+    if (type === "telegram") {
+      return "✈";
+    }
+
+    if (type === "youtube") {
+      return "▶";
+    }
+
+    if (type === "youtube-like") {
+      return "♥";
+    }
+
+    return "◈";
+
+  }
+
+
+  function renderFreeTasks() {
+
+    const box =
+      $("channels");
+
+
+    if (!box) {
+      return;
+    }
+
+
+    box.innerHTML =
+      freeTasks.map(task => {
+
+        const claimed =
+          claimedTasks.includes(
+            task.id
           );
+
+
+        const opened =
+          openedTasks.includes(
+            task.id
+          );
+
+
+        if (claimed) {
+
+          return `
+
+            <div class="task-card task-claimed">
+
+              <div class="task-info">
+
+                <div class="task-icon">
+                  ${taskIcon(task.type)}
+                </div>
+
+                <div>
+
+                  <strong>
+                    ${task.title}
+                  </strong>
+
+                  <div class="tiny">
+                    Reward ₹${task.reward.toFixed(2)}
+                    · Claimed ✓
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <button
+                class="task-btn"
+                disabled
+              >
+                CLAIMED
+              </button>
+
+            </div>
+
+          `;
+
+        }
 
 
         return `
 
-          <div class="order-card">
+          <div
+            class="task-card ${
+              opened
+                ? "task-verify"
+                : ""
+            }"
+          >
 
-            <div class="order-top">
+            <div class="task-info">
 
-              <strong>
-                ${order.category}
-              </strong>
+              <div class="task-icon">
+                ${taskIcon(task.type)}
+              </div>
 
-              <span class="order-status">
-                ${order.status}
-              </span>
+              <div>
+
+                <strong>
+                  ${task.title}
+                </strong>
+
+                <div class="tiny">
+                  Reward ₹${task.reward.toFixed(2)}
+                </div>
+
+              </div>
 
             </div>
 
 
-            <div class="order-meta">
+            <div class="task-action">
 
-              Order:
-              ${order.id}
+              ${
+                opened
 
-              <br>
+                ? `
 
-              Price:
-              ₹${Number(
-                order.price
-              ).toLocaleString("en-IN")}
+                  <button
+                    class="task-btn verify-btn"
+                    data-verify="${task.id}"
+                  >
+                    VERIFY
+                  </button>
 
-              <br>
+                `
 
-              UTR:
-              ${order.utr}
+                : `
 
-              <br>
+                  <button
+                    class="task-btn"
+                    data-open-task="${task.id}"
+                  >
+                    OPEN
+                  </button>
 
-              Email:
-              ${order.email}
-
-              <br>
-
-              Date:
-              ${date}
+                `
+              }
 
             </div>
 
@@ -2175,271 +1633,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }).join("");
 
-  }
-
-
-  /* =========================
-     FREE COIN TASKS
-  ========================= */
-
-  const freeCoinTasks = [
-
-    {
-      id: "telegram-1",
-      title: "Join Telegram Channel 1",
-      icon: "✈",
-      reward: 2,
-      url: "https://t.me/+lIJ6-tAMwBdiYTU1"
-    },
-
-    {
-      id: "telegram-2",
-      title: "Join Telegram Channel 2",
-      icon: "✈",
-      reward: 2,
-      url: "https://t.me/+cpHtijIv1eM4ZDM1"
-    },
-
-    {
-      id: "telegram-3",
-      title: "Open Telegram Channel 3",
-      icon: "✈",
-      reward: 2,
-      url: "https://t.me/kaivexmodssetup"
-    },
-
-    {
-      id: "telegram-4",
-      title: "Join Telegram Channel 4",
-      icon: "✈",
-      reward: 2,
-      url: "https://t.me/+F_wsXeD3Dt8zMjll"
-    },
-
-    {
-      id: "telegram-5",
-      title: "Join Telegram Channel 5",
-      icon: "✈",
-      reward: 2,
-      url: "https://t.me/+GIXruxf0uFVkNDdl"
-    },
-
-    {
-      id: "youtube-1",
-      title: "Subscribe on YouTube",
-      icon: "▶",
-      reward: 2,
-      url: "https://youtube.com/@kaivexmods?si=y0TTNew1OQTvaxOi"
-    },
-
-    {
-      id: "youtube-2",
-      title: "Subscribe on YouTube",
-      icon: "▶",
-      reward: 2,
-      url: "https://youtube.com/@akki.mods.2.0?si=uO0h-gd01DYcNS3g"
-    },
-
-    {
-      id: "youtube-3",
-      title: "Like YouTube Video",
-      icon: "♥",
-      reward: 2,
-      url: "https://youtu.be/sqChhCblg5w?si=ah4UFAx6pL-L3rqt"
-    }
-
-  ];
-
-
-  let activeTaskId = null;
-
-
-  function getClaimedTasks() {
-
-    if (!currentUser) {
-      return [];
-    }
-
-
-    if (
-      !Array.isArray(
-        currentUser.claimedTasks
-      )
-    ) {
-
-      currentUser.claimedTasks = [];
-
-    }
-
-
-    return currentUser.claimedTasks;
-
-  }
-
-
-  function updateCoinStats() {
-
-    if (!currentUser) {
-      return;
-    }
-
-
-    const balance =
-      Number(
-        currentUser.coinBalance || 0
-      );
-
-
-    const claimed =
-      getClaimedTasks();
-
-
-    const available =
-      freeCoinTasks.filter(
-        task =>
-          !claimed.includes(
-            task.id
-          )
-      );
-
-
-    if ($("coinBalance")) {
-
-      $("coinBalance").textContent =
-        balance.toFixed(2);
-
-    }
-
-
-    if ($("availableTasks")) {
-
-      $("availableTasks").textContent =
-        available.length;
-
-    }
-
-
-    if ($("claimedTasks")) {
-
-      $("claimedTasks").textContent =
-        claimed.length;
-
-    }
-
-  }
-
-
-  function renderFreeTasks() {
-
-    const channels =
-      $("channels");
-
-
-    if (!channels) {
-      return;
-    }
-
-
-    if (!currentUser) {
-
-      channels.innerHTML = `
-
-        <div class="empty-box">
-          Please login to view tasks.
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-
-    const claimed =
-      getClaimedTasks();
-
-
-    channels.innerHTML =
-      freeCoinTasks.map(
-        task => {
-
-          const isClaimed =
-            claimed.includes(
-              task.id
-            );
-
-
-          return `
-
-            <div
-              class="task-card ${
-                isClaimed
-                  ? "task-claimed"
-                  : ""
-              }"
-            >
-
-              <div class="task-info">
-
-                <div class="task-icon">
-
-                  ${task.icon}
-
-                </div>
-
-
-                <div>
-
-                  <strong>
-                    ${task.title}
-                  </strong>
-
-                  <span class="tiny">
-                    Reward: 🪙 ${task.reward}
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              ${
-                isClaimed
-
-                  ? `
-
-                    <button
-                      class="task-btn"
-                      disabled
-                    >
-                      CLAIMED ✓
-                    </button>
-
-                  `
-
-                  : `
-
-                    <button
-                      class="task-btn"
-                      data-task-open="${task.id}"
-                    >
-                      OPEN
-                    </button>
-
-                  `
-              }
-
-            </div>
-
-          `;
-
-        }
-      ).join("");
-
 
     document
       .querySelectorAll(
-        "[data-task-open]"
+        "[data-open-task]"
       )
       .forEach(button => {
 
@@ -2448,16 +1645,74 @@ document.addEventListener("DOMContentLoaded", () => {
           () => {
 
             const task =
-              freeCoinTasks.find(
+              freeTasks.find(
                 item =>
                   item.id ===
-                  button.dataset.taskOpen
+                  button.dataset.openTask
+              );
+
+
+            if (!task) {
+              return;
+            }
+
+
+            if (
+              !openedTasks.includes(
+                task.id
+              )
+            ) {
+
+              openedTasks.push(
+                task.id
+              );
+
+              saveCoinData();
+
+            }
+
+
+            /*
+              External task is opened.
+              The page does not independently
+              verify Telegram/YouTube action.
+            */
+
+            window.open(
+              task.link,
+              "_blank"
+            );
+
+
+            renderFreeTasks();
+
+          }
+        );
+
+      });
+
+
+    document
+      .querySelectorAll(
+        "[data-verify]"
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const task =
+              freeTasks.find(
+                item =>
+                  item.id ===
+                  button.dataset.verify
               );
 
 
             if (task) {
 
-              openTaskVerify(
+              showTaskVerification(
                 task
               );
 
@@ -2471,29 +1726,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function openTaskVerify(task) {
+  function showTaskVerification(task) {
 
-    activeTaskId =
-      task.id;
-
-
-    const channels =
+    const box =
       $("channels");
 
 
-    channels.innerHTML = `
+    box.innerHTML = `
 
       <div class="verify-box">
 
         <div class="verify-icon">
-
-          ${task.icon}
-
+          ${taskIcon(task.type)}
         </div>
 
 
         <p class="section-label">
-          TASK
+          TASK CHECK
         </p>
 
 
@@ -2502,49 +1751,35 @@ document.addEventListener("DOMContentLoaded", () => {
         </h3>
 
 
-        <p class="muted">
-          Open the task link, then return here
-          and claim the displayed reward.
-        </p>
-
-
         <div class="verify-reward">
-
-          🪙 ${task.reward}
-
+          +₹${task.reward.toFixed(2)}
         </div>
+
+
+        <p class="muted">
+          Continue only if you completed the task.
+        </p>
 
 
         <button
           class="primary claim-btn"
-          id="openTaskLink"
-        >
-          OPEN TASK
-        </button>
-
-
-        <button
-          class="task-btn verify-back"
           id="claimTask"
         >
-          CLAIM COINS
+          CLAIM ₹${task.reward.toFixed(2)}
         </button>
 
 
         <button
-          class="task-btn verify-back"
-          id="backTasks"
+          class="details-btn verify-back"
+          id="verifyBack"
         >
           ← BACK TO TASKS
         </button>
 
 
         <p class="tiny verify-note">
-
-          This is a self-claim flow.
-          This page does not independently verify
-          Telegram or YouTube membership.
-
+          This frontend uses self-claiming and does not
+          independently verify the external action.
         </p>
 
       </div>
@@ -2552,35 +1787,48 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
 
-    $("openTaskLink").addEventListener(
+    $("claimTask").addEventListener(
       "click",
       () => {
 
-        window.open(
-          task.url,
-          "_blank",
-          "noopener,noreferrer"
+        if (
+          claimedTasks.includes(
+            task.id
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        coinBalance +=
+          Number(task.reward);
+
+
+        claimedTasks.push(
+          task.id
+        );
+
+
+        saveCoinData();
+
+        updateCoinStats();
+
+        renderFreeTasks();
+
+
+        alert(
+          `₹${task.reward.toFixed(2)} reward added to your coin balance.`
         );
 
       }
     );
 
 
-    $("claimTask").addEventListener(
+    $("verifyBack").addEventListener(
       "click",
       () => {
-
-        claimTask(task);
-
-      }
-    );
-
-
-    $("backTasks").addEventListener(
-      "click",
-      () => {
-
-        activeTaskId = null;
 
         renderFreeTasks();
 
@@ -2592,82 +1840,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function claimTask(task) {
-
-    if (!currentUser) {
-
-      alert(
-        "Please login first."
-      );
-
-      return;
-
-    }
-
-
-    const claimed =
-      getClaimedTasks();
-
-
-    if (
-      claimed.includes(
-        task.id
-      )
-    ) {
-
-      alert(
-        "This task has already been claimed."
-      );
-
-      renderFreeTasks();
-
-      return;
-
-    }
-
-
-    currentUser.claimedTasks.push(
-      task.id
-    );
-
-
-    currentUser.coinBalance =
-      Number(
-        currentUser.coinBalance || 0
-      ) +
-      Number(
-        task.reward
-      );
-
-
-    saveCurrentUser();
-
-
-    activeTaskId = null;
-
-
-    alert(
-      "Coins claimed successfully!\n\n" +
-      "Reward: 🪙 " +
-      task.reward
-    );
-
-
-    renderFreeTasks();
-
-    updateCoinStats();
-
-  }
-
-
   /* =========================
-     INITIAL RENDER
+     START
   ========================= */
 
   renderFilters();
 
   renderProducts();
 
-  loadCurrentUser();
+  renderFreeTasks();
+
+  updateCoinStats();
 
 });

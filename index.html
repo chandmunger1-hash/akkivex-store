@@ -42,188 +42,10 @@
 
 
 <!-- =========================
-     LOGIN / SIGNUP
-========================= -->
-
-<section id="authPage" class="auth-page hidden">
-
-  <div class="auth-card">
-
-    <div class="auth-logo">
-      <img
-        src="logo.png"
-        alt="AKKIVEX STORE"
-      >
-    </div>
-
-    <p class="section-label">
-      SECURE ACCESS
-    </p>
-
-    <h1 id="authTitle">
-      Welcome Back
-    </h1>
-
-    <p id="authSubtitle" class="muted">
-      Login to access your AKKIVEX STORE account.
-    </p>
-
-
-    <!-- LOGIN -->
-
-    <div id="loginForm" class="auth-form">
-
-      <label>
-
-        Email
-
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="Enter your email"
-          autocomplete="email"
-        >
-
-      </label>
-
-
-      <label>
-
-        Password
-
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Enter your password"
-          autocomplete="current-password"
-        >
-
-      </label>
-
-
-      <button
-        id="loginBtn"
-        class="primary"
-      >
-        LOGIN
-      </button>
-
-
-      <p
-        id="loginMessage"
-        class="auth-message"
-      ></p>
-
-
-      <button
-        id="showSignup"
-        class="auth-switch"
-      >
-        New user? Create account
-      </button>
-
-    </div>
-
-
-    <!-- SIGNUP -->
-
-    <div
-      id="signupForm"
-      class="auth-form hidden"
-    >
-
-      <label>
-
-        Name
-
-        <input
-          id="signupName"
-          type="text"
-          placeholder="Enter your name"
-          autocomplete="name"
-        >
-
-      </label>
-
-
-      <label>
-
-        Email
-
-        <input
-          id="signupEmail"
-          type="email"
-          placeholder="Enter your email"
-          autocomplete="email"
-        >
-
-      </label>
-
-
-      <label>
-
-        Password
-
-        <input
-          id="signupPassword"
-          type="password"
-          placeholder="Create a password"
-          autocomplete="new-password"
-        >
-
-      </label>
-
-
-      <label>
-
-        Confirm Password
-
-        <input
-          id="signupConfirm"
-          type="password"
-          placeholder="Confirm your password"
-          autocomplete="new-password"
-        >
-
-      </label>
-
-
-      <button
-        id="signupBtn"
-        class="primary"
-      >
-        CREATE ACCOUNT
-      </button>
-
-
-      <p
-        id="signupMessage"
-        class="auth-message"
-      ></p>
-
-
-      <button
-        id="showLogin"
-        class="auth-switch"
-      >
-        Already have an account? Login
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
      APP
 ========================= -->
 
-<main
-  id="app"
-  class="hidden"
->
+<main id="app" class="hidden">
 
 
   <!-- =========================
@@ -241,17 +63,11 @@
       >
 
       <div>
-
-        <span>
-          KX
-        </span>
-
+        <span>KX</span>
         AKKIVEX STORE
-
       </div>
 
     </div>
-
 
     <button
       id="profileBtn"
@@ -270,6 +86,8 @@
 
   <section id="homePage">
 
+
+    <!-- VAULT HEADER -->
 
     <section class="vault-head">
 
@@ -430,10 +248,7 @@
         My Profile
       </h2>
 
-      <p
-        id="profileGreeting"
-        class="muted"
-      >
+      <p class="muted">
         Manage your account and referral information.
       </p>
 
@@ -572,13 +387,8 @@
         Order History
       </h2>
 
-
-      <div id="orderHistory">
-
-        <div class="empty-box">
-          No orders yet.
-        </div>
-
+      <div class="empty-box">
+        No orders yet.
       </div>
 
     </section>
@@ -598,32 +408,6 @@
       <h2>
         Account Information
       </h2>
-
-
-      <div class="info-row">
-
-        <span>
-          Name
-        </span>
-
-        <strong id="accountName">
-          —
-        </strong>
-
-      </div>
-
-
-      <div class="info-row">
-
-        <span>
-          Email
-        </span>
-
-        <strong id="accountEmail">
-          —
-        </strong>
-
-      </div>
 
 
       <div class="info-row">
@@ -663,14 +447,6 @@
         </strong>
 
       </div>
-
-
-      <button
-        id="logoutBtn"
-        class="logout-btn"
-      >
-        LOGOUT
-      </button>
 
     </section>
 
@@ -713,6 +489,8 @@
       </div>
 
 
+      <!-- COIN BALANCE -->
+
       <div class="coin-balance">
 
         <span>
@@ -725,6 +503,8 @@
 
       </div>
 
+
+      <!-- COIN STATS -->
 
       <div class="coin-stats">
 
@@ -756,11 +536,15 @@
       </div>
 
 
+      <!-- TASK LIST -->
+
       <div
         id="channels"
         class="task-list"
       ></div>
 
+
+      <!-- SELF CLAIM NOTICE -->
 
       <p class="tiny verify-note">
 
