@@ -20,18 +20,23 @@ html {
 
 body {
   margin: 0;
+
   background:
     radial-gradient(
       circle at 50% -10%,
       #0c2411 0,
       #020302 42%
     );
+
   color: var(--text);
+
   font-family:
     Arial,
     Helvetica,
     sans-serif;
+
   min-height: 100vh;
+
   padding-bottom: 82px;
 }
 
@@ -95,15 +100,21 @@ button {
 
 .loader-title {
   margin-top: 20px;
+
   color: var(--green);
+
   font-weight: 900;
+
   letter-spacing: 3px;
 }
 
 .loader-sub {
   margin-top: 6px;
+
   color: var(--muted);
+
   font-size: 9px;
+
   letter-spacing: 3px;
 }
 
@@ -116,11 +127,13 @@ button {
   overflow: hidden;
 
   background: #101510;
+
   border-radius: 20px;
 }
 
 .bar span {
   display: block;
+
   width: 0;
   height: 100%;
 
@@ -134,14 +147,175 @@ button {
 
 #loaderText {
   margin-top: 14px;
+
   color: var(--muted);
+
   font-size: 9px;
 }
 
 #percent {
   margin-top: 5px;
+
   color: var(--green);
+
   font-size: 12px;
+  font-weight: 900;
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+.auth-page {
+  position: fixed;
+  inset: 0;
+
+  z-index: 5000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #0b2110,
+      #020302 68%
+    );
+
+  overflow-y: auto;
+}
+
+.auth-card {
+  width: min(100%, 420px);
+
+  padding: 24px 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0a100a,
+      #030503
+    );
+
+  border: 1px solid #244d2c;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 0 45px #000,
+    0 0 25px #6cff8812;
+}
+
+.auth-logo {
+  width: 70px;
+  height: 70px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 18px;
+
+  background: #050805;
+
+  border: 1px solid var(--green);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 0 25px #6cff8820;
+}
+
+.auth-logo img {
+  width: 48px;
+  height: 48px;
+
+  object-fit: contain;
+}
+
+.auth-card h1 {
+  margin-bottom: 7px;
+
+  text-align: center;
+
+  font-size: 24px;
+}
+
+.auth-card > .muted {
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  display: grid;
+
+  gap: 3px;
+}
+
+.auth-form label {
+  margin-top: 8px;
+}
+
+.auth-form .primary {
+  margin-top: 14px;
+}
+
+.auth-switch {
+  width: 100%;
+
+  margin-top: 13px;
+
+  padding: 9px;
+
+  color: var(--green);
+
+  background: transparent;
+
+  border: 0;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.auth-switch:hover {
+  text-decoration: underline;
+}
+
+.auth-message {
+  min-height: 15px;
+
+  margin: 8px 0 0;
+
+  text-align: center;
+
+  color: var(--green);
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+.logout-btn {
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 11px;
+
+  color: var(--danger);
+
+  background: #160707;
+
+  border: 1px solid #402020;
+
+  border-radius: 10px;
+
+  font-size: 9px;
   font-weight: 900;
 }
 
@@ -153,9 +327,11 @@ button {
 .topbar {
   position: sticky;
   top: 0;
+
   z-index: 50;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -171,17 +347,21 @@ button {
 
 .brand {
   display: flex;
+
   align-items: center;
+
   gap: 10px;
 
   font-size: 11px;
   font-weight: 900;
+
   letter-spacing: 1px;
 }
 
 .brand img {
   width: 34px;
   height: 34px;
+
   object-fit: contain;
 
   border-radius: 10px;
@@ -189,8 +369,11 @@ button {
 
 .brand div span {
   display: block;
+
   color: var(--green);
+
   font-size: 8px;
+
   letter-spacing: 2px;
 }
 
@@ -199,9 +382,11 @@ button {
   height: 38px;
 
   border: 1px solid var(--line);
+
   border-radius: 12px;
 
   color: var(--green);
+
   background: #050805;
 
   font-size: 19px;
@@ -217,6 +402,7 @@ button {
 
 main {
   width: min(100%, 850px);
+
   margin: auto;
 }
 
@@ -226,6 +412,7 @@ main {
 
 .vault-head {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -238,6 +425,7 @@ main {
   color: var(--green);
 
   font-size: 8px;
+
   font-weight: 900;
 
   letter-spacing: 2px;
@@ -252,11 +440,13 @@ p {
 
 h1 {
   margin-bottom: 5px;
+
   font-size: 24px;
 }
 
 h2 {
   margin-bottom: 8px;
+
   font-size: 20px;
 }
 
@@ -266,13 +456,17 @@ h3 {
 
 .muted {
   color: var(--muted);
+
   font-size: 10px;
+
   line-height: 1.5;
 }
 
 .tiny {
   color: var(--muted);
+
   font-size: 8px;
+
   line-height: 1.5;
 }
 
@@ -284,6 +478,7 @@ h3 {
   place-items: center;
 
   border: 1px solid var(--line);
+
   border-radius: 18px;
 
   background: #050805;
@@ -295,6 +490,7 @@ h3 {
 .vault-mark img {
   width: 42px;
   height: 42px;
+
   object-fit: contain;
 }
 
@@ -305,6 +501,7 @@ h3 {
 
 .stats {
   display: grid;
+
   grid-template-columns:
     repeat(3, 1fr);
 
@@ -319,6 +516,7 @@ h3 {
   background: var(--panel);
 
   border: 1px solid var(--line);
+
   border-radius: 12px;
 }
 
@@ -328,6 +526,7 @@ h3 {
   color: var(--muted);
 
   font-size: 7px;
+
   letter-spacing: 1px;
 }
 
@@ -359,6 +558,7 @@ h3 {
     );
 
   border: 1px solid var(--line);
+
   border-radius: 17px;
 
   box-shadow:
@@ -367,7 +567,9 @@ h3 {
 
 .panel-head {
   display: flex;
+
   gap: 12px;
+
   align-items: flex-end;
   justify-content: space-between;
 }
@@ -387,9 +589,11 @@ input {
   padding: 11px 12px;
 
   color: var(--text);
+
   background: #030503;
 
   border: 1px solid var(--line);
+
   border-radius: 10px;
 
   outline: none;
@@ -410,6 +614,7 @@ label {
   color: var(--muted);
 
   font-size: 9px;
+
   line-height: 2;
 }
 
@@ -420,6 +625,7 @@ label {
 
 .filters {
   display: flex;
+
   gap: 7px;
 
   overflow-x: auto;
@@ -435,17 +641,21 @@ label {
   padding: 8px 13px;
 
   color: var(--muted);
+
   background: #050805;
 
   border: 1px solid var(--line);
+
   border-radius: 20px;
 
   font-size: 8px;
+
   font-weight: 800;
 }
 
 .filter.active {
   color: #020302;
+
   background: var(--green);
 
   border-color: var(--green);
@@ -476,6 +686,7 @@ label {
   background: #050805;
 
   border: 1px solid var(--line);
+
   border-radius: 15px;
 
   overflow: hidden;
@@ -483,6 +694,7 @@ label {
 
 .product-top {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -496,11 +708,13 @@ label {
   border-radius: 5px;
 
   font-size: 7px;
+
   font-weight: 900;
 }
 
 .tag {
   color: var(--green);
+
   background: #0a160c;
 
   border: 1px solid #17351d;
@@ -508,6 +722,7 @@ label {
 
 .demo-badge {
   color: #778278;
+
   background: #090c09;
 
   border: 1px solid #1a221b;
@@ -542,12 +757,14 @@ label {
 
 .demo-card-top {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
   color: var(--green);
 
   font-size: 8px;
+
   font-weight: 900;
 }
 
@@ -559,11 +776,13 @@ label {
   font-family: monospace;
 
   font-size: 12px;
+
   letter-spacing: 1px;
 }
 
 .card-mid {
   display: flex;
+
   justify-content: space-between;
 }
 
@@ -574,6 +793,7 @@ label {
   color: var(--muted);
 
   font-size: 6px;
+
   letter-spacing: 1px;
 }
 
@@ -589,6 +809,7 @@ label {
 
 .demo-card-bottom {
   display: flex;
+
   justify-content: space-between;
 
   margin-top: 15px;
@@ -605,6 +826,7 @@ label {
 
 .product-meta {
   display: flex;
+
   justify-content: space-between;
 
   padding: 12px 2px;
@@ -616,6 +838,7 @@ label {
   color: var(--muted);
 
   font-size: 6px;
+
   letter-spacing: 1px;
 }
 
@@ -631,6 +854,7 @@ label {
 
 .stock-line {
   display: flex;
+
   justify-content: space-between;
 
   padding: 8px 0;
@@ -683,6 +907,7 @@ label {
   border: 1px solid var(--green);
 
   font-size: 9px;
+
   font-weight: 900;
 
   box-shadow:
@@ -699,6 +924,7 @@ label {
   border: 1px solid var(--line);
 
   font-size: 8px;
+
   font-weight: 800;
 }
 
@@ -728,6 +954,7 @@ label {
 
 .empty-state div {
   color: var(--green);
+
   font-size: 28px;
 }
 
@@ -750,6 +977,7 @@ label {
   margin: 4px auto 18px;
 
   border: 1px solid var(--green);
+
   border-radius: 22px;
 
   background: #050805;
@@ -761,6 +989,7 @@ label {
 .profile-avatar img {
   width: 48px;
   height: 48px;
+
   object-fit: contain;
 }
 
@@ -768,6 +997,7 @@ label {
   margin-top: 20px;
 
   display: grid;
+
   gap: 8px;
 }
 
@@ -775,6 +1005,7 @@ label {
   width: 100%;
 
   display: flex;
+
   justify-content: space-between;
   align-items: center;
 
@@ -783,15 +1014,19 @@ label {
   text-align: left;
 
   color: var(--text);
+
   background: #050805;
 
   border: 1px solid var(--line);
+
   border-radius: 12px;
 }
 
 .profile-item strong {
   display: block;
+
   color: #dfffe5;
+
   font-size: 10px;
 }
 
@@ -807,6 +1042,7 @@ label {
 
 .profile-item b {
   color: var(--green);
+
   font-size: 20px;
 }
 
@@ -820,6 +1056,7 @@ label {
   background: #050805;
 
   border: 1px solid var(--line);
+
   border-radius: 13px;
 }
 
@@ -841,6 +1078,7 @@ label {
   font-family: monospace;
 
   font-size: 22px;
+
   letter-spacing: 2px;
 }
 
@@ -852,12 +1090,16 @@ label {
   color: var(--muted);
 
   border: 1px dashed var(--line);
+
   border-radius: 12px;
 }
 
 .info-row {
   display: flex;
+
   justify-content: space-between;
+
+  gap: 15px;
 
   padding: 13px 0;
 
@@ -872,6 +1114,10 @@ label {
 
 .info-row strong {
   color: var(--green);
+
+  text-align: right;
+
+  word-break: break-word;
 }
 
 
@@ -898,6 +1144,7 @@ label {
     );
 
   border: 1px solid #285333;
+
   border-radius: 17px;
 
   box-shadow:
@@ -910,6 +1157,7 @@ label {
   color: var(--muted);
 
   font-size: 8px;
+
   letter-spacing: 2px;
 }
 
@@ -943,6 +1191,7 @@ label {
   background: #050805;
 
   border: 1px solid var(--line);
+
   border-radius: 11px;
 }
 
@@ -952,6 +1201,7 @@ label {
   color: var(--muted);
 
   font-size: 7px;
+
   letter-spacing: 1px;
 }
 
@@ -971,7 +1221,9 @@ label {
 
 .task-card {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   gap: 10px;
@@ -987,6 +1239,7 @@ label {
 
 .task-info {
   display: flex;
+
   align-items: center;
 
   gap: 11px;
@@ -999,6 +1252,7 @@ label {
   height: 42px;
 
   display: grid;
+
   place-items: center;
 
   flex: 0 0 42px;
@@ -1006,6 +1260,7 @@ label {
   background: #071009;
 
   border: 1px solid var(--line);
+
   border-radius: 12px;
 
   color: var(--green);
@@ -1033,14 +1288,8 @@ label {
   border: 1px solid var(--line);
 
   font-size: 8px;
+
   font-weight: 900;
-}
-
-.task-verify {
-  border-color: var(--green);
-
-  box-shadow:
-    0 0 12px #6cff8818;
 }
 
 .task-claimed {
@@ -1049,11 +1298,13 @@ label {
 
 .task-claimed .task-icon {
   color: #607465;
+
   border-color: #1a291e;
 }
 
 .task-btn:disabled {
   opacity: .7;
+
   cursor: not-allowed;
 }
 
@@ -1068,6 +1319,7 @@ label {
   height: 65px;
 
   display: grid;
+
   place-items: center;
 
   margin: 0 auto 15px;
@@ -1075,6 +1327,7 @@ label {
   background: #071009;
 
   border: 1px solid var(--green);
+
   border-radius: 20px;
 
   color: var(--green);
@@ -1101,9 +1354,11 @@ label {
   background: #071009;
 
   border: 1px solid var(--line);
+
   border-radius: 12px;
 
   font-size: 20px;
+
   font-weight: 900;
 }
 
@@ -1113,12 +1368,67 @@ label {
 
 .verify-back {
   width: 100%;
+
   margin-top: 8px;
 }
 
 .verify-note {
   margin-top: 15px;
+
   line-height: 1.5;
+}
+
+
+/* =========================
+   ORDER HISTORY
+========================= */
+
+.order-card {
+  padding: 13px;
+
+  margin-bottom: 9px;
+
+  background: #050805;
+
+  border: 1px solid var(--line);
+
+  border-radius: 12px;
+}
+
+.order-card:last-child {
+  margin-bottom: 0;
+}
+
+.order-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  font-size: 9px;
+}
+
+.order-top strong {
+  color: var(--green);
+}
+
+.order-status {
+  color: var(--green);
+
+  font-size: 8px;
+
+  font-weight: 900;
+}
+
+.order-meta {
+  margin-top: 8px;
+
+  color: var(--muted);
+
+  font-size: 8px;
+
+  line-height: 1.6;
 }
 
 
@@ -1128,11 +1438,13 @@ label {
 
 .modal {
   position: fixed;
+
   inset: 0;
 
   z-index: 200;
 
   display: grid;
+
   place-items: center;
 
   padding: 15px;
@@ -1147,6 +1459,7 @@ label {
   position: relative;
 
   width: min(100%, 500px);
+
   max-height: 90vh;
 
   overflow-y: auto;
@@ -1161,6 +1474,7 @@ label {
     );
 
   border: 1px solid #244d2c;
+
   border-radius: 18px;
 
   box-shadow:
@@ -1181,6 +1495,7 @@ label {
   background: #050805;
 
   border: 1px solid var(--line);
+
   border-radius: 10px;
 
   font-size: 20px;
@@ -1204,16 +1519,19 @@ label {
     );
 
   border: 1px solid #234d2b;
+
   border-radius: 15px;
 }
 
 .detail-brand {
   display: flex;
+
   justify-content: space-between;
 
   color: var(--green);
 
   font-size: 10px;
+
   font-weight: 900;
 }
 
@@ -1225,6 +1543,7 @@ label {
   font-family: monospace;
 
   font-size: 15px;
+
   letter-spacing: 2px;
 }
 
@@ -1243,6 +1562,7 @@ label {
   background: #050805;
 
   border: 1px solid var(--line);
+
   border-radius: 10px;
 }
 
@@ -1264,6 +1584,7 @@ label {
   background: #050805;
 
   border: 1px solid var(--line);
+
   border-radius: 10px;
 }
 
@@ -1291,6 +1612,7 @@ label {
   color: var(--green);
 
   font-size: 8px;
+
   font-weight: 900;
 }
 
@@ -1313,6 +1635,7 @@ label {
   color: var(--muted);
 
   font-size: 8px;
+
   letter-spacing: 1px;
 }
 
@@ -1320,6 +1643,7 @@ label {
   width: 100%;
 
   display: flex;
+
   justify-content: space-between;
 
   padding: 12px;
@@ -1333,6 +1657,7 @@ label {
 
 .qr-box {
   display: grid;
+
   place-items: center;
 
   padding: 15px;
@@ -1346,6 +1671,7 @@ label {
   display: block;
 
   width: min(100%, 230px);
+
   aspect-ratio: 1 / 1;
 
   object-fit: contain;
@@ -1366,6 +1692,7 @@ label {
   background: #071009;
 
   border: 1px solid var(--line);
+
   border-radius: 10px;
 
   font-size: 9px;
@@ -1407,6 +1734,7 @@ label {
   display: flex;
 
   flex-direction: column;
+
   align-items: center;
 
   gap: 4px;
@@ -1464,6 +1792,7 @@ label {
 
   .panel-head {
     align-items: stretch;
+
     flex-direction: column;
   }
 
