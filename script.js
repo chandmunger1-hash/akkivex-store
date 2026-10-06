@@ -1,4 +1,4 @@
-/// KAIVEX STORE
+// KAIVEX STORE
 // Fictional/demo frontend data only.
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -248,8 +248,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const copyRef = $("copyRef");
 
+
+  /* =========================
+     REFERRAL CODE
+  ========================= */
+
   let referralCode =
-    "KS" + Math.floor(100000 + Math.random() * 900000);
+    localStorage.getItem("kaivexReferralCode");
+
+  if (!referralCode) {
+
+    referralCode =
+      "KS" + Math.floor(100000 + Math.random() * 900000);
+
+    localStorage.setItem(
+      "kaivexReferralCode",
+      referralCode
+    );
+  }
+
 
   let selectedCategory = "ALL";
 
@@ -316,18 +333,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (page === "profile") {
       profilePage.classList.remove("hidden");
     }
+
     else if (page === "free") {
       freePage.classList.remove("hidden");
     }
+
     else {
+
       homePage.classList.remove("hidden");
 
       if (page === "store") {
+
         setTimeout(() => {
+
           $("store").scrollIntoView({
             behavior: "smooth"
           });
+
         }, 50);
+
       }
     }
 
@@ -356,6 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("backHome").addEventListener("click", () => {
     showPage("home");
   });
+
 
   $("backHomeFree").addEventListener("click", () => {
     showPage("home");
@@ -401,6 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
           button.classList.add("active");
 
           renderProducts();
+
         });
 
       });
@@ -450,6 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <article class="product">
 
         <div class="product-top">
+
           <span class="tag">
             ${product.category}
           </span>
@@ -457,6 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="demo-badge">
             DEMO
           </span>
+
         </div>
 
 
@@ -516,8 +544,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         <div class="stock-line">
+
           <span>STOCK PROTOCOL</span>
-          <strong>ONLY ${product.stock} LEFT</strong>
+
+          <strong>
+            ONLY ${product.stock} LEFT
+          </strong>
+
         </div>
 
 
@@ -538,11 +571,6 @@ document.addEventListener("DOMContentLoaded", () => {
           </button>
 
         </div>
-
-
-        <p class="demo-note">
-          Fictional demo product • no real credentials
-        </p>
 
       </article>
 
@@ -655,18 +683,16 @@ document.addEventListener("DOMContentLoaded", () => {
         </button>
 
       </div>
-
-      <p class="tiny">
-        All displayed card information is fictional demo data.
-      </p>
     `;
 
 
     $("detailBuy").addEventListener(
       "click",
       () => {
+
         closeProductModal();
         openCheckout(product);
+
       }
     );
 
@@ -757,7 +783,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }, 1500);
 
-      } catch {
+      }
+
+      catch {
 
         alert("UPI ID: " + upiId);
 
@@ -819,10 +847,13 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="channel">
 
         <div>
+
           <strong>${name}</strong>
+
           <div class="tiny">
             Task ${index + 1} · ₹0.50
           </div>
+
         </div>
 
         <button
@@ -898,13 +929,19 @@ document.addEventListener("DOMContentLoaded", () => {
           "Referral Code Copied ✓";
 
         setTimeout(() => {
+
           copyRef.textContent =
             "Copy Referral Code";
+
         }, 1500);
 
-      } catch {
+      }
 
-        alert("Referral Code: " + referralCode);
+      catch {
+
+        alert(
+          "Referral Code: " + referralCode
+        );
 
       }
 
