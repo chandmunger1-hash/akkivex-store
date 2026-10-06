@@ -1,4 +1,4 @@
-// KAIVEX STORE
+// AKKIVEX STORE
 // Fictional/demo frontend data only.
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -267,6 +267,12 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+  const referralDisplay = $("referralDisplay");
+
+  if (referralDisplay) {
+    referralDisplay.textContent = referralCode;
+  }
+
 
   let selectedCategory = "ALL";
 
@@ -281,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Initializing security...",
     "Checking system...",
     "Verifying connection...",
-    "Loading KAIVEX STORE...",
+    "Loading AKKIVEX STORE...",
     "Security check complete."
   ];
 
@@ -289,15 +295,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     progress++;
 
-    percent.textContent = progress + "%";
-    barFill.style.width = progress + "%";
+    percent.textContent =
+      progress + "%";
+
+    barFill.style.width =
+      progress + "%";
 
     const index = Math.min(
       Math.floor(progress / 20),
       messages.length - 1
     );
 
-    loaderText.textContent = messages[index];
+    loaderText.textContent =
+      messages[index];
 
     if (progress >= 100) {
 
@@ -331,11 +341,15 @@ document.addEventListener("DOMContentLoaded", () => {
     freePage.classList.add("hidden");
 
     if (page === "profile") {
+
       profilePage.classList.remove("hidden");
+
     }
 
     else if (page === "free") {
+
       freePage.classList.remove("hidden");
+
     }
 
     else {
@@ -353,38 +367,53 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 50);
 
       }
+
     }
 
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
+
   }
 
 
-  document.querySelectorAll("[data-page]")
+  document
+    .querySelectorAll("[data-page]")
     .forEach(button => {
 
-      button.addEventListener("click", () => {
-        showPage(button.dataset.page);
-      });
+      button.addEventListener(
+        "click",
+        () => {
+          showPage(button.dataset.page);
+        }
+      );
 
     });
 
 
-  profileBtn.addEventListener("click", () => {
-    showPage("profile");
-  });
+  profileBtn.addEventListener(
+    "click",
+    () => {
+      showPage("profile");
+    }
+  );
 
 
-  $("backHome").addEventListener("click", () => {
-    showPage("home");
-  });
+  $("backHome").addEventListener(
+    "click",
+    () => {
+      showPage("home");
+    }
+  );
 
 
-  $("backHomeFree").addEventListener("click", () => {
-    showPage("home");
-  });
+  $("backHomeFree").addEventListener(
+    "click",
+    () => {
+      showPage("home");
+    }
+  );
 
 
   /* =========================
@@ -400,36 +429,53 @@ document.addEventListener("DOMContentLoaded", () => {
       "RUPAY"
     ];
 
-    filtersBox.innerHTML = categories.map(category => `
-      <button
-        class="filter ${category === "ALL" ? "active" : ""}"
-        data-category="${category}"
-      >
-        ${category}
-      </button>
-    `).join("");
+    filtersBox.innerHTML =
+      categories.map(category => `
 
-    document.querySelectorAll("[data-category]")
+        <button
+          class="filter ${
+            category === "ALL"
+              ? "active"
+              : ""
+          }"
+          data-category="${category}"
+        >
+          ${category}
+        </button>
+
+      `).join("");
+
+
+    document
+      .querySelectorAll("[data-category]")
       .forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-          selectedCategory =
-            button.dataset.category;
+            selectedCategory =
+              button.dataset.category;
 
-          document
-            .querySelectorAll("[data-category]")
-            .forEach(btn =>
-              btn.classList.remove("active")
-            );
+            document
+              .querySelectorAll(
+                "[data-category]"
+              )
+              .forEach(btn =>
+                btn.classList.remove(
+                  "active"
+                )
+              );
 
-          button.classList.add("active");
+            button.classList.add("active");
 
-          renderProducts();
+            renderProducts();
 
-        });
+          }
+        );
 
       });
+
   }
 
 
@@ -440,175 +486,254 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderProducts() {
 
     const text =
-      searchBox.value.trim().toLowerCase();
+      searchBox.value
+        .trim()
+        .toLowerCase();
 
-    const list = products.filter(product => {
 
-      const categoryMatch =
-        selectedCategory === "ALL" ||
-        product.category === selectedCategory;
+    const list =
+      products.filter(product => {
 
-      const searchMatch =
-        text === "" ||
-        product.category.toLowerCase().includes(text) ||
-        product.holder.toLowerCase().includes(text);
+        const categoryMatch =
+          selectedCategory === "ALL" ||
+          product.category ===
+          selectedCategory;
 
-      return categoryMatch && searchMatch;
-    });
+        const searchMatch =
+          text === "" ||
+          product.category
+            .toLowerCase()
+            .includes(text) ||
+          product.holder
+            .toLowerCase()
+            .includes(text);
+
+        return (
+          categoryMatch &&
+          searchMatch
+        );
+
+      });
 
 
     if (!list.length) {
 
       productsBox.innerHTML = `
+
         <div class="empty-state">
+
           <div>⌕</div>
-          <h3>No products found</h3>
-          <p>Try another category or search.</p>
+
+          <h3>
+            No products found
+          </h3>
+
+          <p>
+            Try another category or search.
+          </p>
+
         </div>
+
       `;
 
       return;
     }
 
 
-    productsBox.innerHTML = list.map(product => `
+    productsBox.innerHTML =
+      list.map(product => `
 
-      <article class="product">
+        <article class="product">
 
-        <div class="product-top">
+          <div class="product-top">
 
-          <span class="tag">
-            ${product.category}
-          </span>
+            <span class="tag">
+              ${product.category}
+            </span>
 
-          <span class="demo-badge">
-            DEMO
-          </span>
-
-        </div>
-
-
-        <div
-          class="demo-card"
-          data-info="${product.id}"
-        >
-
-          <div class="demo-card-top">
-            <span>KX</span>
-            <span>${product.category}</span>
-          </div>
-
-          <div class="demo-number">
-            ${product.card}
-          </div>
-
-          <div class="card-mid">
-
-            <div>
-              <small>MONTH/YEAR</small>
-              <strong>${product.expiry}</strong>
-            </div>
-
-            <div>
-              <small>BALANCE</small>
-              <strong>
-                ${product.balance.toLocaleString("en-IN")}
-              </strong>
-            </div>
+            <span class="demo-badge">
+              DEMO
+            </span>
 
           </div>
 
-          <div class="demo-card-bottom">
-            <span>${product.holder}</span>
-            <span>${product.type}</span>
-          </div>
 
-        </div>
-
-
-        <div class="product-meta">
-
-          <div>
-            <span>LEVEL</span>
-            <strong>${product.level}</strong>
-          </div>
-
-          <div>
-            <span>BAL</span>
-            <strong>
-              ${product.balance.toLocaleString("en-IN")}
-            </strong>
-          </div>
-
-        </div>
-
-
-        <div class="stock-line">
-
-          <span>STOCK PROTOCOL</span>
-
-          <strong>
-            ONLY ${product.stock} LEFT
-          </strong>
-
-        </div>
-
-
-        <div class="product-actions">
-
-          <button
-            class="details-btn"
+          <div
+            class="demo-card"
             data-info="${product.id}"
           >
-            DETAILS
-          </button>
 
-          <button
-            class="primary buy-btn"
-            data-buy="${product.id}"
-          >
-            BUY NOW · ₹${product.price}
-          </button>
+            <div class="demo-card-top">
 
-        </div>
+              <span>KX</span>
 
-      </article>
+              <span>
+                ${product.category}
+              </span>
 
-    `).join("");
+            </div>
 
 
-    document.querySelectorAll("[data-info]")
+            <div class="demo-number">
+              ${product.card}
+            </div>
+
+
+            <div class="card-mid">
+
+              <div>
+                <small>
+                  MONTH/YEAR
+                </small>
+
+                <strong>
+                  ${product.expiry}
+                </strong>
+              </div>
+
+
+              <div>
+                <small>
+                  BALANCE
+                </small>
+
+                <strong>
+                  ${product.balance
+                    .toLocaleString("en-IN")}
+                </strong>
+              </div>
+
+            </div>
+
+
+            <div class="demo-card-bottom">
+
+              <span>
+                ${product.holder}
+              </span>
+
+              <span>
+                ${product.type}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="product-meta">
+
+            <div>
+
+              <span>LEVEL</span>
+
+              <strong>
+                ${product.level}
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>BAL</span>
+
+              <strong>
+                ${product.balance
+                  .toLocaleString("en-IN")}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="stock-line">
+
+            <span>
+              STOCK PROTOCOL
+            </span>
+
+            <strong>
+              ONLY ${product.stock} LEFT
+            </strong>
+
+          </div>
+
+
+          <div class="product-actions">
+
+            <button
+              class="details-btn"
+              data-info="${product.id}"
+            >
+              DETAILS
+            </button>
+
+            <button
+              class="primary buy-btn"
+              data-buy="${product.id}"
+            >
+              BUY NOW · ₹${product.price}
+            </button>
+
+          </div>
+
+        </article>
+
+      `).join("");
+
+
+    document
+      .querySelectorAll("[data-info]")
       .forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-          const product = products.find(
-            p => p.id === Number(button.dataset.info)
-          );
+            const product =
+              products.find(
+                p =>
+                  p.id ===
+                  Number(
+                    button.dataset.info
+                  )
+              );
 
-          if (product) {
-            openProduct(product);
+            if (product) {
+              openProduct(product);
+            }
+
           }
-
-        });
+        );
 
       });
 
 
-    document.querySelectorAll("[data-buy]")
+    document
+      .querySelectorAll("[data-buy]")
       .forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-          const product = products.find(
-            p => p.id === Number(button.dataset.buy)
-          );
+            const product =
+              products.find(
+                p =>
+                  p.id ===
+                  Number(
+                    button.dataset.buy
+                  )
+              );
 
-          if (product) {
-            openCheckout(product);
+            if (product) {
+              openCheckout(product);
+            }
+
           }
-
-        });
+        );
 
       });
 
@@ -632,48 +757,96 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="detail-card">
 
         <div class="detail-brand">
+
           <span>KX</span>
-          <strong>${product.category}</strong>
+
+          <strong>
+            ${product.category}
+          </strong>
+
         </div>
+
 
         <div class="detail-number">
           ${product.card}
         </div>
 
+
         <div class="detail-grid">
 
           <div>
-            <small>MONTH/YEAR</small>
-            <strong>${product.expiry}</strong>
-          </div>
 
-          <div>
-            <small>BALANCE</small>
+            <small>
+              MONTH/YEAR
+            </small>
+
             <strong>
-              ${product.balance.toLocaleString("en-IN")}
+              ${product.expiry}
             </strong>
+
           </div>
 
-          <div>
-            <small>CARD TYPE</small>
-            <strong>${product.type}</strong>
-          </div>
 
           <div>
-            <small>LEVEL</small>
-            <strong>${product.level}</strong>
+
+            <small>
+              BALANCE
+            </small>
+
+            <strong>
+              ${product.balance
+                .toLocaleString("en-IN")}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <small>
+              CARD TYPE
+            </small>
+
+            <strong>
+              ${product.type}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <small>
+              LEVEL
+            </small>
+
+            <strong>
+              ${product.level}
+            </strong>
+
           </div>
 
         </div>
+
 
         <div class="detail-holder">
-          <small>DEMO HOLDER</small>
-          <strong>${product.holder}</strong>
+
+          <small>
+            DEMO HOLDER
+          </small>
+
+          <strong>
+            ${product.holder}
+          </strong>
+
         </div>
 
+
         <div class="detail-stock">
-          STOCK PROTOCOL · ONLY ${product.stock} LEFT
+          STOCK PROTOCOL · ONLY
+          ${product.stock} LEFT
         </div>
+
 
         <button
           class="primary"
@@ -683,6 +856,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </button>
 
       </div>
+
     `;
 
 
@@ -691,18 +865,26 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         closeProductModal();
+
         openCheckout(product);
 
       }
     );
 
 
-    productModal.classList.remove("hidden");
+    productModal.classList.remove(
+      "hidden"
+    );
+
   }
 
 
   function closeProductModal() {
-    productModal.classList.add("hidden");
+
+    productModal.classList.add(
+      "hidden"
+    );
+
   }
 
 
@@ -716,8 +898,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "click",
     event => {
 
-      if (event.target === productModal) {
+      if (
+        event.target === productModal
+      ) {
+
         closeProductModal();
+
       }
 
     }
@@ -731,19 +917,36 @@ document.addEventListener("DOMContentLoaded", () => {
   function openCheckout(product) {
 
     selectedProduct.innerHTML = `
-      <strong>${product.category} Demo Product</strong><br>
+
+      <strong>
+        ${product.category} Demo Product
+      </strong>
+
+      <br>
+
       Demo balance:
-      ₹${product.balance.toLocaleString("en-IN")}<br>
-      Price: ₹${product.price}
+      ₹${product.balance
+        .toLocaleString("en-IN")}
+
+      <br>
+
+      Price:
+      ₹${product.price}
+
     `;
 
-    modal.classList.remove("hidden");
+    modal.classList.remove(
+      "hidden"
+    );
+
   }
 
 
   $("closeModal").addEventListener(
     "click",
-    () => modal.classList.add("hidden")
+    () => {
+      modal.classList.add("hidden");
+    }
   );
 
 
@@ -751,8 +954,14 @@ document.addEventListener("DOMContentLoaded", () => {
     "click",
     event => {
 
-      if (event.target === modal) {
-        modal.classList.add("hidden");
+      if (
+        event.target === modal
+      ) {
+
+        modal.classList.add(
+          "hidden"
+        );
+
       }
 
     }
@@ -763,7 +972,9 @@ document.addEventListener("DOMContentLoaded", () => {
      UPI
   ========================= */
 
-  const upiId = "kaivexstore@ybl";
+  const upiId =
+    "kaivexstore@ybl";
+
 
   copyUpi.addEventListener(
     "click",
@@ -771,15 +982,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
 
-        await navigator.clipboard.writeText(upiId);
+        await navigator.clipboard
+          .writeText(upiId);
 
         copyUpi.innerHTML =
-          "<span>Copied ✓</span><span>Done</span>";
+          "<span>Copied ✓</span>" +
+          "<span>Done</span>";
+
 
         setTimeout(() => {
 
           copyUpi.innerHTML =
-            "<span>kaivexstore@ybl</span><span>Copy</span>";
+            "<span>" +
+            upiId +
+            "</span>" +
+            "<span>Copy</span>";
 
         }, 1500);
 
@@ -787,7 +1004,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       catch {
 
-        alert("UPI ID: " + upiId);
+        alert(
+          "UPI ID: " + upiId
+        );
 
       }
 
@@ -813,10 +1032,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!utr || !email) {
 
         alert(
-          "Please enter Transaction ID and Delivery Email."
+          "Please enter Transaction ID " +
+          "and Delivery Email."
         );
 
         return;
+
       }
 
 
@@ -834,68 +1055,92 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   const channels = [
+
     {
       name: "Channel Task 01",
-      link: "https://t.me/+lIJ6-tAMwBdiYTU1"
+      link:
+        "https://t.me/+lIJ6-tAMwBdiYTU1"
     },
+
     {
       name: "Channel Task 02",
-      link: "https://t.me/+cpHtijIv1eM4ZDM1"
+      link:
+        "https://t.me/+cpHtijIv1eM4ZDM1"
     },
+
     {
       name: "Channel Task 03",
-      link: "https://t.me/kaivexmodssetup"
+      link:
+        "https://t.me/kaivexmodssetup"
     },
+
     {
       name: "Channel Task 04",
-      link: "https://t.me/+F_wsXeD3Dt8zMjll"
+      link:
+        "https://t.me/+F_wsXeD3Dt8zMjll"
     },
+
     {
       name: "Channel Task 05",
-      link: "https://t.me/+GIXruxf0uFVkNDdl"
+      link:
+        "https://t.me/+GIXruxf0uFVkNDdl"
     }
+
   ];
 
 
   $("channels").innerHTML =
-    channels.map((channel, index) => `
+    channels.map(
+      (channel, index) => `
 
-      <div class="channel">
+        <div class="channel">
 
-        <div>
+          <div>
 
-          <strong>${channel.name}</strong>
+            <strong>
+              ${channel.name}
+            </strong>
 
-          <div class="tiny">
-            Task ${index + 1} · ₹0.50
+            <div class="tiny">
+              Task ${index + 1} · ₹0.50
+            </div>
+
           </div>
+
+
+          <button
+            class="task-btn"
+            data-telegram="${channel.link}"
+          >
+            JOIN
+          </button>
 
         </div>
 
-        <button
-          class="task-btn"
-          data-telegram="${channel.link}"
-        >
-          JOIN
-        </button>
-
-      </div>
-
-    `).join("");
+      `
+    ).join("");
 
 
   document
-    .querySelectorAll("[data-telegram]")
+    .querySelectorAll(
+      "[data-telegram]"
+    )
     .forEach(button => {
 
-      button.addEventListener("click", () => {
+      button.addEventListener(
+        "click",
+        () => {
 
-        const link =
-          button.dataset.telegram;
+          const link =
+            button.dataset.telegram;
 
-        window.open(link, "_blank");
+          window.open(
+            link,
+            "_blank"
+          );
 
-      });
+        }
+      );
 
     });
 
@@ -906,9 +1151,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeProfileBoxes() {
 
-    $("referBox").classList.add("hidden");
-    $("ordersBox").classList.add("hidden");
-    $("accountBox").classList.add("hidden");
+    $("referBox")
+      .classList.add("hidden");
+
+    $("ordersBox")
+      .classList.add("hidden");
+
+    $("accountBox")
+      .classList.add("hidden");
 
   }
 
@@ -919,7 +1169,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       closeProfileBoxes();
 
-      $("referBox").classList.remove("hidden");
+      $("referBox")
+        .classList.remove("hidden");
 
     }
   );
@@ -931,7 +1182,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       closeProfileBoxes();
 
-      $("ordersBox").classList.remove("hidden");
+      $("ordersBox")
+        .classList.remove("hidden");
 
     }
   );
@@ -943,7 +1195,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       closeProfileBoxes();
 
-      $("accountBox").classList.remove("hidden");
+      $("accountBox")
+        .classList.remove("hidden");
 
     }
   );
@@ -955,10 +1208,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
 
-        await navigator.clipboard.writeText(referralCode);
+        await navigator.clipboard
+          .writeText(referralCode);
 
         copyRef.textContent =
           "Referral Code Copied ✓";
+
 
         setTimeout(() => {
 
@@ -972,7 +1227,8 @@ document.addEventListener("DOMContentLoaded", () => {
       catch {
 
         alert(
-          "Referral Code: " + referralCode
+          "Referral Code: " +
+          referralCode
         );
 
       }

@@ -29,11 +29,12 @@ body{
       var(--bg) 58%
     );
   color:var(--text);
-  font:14px system-ui,-apple-system,BlinkMacSystemFont,
-  "Segoe UI",sans-serif;
+  font:14px system-ui,-apple-system,
+  BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-button,input{
+button,
+input{
   font:inherit;
 }
 
@@ -82,10 +83,12 @@ button{
 }
 
 @keyframes pulse{
+
   50%{
     transform:scale(1.05);
     box-shadow:0 0 45px #6cff8840;
   }
+
 }
 
 .loader-title{
@@ -131,13 +134,16 @@ button{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 16px;
+  padding:10px 16px;
   background:#030504e8;
   border-bottom:1px solid var(--line);
   backdrop-filter:blur(16px);
 }
 
 .brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
   font-weight:900;
   letter-spacing:1px;
 }
@@ -145,6 +151,16 @@ button{
 .brand span{
   color:var(--green);
   text-shadow:0 0 14px #6cff8860;
+}
+
+.store-logo{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  border-radius:11px;
+  display:block;
+  border:1px solid var(--line);
+  box-shadow:0 0 18px #6cff8820;
 }
 
 .icon-btn{
@@ -195,6 +211,14 @@ button{
   font-weight:900;
   font-size:20px;
   box-shadow:0 0 25px #6cff8820;
+  overflow:hidden;
+}
+
+.vault-mark img{
+  width:100%;
+  height:100%;
+  padding:7px;
+  object-fit:contain;
 }
 
 
@@ -236,7 +260,11 @@ button{
   width:min(1000px,calc(100% - 28px));
   margin:16px auto;
   padding:17px;
-  background:linear-gradient(180deg,#0a110c,#050805);
+  background:linear-gradient(
+    180deg,
+    #0a110c,
+    #050805
+  );
   border:1px solid var(--line);
   border-radius:20px;
   box-shadow:0 15px 45px #0009;
@@ -301,13 +329,18 @@ button{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+  grid-template-columns:
+    repeat(auto-fit,minmax(245px,1fr));
   gap:13px;
 }
 
 .product{
   padding:13px;
-  background:linear-gradient(145deg,#0a120c,#050805);
+  background:linear-gradient(
+    145deg,
+    #0a120c,
+    #050805
+  );
   border:1px solid var(--line);
   border-radius:18px;
   overflow:hidden;
@@ -345,7 +378,11 @@ button{
   flex-direction:column;
   justify-content:space-between;
   background:
-    radial-gradient(circle at 90% 20%,#1b4525,#091009 50%),
+    radial-gradient(
+      circle at 90% 20%,
+      #1b4525,
+      #091009 50%
+    ),
     #080d09;
   border:1px solid #285333;
   border-radius:17px;
@@ -480,11 +517,18 @@ button{
   transform:scale(.98);
 }
 
-.demo-note{
-  margin:8px 0 0;
+
+/* EMPTY */
+
+.empty-state{
+  padding:35px 15px;
   text-align:center;
-  color:#536457;
-  font-size:8px;
+  color:var(--muted);
+}
+
+.empty-state div{
+  font-size:28px;
+  color:var(--green);
 }
 
 
@@ -515,10 +559,15 @@ button{
   place-items:center;
   border:1px solid var(--green);
   border-radius:23px;
-  color:var(--green);
-  font-size:22px;
-  font-weight:900;
   box-shadow:0 0 25px #6cff8818;
+  overflow:hidden;
+}
+
+.profile-avatar img{
+  width:100%;
+  height:100%;
+  padding:8px;
+  object-fit:contain;
 }
 
 .profile-list{
@@ -622,7 +671,11 @@ button{
   overflow:auto;
   position:relative;
   padding:20px;
-  background:linear-gradient(180deg,#0b130e,#050805);
+  background:linear-gradient(
+    180deg,
+    #0b130e,
+    #050805
+  );
   border:1px solid #285333;
   border-radius:21px;
   box-shadow:0 20px 70px #000;
@@ -865,6 +918,10 @@ label input{
     height:55px;
   }
 
+  .vault-mark img{
+    padding:6px;
+  }
+
   .panel{
     width:calc(100% - 20px);
   }
@@ -879,6 +936,11 @@ label input{
 
   .product-actions{
     grid-template-columns:80px 1fr;
+  }
+
+  .store-logo{
+    width:38px;
+    height:38px;
   }
 
 }

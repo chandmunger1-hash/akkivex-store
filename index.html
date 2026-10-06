@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>KAIVEX STORE</title>
+  <title>AKKIVEX STORE</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +12,7 @@
 <!-- SECURITY LOADER -->
 <div id="loader" class="loader">
   <div class="shield">◆</div>
-  <div class="loader-title">KAIVEX STORE</div>
+  <div class="loader-title">AKKIVEX STORE</div>
   <div class="loader-sub">SECURITY CHECK</div>
 
   <div class="bar">
@@ -30,7 +30,18 @@
   <!-- TOP BAR -->
   <header class="topbar">
     <div class="brand">
-      <span>KX</span> KAIVEX STORE
+
+      <img
+        src="logo.png"
+        alt="AKKIVEX STORE Logo"
+        class="store-logo"
+      >
+
+      <div>
+        <span>KX</span>
+        AKKIVEX STORE
+      </div>
+
     </div>
 
     <button id="profileBtn" class="icon-btn">
@@ -44,13 +55,20 @@
 
     <!-- VAULT HEADER -->
     <section class="vault-head">
+
       <div>
         <p class="section-label">CARD VAULT</p>
         <h1>SECURE ACCOUNT</h1>
         <p class="muted">NODE: GLOBAL-01</p>
       </div>
 
-      <div class="vault-mark">KX</div>
+      <div class="vault-mark">
+        <img
+          src="logo.png"
+          alt="AKKIVEX STORE Logo"
+        >
+      </div>
+
     </section>
 
 
@@ -59,7 +77,7 @@
 
       <div class="stat">
         <span>VERIFIED REGISTRY</span>
-        <strong>DEMO</strong>
+        <strong>SECURE 🔐</strong>
       </div>
 
       <div class="stat">
@@ -79,6 +97,7 @@
     <section class="panel" id="store">
 
       <div class="panel-head">
+
         <div>
           <p class="section-label">ACTIVE STOCK PRODUCTS</p>
           <h2>Premium Collection</h2>
@@ -89,6 +108,7 @@
           type="search"
           placeholder="Search..."
         >
+
       </div>
 
       <div id="filters" class="filters"></div>
@@ -109,7 +129,9 @@
 
     <section class="panel profile-main">
 
-      <div class="profile-avatar">KX</div>
+      <div class="profile-avatar">
+        <img src="logo.png" alt="AKKIVEX">
+      </div>
 
       <p class="section-label">ACCOUNT</p>
       <h2>My Profile</h2>
@@ -157,7 +179,7 @@
 
       <div class="ref-code">
         <span>Your Referral Code</span>
-        <strong>AKV8457</strong>
+        <strong id="referralDisplay">KS000000</strong>
       </div>
 
       <p class="muted">
@@ -193,7 +215,7 @@
 
       <div class="info-row">
         <span>Status</span>
-        <strong>DEMO ACCOUNT</strong>
+        <strong>ACTIVE ACCOUNT</strong>
       </div>
 
       <div class="info-row">
@@ -203,7 +225,7 @@
 
       <div class="info-row">
         <span>Registry</span>
-        <strong>VERIFIED DEMO</strong>
+        <strong>VERIFIED SECURE 🔐</strong>
       </div>
 
     </section>
@@ -240,9 +262,13 @@
 
     <div class="modal-card">
 
-      <button id="closeProduct" class="close">×</button>
+      <button id="closeProduct" class="close">
+        ×
+      </button>
 
-      <p class="section-label">PRODUCT INFORMATION</p>
+      <p class="section-label">
+        PRODUCT INFORMATION
+      </p>
 
       <div id="productDetail"></div>
 
@@ -256,16 +282,23 @@
 
     <div class="modal-card">
 
-      <button id="closeModal" class="close">×</button>
+      <button id="closeModal" class="close">
+        ×
+      </button>
 
-      <p class="section-label">CHECKOUT</p>
+      <p class="section-label">
+        CHECKOUT
+      </p>
+
       <h2>Order Checkout</h2>
 
       <p id="selectedProduct" class="muted"></p>
 
       <div class="payment-box">
 
-        <div class="label">UPI ID</div>
+        <div class="label">
+          UPI ID
+        </div>
 
         <button id="copyUpi" class="upi">
           <span>kaivexstore@ybl</span>
@@ -273,37 +306,46 @@
         </button>
 
 
-        <div class="label">SCAN & PAY</div>
+        <div class="label">
+          SCAN & PAY
+        </div>
 
         <div class="qr-box">
           <img
             src="upi-qr.png"
-            alt="KAIVEX STORE UPI QR"
+            alt="AKKIVEX STORE UPI QR"
           >
         </div>
 
 
         <label>
           UTR / Transaction ID
+
           <input
             id="utr"
             type="text"
             placeholder="Enter transaction ID"
           >
+
         </label>
 
 
         <label>
           Delivery Email
+
           <input
             id="email"
             type="email"
             placeholder="you@example.com"
           >
+
         </label>
 
 
-        <button id="submitPayment" class="primary">
+        <button
+          id="submitPayment"
+          class="primary"
+        >
           Submit for Verification
         </button>
 
