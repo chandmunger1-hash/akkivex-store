@@ -4,6 +4,66 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // =========================
+  // SECURITY LOADER
+  // =========================
+
+  const loader = document.getElementById("loader");
+  const percent = document.getElementById("percent");
+  const loaderText = document.getElementById("loaderText");
+
+  let progress = 0;
+
+  const loadingMessages = [
+    "Initializing security...",
+    "Checking system...",
+    "Verifying connection...",
+    "Loading AKKIVEX MODS...",
+    "Security check complete."
+  ];
+
+  const loaderTimer = setInterval(() => {
+
+    progress++;
+
+    if (percent) {
+      percent.textContent = progress + "%";
+    }
+
+    if (loaderText) {
+      const messageIndex = Math.min(
+        Math.floor(progress / 20),
+        loadingMessages.length - 1
+      );
+
+      loaderText.textContent =
+        loadingMessages[messageIndex];
+    }
+
+    if (progress >= 100) {
+
+      clearInterval(loaderTimer);
+
+      setTimeout(() => {
+
+        if (loader) {
+
+          loader.style.opacity = "0";
+          loader.style.pointerEvents = "none";
+
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 500);
+
+        }
+
+      }, 300);
+
+    }
+
+  }, 25);
+
+
+  // =========================
   // UPI COPY
   // =========================
 
@@ -11,8 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const copyButtons = document.querySelectorAll("[data-copy-upi]");
 
   copyButtons.forEach((button) => {
+
     button.addEventListener("click", async () => {
+
       try {
+
         await navigator.clipboard.writeText(upiId);
 
         const oldText = button.textContent;
@@ -23,9 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1500);
 
       } catch (error) {
+
         alert("UPI ID: " + upiId);
+
       }
+
     });
+
   });
 
 
@@ -34,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
 
   const searchBox = document.querySelector("[data-search]");
+
   const productCards = [
     ...document.querySelectorAll("[data-product-card]")
   ];
@@ -50,14 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const cardText =
           card.textContent.toLowerCase();
 
-        if (
-          searchText === "" ||
-          cardText.includes(searchText)
-        ) {
-          card.hidden = false;
-        } else {
-          card.hidden = true;
-        }
+        card.hidden =
+          searchText !== "" &&
+          !cardText.includes(searchText);
 
       });
 
@@ -85,18 +148,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const cardCategory =
           card.dataset.category;
 
-        if (
-          selectedCategory === "ALL" ||
-          cardCategory === selectedCategory
-        ) {
-          card.hidden = false;
-        } else {
-          card.hidden = true;
-        }
+        card.hidden =
+          selectedCategory !== "ALL" &&
+          cardCategory !== selectedCategory;
 
       });
 
-      // Active button
       categoryButtons.forEach((btn) => {
         btn.classList.remove("active");
       });
@@ -134,7 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
         emailInput ? emailInput.value.trim() : "";
 
       if (!utr || !email) {
-        alert("Please enter UTR number and email.");
+
+        alert(
+          "Please enter UTR number and email."
+        );
+
         return;
       }
 
