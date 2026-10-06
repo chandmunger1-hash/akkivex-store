@@ -1,6 +1,7 @@
 // AKKIVEX STORE
-// Fictional frontend data only.
+// Fictional/demo frontend data only.
 // Authentication: GitHub Pages + localStorage.
+// No Supabase / Firebase required.
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -9,31 +10,225 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   const products = [
-    { id: 1, category: "VISA", price: 150, balance: 3000, holder: "Alex Carter", card: "5722 XXXX XXXX 3548", expiry: "09/32", type: "DEBIT CARD", level: "HOFC PREMIUM", stock: 8 },
-    { id: 2, category: "VISA", price: 210, balance: 5000, holder: "Daniel Wilson", card: "5722 XXXX XXXX 4821", expiry: "07/33", type: "DEBIT CARD", level: "PREMIUM", stock: 6 },
-    { id: 3, category: "VISA", price: 270, balance: 6000, holder: "James Anderson", card: "5722 XXXX XXXX 4217", expiry: "11/32", type: "DEBIT CARD", level: "PREMIUM", stock: 5 },
-    { id: 4, category: "VISA", price: 330, balance: 8000, holder: "Robert Miller", card: "5722 XXXX XXXX 4532", expiry: "04/34", type: "DEBIT CARD", level: "PREMIUM", stock: 4 },
-    { id: 5, category: "VISA", price: 390, balance: 9000, holder: "William Davis", card: "5722 XXXX XXXX 4916", expiry: "12/33", type: "DEBIT CARD", level: "PREMIUM", stock: 3 },
 
-    { id: 6, category: "MASTERCARD", price: 170, balance: 3200, holder: "Chris Brown", card: "5234 XXXX XXXX 5234", expiry: "08/33", type: "DEBIT CARD", level: "PREMIUM", stock: 8 },
-    { id: 7, category: "MASTERCARD", price: 230, balance: 4000, holder: "Matthew Johnson", card: "5234 XXXX XXXX 5487", expiry: "03/34", type: "DEBIT CARD", level: "PREMIUM", stock: 7 },
-    { id: 8, category: "MASTERCARD", price: 290, balance: 6000, holder: "Andrew Thompson", card: "5234 XXXX XXXX 5271", expiry: "10/33", type: "DEBIT CARD", level: "PREMIUM", stock: 6 },
-    { id: 9, category: "MASTERCARD", price: 350, balance: 8000, holder: "Joseph Martinez", card: "5234 XXXX XXXX 5548", expiry: "06/34", type: "DEBIT CARD", level: "PREMIUM", stock: 4 },
-    { id: 10, category: "MASTERCARD", price: 410, balance: 10000, holder: "Anthony Taylor", card: "5234 XXXX XXXX 5103", expiry: "01/35", type: "DEBIT CARD", level: "PREMIUM", stock: 3 },
+    {
+      id: 1,
+      category: "VISA",
+      price: 150,
+      balance: 3000,
+      holder: "Alex Carter",
+      card: "5722 XXXX XXXX 3548",
+      expiry: "09/32",
+      type: "DEBIT CARD",
+      level: "HOFC PREMIUM",
+      stock: 8
+    },
 
-    { id: 11, category: "RUPAY", price: 190, balance: 3500, holder: "Joshua Thomas", card: "6071 XXXX XXXX 6071", expiry: "05/33", type: "DEBIT CARD", level: "PREMIUM", stock: 8 },
-    { id: 12, category: "RUPAY", price: 250, balance: 4500, holder: "Ryan Jackson", card: "6071 XXXX XXXX 6521", expiry: "09/34", type: "DEBIT CARD", level: "PREMIUM", stock: 6 },
-    { id: 13, category: "RUPAY", price: 310, balance: 6000, holder: "Brandon White", card: "6071 XXXX XXXX 6384", expiry: "02/34", type: "DEBIT CARD", level: "PREMIUM", stock: 5 },
-    { id: 14, category: "RUPAY", price: 370, balance: 8000, holder: "Kevin Harris", card: "6071 XXXX XXXX 6214", expiry: "07/34", type: "DEBIT CARD", level: "PREMIUM", stock: 4 },
-    { id: 15, category: "RUPAY", price: 430, balance: 10000, holder: "Jason Martin", card: "6071 XXXX XXXX 6528", expiry: "11/34", type: "DEBIT CARD", level: "PREMIUM", stock: 3 },
-    { id: 16, category: "RUPAY", price: 500, balance: 15000, holder: "Eric Robinson", card: "6071 XXXX XXXX 6712", expiry: "12/35", type: "DEBIT CARD", level: "PREMIUM", stock: 2 }
+    {
+      id: 2,
+      category: "VISA",
+      price: 210,
+      balance: 5000,
+      holder: "Daniel Wilson",
+      card: "5722 XXXX XXXX 4821",
+      expiry: "07/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 6
+    },
+
+    {
+      id: 3,
+      category: "VISA",
+      price: 270,
+      balance: 6000,
+      holder: "James Anderson",
+      card: "5722 XXXX XXXX 4217",
+      expiry: "11/32",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 5
+    },
+
+    {
+      id: 4,
+      category: "VISA",
+      price: 330,
+      balance: 8000,
+      holder: "Robert Miller",
+      card: "5722 XXXX XXXX 4532",
+      expiry: "04/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 4
+    },
+
+    {
+      id: 5,
+      category: "VISA",
+      price: 390,
+      balance: 9000,
+      holder: "William Davis",
+      card: "5722 XXXX XXXX 4916",
+      expiry: "12/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 3
+    },
+
+    {
+      id: 6,
+      category: "MASTERCARD",
+      price: 170,
+      balance: 3200,
+      holder: "Chris Brown",
+      card: "5234 XXXX XXXX 5234",
+      expiry: "08/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 8
+    },
+
+    {
+      id: 7,
+      category: "MASTERCARD",
+      price: 230,
+      balance: 4000,
+      holder: "Matthew Johnson",
+      card: "5234 XXXX XXXX 5487",
+      expiry: "03/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 7
+    },
+
+    {
+      id: 8,
+      category: "MASTERCARD",
+      price: 290,
+      balance: 6000,
+      holder: "Andrew Thompson",
+      card: "5234 XXXX XXXX 5271",
+      expiry: "10/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 6
+    },
+
+    {
+      id: 9,
+      category: "MASTERCARD",
+      price: 350,
+      balance: 8000,
+      holder: "Joseph Martinez",
+      card: "5234 XXXX XXXX 5548",
+      expiry: "06/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 4
+    },
+
+    {
+      id: 10,
+      category: "MASTERCARD",
+      price: 410,
+      balance: 10000,
+      holder: "Anthony Taylor",
+      card: "5234 XXXX XXXX 5103",
+      expiry: "01/35",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 3
+    },
+
+    {
+      id: 11,
+      category: "RUPAY",
+      price: 190,
+      balance: 3500,
+      holder: "Joshua Thomas",
+      card: "6071 XXXX XXXX 6071",
+      expiry: "05/33",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 8
+    },
+
+    {
+      id: 12,
+      category: "RUPAY",
+      price: 250,
+      balance: 4500,
+      holder: "Ryan Jackson",
+      card: "6071 XXXX XXXX 6521",
+      expiry: "09/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 6
+    },
+
+    {
+      id: 13,
+      category: "RUPAY",
+      price: 310,
+      balance: 6000,
+      holder: "Brandon White",
+      card: "6071 XXXX XXXX 6384",
+      expiry: "02/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 5
+    },
+
+    {
+      id: 14,
+      category: "RUPAY",
+      price: 370,
+      balance: 8000,
+      holder: "Kevin Harris",
+      card: "6071 XXXX XXXX 6214",
+      expiry: "07/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 4
+    },
+
+    {
+      id: 15,
+      category: "RUPAY",
+      price: 430,
+      balance: 10000,
+      holder: "Jason Martin",
+      card: "6071 XXXX XXXX 6528",
+      expiry: "11/34",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 3
+    },
+
+    {
+      id: 16,
+      category: "RUPAY",
+      price: 500,
+      balance: 15000,
+      holder: "Eric Robinson",
+      card: "6071 XXXX XXXX 6712",
+      expiry: "12/35",
+      type: "DEBIT CARD",
+      level: "PREMIUM",
+      stock: 2
+    }
+
   ];
+
 
   /* =========================
      SHORTCUT
   ========================= */
 
-  const $ = id => document.getElementById(id);
+  const $ = id =>
+    document.getElementById(id);
+
 
   /* =========================
      ELEMENTS
@@ -70,6 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const copyRef = $("copyRef");
 
+
   /* =========================
      AUTH ELEMENTS
   ========================= */
@@ -100,64 +296,117 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = $("logoutBtn");
 
   const profileGreeting = $("profileGreeting");
+
   const accountName = $("accountName");
   const accountEmail = $("accountEmail");
+
   const orderHistory = $("orderHistory");
 
-  const referralDisplay = $("referralDisplay");
 
   /* =========================
-     STORAGE
+     AUTH STORAGE
   ========================= */
 
-  const USERS_KEY = "akkivexUsers";
-  const SESSION_KEY = "akkivexCurrentUser";
+  const USERS_KEY =
+    "akkivexUsers";
+
+  const SESSION_KEY =
+    "akkivexCurrentUser";
+
 
   function getUsers() {
+
     try {
-      return JSON.parse(localStorage.getItem(USERS_KEY)) || {};
-    } catch {
-      return {};
+
+      return JSON.parse(
+        localStorage.getItem(
+          USERS_KEY
+        )
+      ) || {};
+
     }
+
+    catch {
+
+      return {};
+
+    }
+
   }
+
 
   function saveUsers(users) {
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+
+    localStorage.setItem(
+      USERS_KEY,
+      JSON.stringify(users)
+    );
+
   }
 
+
   function normalizeEmail(email) {
-    return String(email || "").trim().toLowerCase();
+
+    return email
+      .trim()
+      .toLowerCase();
+
   }
+
 
   /* =========================
      PASSWORD HASH
   ========================= */
 
-  async function hashPassword(password, salt) {
+  async function hashPassword(
+    password,
+    salt
+  ) {
 
-    const data = new TextEncoder().encode(
-      salt + ":" + password
-    );
+    const data =
+      new TextEncoder().encode(
+        salt + ":" + password
+      );
 
-    const hash = await crypto.subtle.digest(
-      "SHA-256",
-      data
-    );
 
-    return Array.from(new Uint8Array(hash))
-      .map(byte => byte.toString(16).padStart(2, "0"))
+    const hash =
+      await crypto.subtle.digest(
+        "SHA-256",
+        data
+      );
+
+
+    return Array.from(
+      new Uint8Array(hash)
+    )
+      .map(byte =>
+        byte
+          .toString(16)
+          .padStart(2, "0")
+      )
       .join("");
+
   }
+
 
   function createSalt() {
 
-    const array = new Uint8Array(16);
+    const array =
+      new Uint8Array(16);
+
     crypto.getRandomValues(array);
 
+
     return Array.from(array)
-      .map(byte => byte.toString(16).padStart(2, "0"))
+      .map(byte =>
+        byte
+          .toString(16)
+          .padStart(2, "0")
+      )
       .join("");
+
   }
+
 
   /* =========================
      REFERRAL
@@ -165,250 +414,352 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function generateReferralCode() {
 
-    return "KS" + Math.floor(
-      100000 + Math.random() * 900000
+    return (
+      "KS" +
+      Math.floor(
+        100000 +
+        Math.random() * 900000
+      )
     );
+
   }
 
-  let referralCode = "KS000000";
-  let currentUser = null;
+
+  let referralCode =
+    "KS000000";
+
 
   /* =========================
-     AUTH VIEW
+     CURRENT USER
+  ========================= */
+
+  let currentUser = null;
+
+
+  /* =========================
+     SHOW LOGIN
   ========================= */
 
   function showLoginForm() {
 
-    if (!loginForm || !signupForm) return;
+    loginForm.classList.remove(
+      "hidden"
+    );
 
-    loginForm.classList.remove("hidden");
-    signupForm.classList.add("hidden");
+    signupForm.classList.add(
+      "hidden"
+    );
 
-    if (authTitle)
-      authTitle.textContent = "Welcome Back";
+    authTitle.textContent =
+      "Welcome Back";
 
-    if (authSubtitle)
-      authSubtitle.textContent =
-        "Login to access your AKKIVEX STORE account.";
+    authSubtitle.textContent =
+      "Login to access your AKKIVEX STORE account.";
 
-    if (loginMessage)
-      loginMessage.textContent = "";
+    loginMessage.textContent = "";
 
-    if (signupMessage)
-      signupMessage.textContent = "";
+    signupMessage.textContent = "";
+
   }
+
+
+  /* =========================
+     SHOW SIGNUP
+  ========================= */
 
   function showSignupForm() {
 
-    if (!loginForm || !signupForm) return;
-
-    signupForm.classList.remove("hidden");
-    loginForm.classList.add("hidden");
-
-    if (authTitle)
-      authTitle.textContent = "Create Account";
-
-    if (authSubtitle)
-      authSubtitle.textContent =
-        "Create your AKKIVEX STORE account.";
-
-    if (loginMessage)
-      loginMessage.textContent = "";
-
-    if (signupMessage)
-      signupMessage.textContent = "";
-  }
-
-  if (showSignup) {
-    showSignup.addEventListener(
-      "click",
-      showSignupForm
+    signupForm.classList.remove(
+      "hidden"
     );
+
+    loginForm.classList.add(
+      "hidden"
+    );
+
+    authTitle.textContent =
+      "Create Account";
+
+    authSubtitle.textContent =
+      "Create your AKKIVEX STORE account.";
+
+    loginMessage.textContent = "";
+
+    signupMessage.textContent = "";
+
   }
 
-  if (showLogin) {
-    showLogin.addEventListener(
-      "click",
-      showLoginForm
-    );
-  }
+
+  showSignup.addEventListener(
+    "click",
+    showSignupForm
+  );
+
+
+  showLogin.addEventListener(
+    "click",
+    showLoginForm
+  );
+
 
   /* =========================
      SIGNUP
   ========================= */
 
-  if (signupBtn) {
+  signupBtn.addEventListener(
+    "click",
+    async () => {
 
-    signupBtn.addEventListener(
-      "click",
-      async () => {
+      const name =
+        signupName.value.trim();
 
-        const name = signupName.value.trim();
-        const email = normalizeEmail(signupEmail.value);
-        const password = signupPassword.value;
-        const confirm = signupConfirm.value;
-
-        if (!name) {
-          signupMessage.textContent =
-            "Please enter your name.";
-          return;
-        }
-
-        if (!email) {
-          signupMessage.textContent =
-            "Please enter your email.";
-          return;
-        }
-
-        if (
-          !email.includes("@") ||
-          !email.includes(".")
-        ) {
-          signupMessage.textContent =
-            "Please enter a valid email.";
-          return;
-        }
-
-        if (password.length < 6) {
-          signupMessage.textContent =
-            "Password must be at least 6 characters.";
-          return;
-        }
-
-        if (password !== confirm) {
-          signupMessage.textContent =
-            "Passwords do not match.";
-          return;
-        }
-
-        const users = getUsers();
-
-        if (users[email]) {
-          signupMessage.textContent =
-            "Account already exists. Please login.";
-          return;
-        }
-
-        const salt = createSalt();
-
-        const passwordHash =
-          await hashPassword(password, salt);
-
-        users[email] = {
-          name,
-          email,
-          passwordHash,
-          salt,
-          referralCode: generateReferralCode(),
-          coinBalance: 0,
-          claimedTasks: [],
-          orders: [],
-          createdAt: new Date().toISOString()
-        };
-
-        saveUsers(users);
-
-        localStorage.setItem(
-          SESSION_KEY,
-          email
+      const email =
+        normalizeEmail(
+          signupEmail.value
         );
 
-        currentUser = users[email];
+      const password =
+        signupPassword.value;
+
+      const confirm =
+        signupConfirm.value;
+
+
+      if (!name) {
 
         signupMessage.textContent =
-          "Account created successfully ✓";
+          "Please enter your name.";
 
-        setTimeout(() => {
+        return;
 
-          if (authPage)
-            authPage.classList.add("hidden");
-
-          if (app)
-            app.classList.remove("hidden");
-
-          loadCurrentUser();
-
-        }, 400);
       }
-    );
-  }
+
+
+      if (!email) {
+
+        signupMessage.textContent =
+          "Please enter your email.";
+
+        return;
+
+      }
+
+
+      if (
+        !email.includes("@") ||
+        !email.includes(".")
+      ) {
+
+        signupMessage.textContent =
+          "Please enter a valid email.";
+
+        return;
+
+      }
+
+
+      if (password.length < 6) {
+
+        signupMessage.textContent =
+          "Password must be at least 6 characters.";
+
+        return;
+
+      }
+
+
+      if (password !== confirm) {
+
+        signupMessage.textContent =
+          "Passwords do not match.";
+
+        return;
+
+      }
+
+
+      const users =
+        getUsers();
+
+
+      if (users[email]) {
+
+        signupMessage.textContent =
+          "Account already exists. Please login.";
+
+        return;
+
+      }
+
+
+      const salt =
+        createSalt();
+
+
+      const passwordHash =
+        await hashPassword(
+          password,
+          salt
+        );
+
+
+      users[email] = {
+
+        name: name,
+
+        email: email,
+
+        passwordHash:
+          passwordHash,
+
+        salt: salt,
+
+        referralCode:
+          generateReferralCode(),
+
+        coinBalance: 0,
+
+        claimedTasks: [],
+
+        orders: [],
+
+        createdAt:
+          new Date().toISOString()
+
+      };
+
+
+      saveUsers(users);
+
+
+      localStorage.setItem(
+        SESSION_KEY,
+        email
+      );
+
+
+      currentUser =
+        users[email];
+
+
+      signupMessage.textContent =
+        "Account created successfully ✓";
+
+
+      setTimeout(() => {
+
+        authPage.classList.add(
+          "hidden"
+        );
+
+        app.classList.remove(
+          "hidden"
+        );
+
+        loadCurrentUser();
+
+      }, 500);
+
+    }
+  );
+
 
   /* =========================
      LOGIN
   ========================= */
 
-  if (loginBtn) {
+  loginBtn.addEventListener(
+    "click",
+    async () => {
 
-    loginBtn.addEventListener(
-      "click",
-      async () => {
-
-        const email =
-          normalizeEmail(loginEmail.value);
-
-        const password =
-          loginPassword.value;
-
-        if (!email || !password) {
-
-          loginMessage.textContent =
-            "Enter email and password.";
-
-          return;
-        }
-
-        const users = getUsers();
-        const user = users[email];
-
-        if (!user) {
-
-          loginMessage.textContent =
-            "Account not found.";
-
-          return;
-        }
-
-        const passwordHash =
-          await hashPassword(
-            password,
-            user.salt
-          );
-
-        if (
-          passwordHash !==
-          user.passwordHash
-        ) {
-
-          loginMessage.textContent =
-            "Incorrect email or password.";
-
-          return;
-        }
-
-        localStorage.setItem(
-          SESSION_KEY,
-          email
+      const email =
+        normalizeEmail(
+          loginEmail.value
         );
 
-        currentUser = user;
+      const password =
+        loginPassword.value;
+
+
+      if (!email || !password) {
 
         loginMessage.textContent =
-          "Login successful ✓";
+          "Enter email and password.";
 
-        setTimeout(() => {
+        return;
 
-          if (authPage)
-            authPage.classList.add("hidden");
-
-          if (app)
-            app.classList.remove("hidden");
-
-          loadCurrentUser();
-
-        }, 400);
       }
-    );
-  }
+
+
+      const users =
+        getUsers();
+
+
+      const user =
+        users[email];
+
+
+      if (!user) {
+
+        loginMessage.textContent =
+          "Account not found.";
+
+        return;
+
+      }
+
+
+      const passwordHash =
+        await hashPassword(
+          password,
+          user.salt
+        );
+
+
+      if (
+        passwordHash !==
+        user.passwordHash
+      ) {
+
+        loginMessage.textContent =
+          "Incorrect email or password.";
+
+        return;
+
+      }
+
+
+      localStorage.setItem(
+        SESSION_KEY,
+        email
+      );
+
+
+      currentUser =
+        user;
+
+
+      loginMessage.textContent =
+        "Login successful ✓";
+
+
+      setTimeout(() => {
+
+        authPage.classList.add(
+          "hidden"
+        );
+
+        app.classList.remove(
+          "hidden"
+        );
+
+        loadCurrentUser();
+
+      }, 400);
+
+    }
+  );
+
 
   /* =========================
      LOAD CURRENT USER
@@ -416,112 +767,167 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadCurrentUser() {
 
-    const users = getUsers();
+    const users =
+      getUsers();
+
 
     const email =
-      localStorage.getItem(SESSION_KEY);
+      localStorage.getItem(
+        SESSION_KEY
+      );
 
-    if (!email || !users[email]) {
+
+    if (
+      !email ||
+      !users[email]
+    ) {
 
       currentUser = null;
 
-      if (app)
-        app.classList.add("hidden");
 
-      if (authPage)
-        authPage.classList.remove("hidden");
+      app.classList.add(
+        "hidden"
+      );
+
+
+      authPage.classList.remove(
+        "hidden"
+      );
+
 
       showLoginForm();
 
       return;
+
     }
 
-    currentUser = users[email];
 
-    if (app)
-      app.classList.remove("hidden");
+    currentUser =
+      users[email];
 
-    if (authPage)
-      authPage.classList.add("hidden");
+
+    app.classList.remove(
+      "hidden"
+    );
+
+
+    authPage.classList.add(
+      "hidden"
+    );
+
 
     referralCode =
       currentUser.referralCode;
 
-    if (referralDisplay)
+
+    if (referralDisplay) {
+
       referralDisplay.textContent =
         referralCode;
 
-    if (profileGreeting)
+    }
+
+
+    if (profileGreeting) {
+
       profileGreeting.textContent =
         "Welcome, " +
         currentUser.name +
         ". Manage your account and referral information.";
 
-    if (accountName)
+    }
+
+
+    if (accountName) {
+
       accountName.textContent =
         currentUser.name;
 
-    if (accountEmail)
+    }
+
+
+    if (accountEmail) {
+
       accountEmail.textContent =
         currentUser.email;
 
+    }
+
+
     updateCoinStats();
+
     renderOrderHistory();
+
   }
 
+
   /* =========================
-     SAVE USER
+     SAVE CURRENT USER
   ========================= */
 
   function saveCurrentUser() {
 
-    if (!currentUser) return;
+    if (!currentUser) {
+      return;
+    }
 
-    const users = getUsers();
 
-    users[currentUser.email] =
-      currentUser;
+    const users =
+      getUsers();
+
+
+    users[
+      currentUser.email
+    ] = currentUser;
+
 
     saveUsers(users);
+
   }
+
 
   /* =========================
      LOGOUT
   ========================= */
 
-  if (logoutBtn) {
+  logoutBtn.addEventListener(
+    "click",
+    () => {
 
-    logoutBtn.addEventListener(
-      "click",
-      () => {
+      localStorage.removeItem(
+        SESSION_KEY
+      );
 
-        localStorage.removeItem(
-          SESSION_KEY
-        );
 
-        currentUser = null;
+      currentUser = null;
 
-        if (loginEmail)
-          loginEmail.value = "";
 
-        if (loginPassword)
-          loginPassword.value = "";
+      loginEmail.value = "";
 
-        if (app)
-          app.classList.add("hidden");
+      loginPassword.value = "";
 
-        if (authPage)
-          authPage.classList.remove("hidden");
 
-        showLoginForm();
+      app.classList.add(
+        "hidden"
+      );
 
-        window.scrollTo({
-          top: 0,
-          behavior: "instant"
-        });
-      }
-    );
-  }
+
+      authPage.classList.remove(
+        "hidden"
+      );
+
+
+      showLoginForm();
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
+
+    }
+  );
+
 
   /* =========================
      LOADER
@@ -529,37 +935,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let progress = 0;
 
+
   const messages = [
+
     "Initializing security...",
+
     "Checking system...",
+
     "Verifying connection...",
+
     "Loading AKKIVEX STORE...",
+
     "Security check complete."
+
   ];
 
-  if (loader && barFill && percent && loaderText) {
 
-    const timer = setInterval(() => {
+  const timer =
+    setInterval(() => {
 
       progress++;
+
 
       percent.textContent =
         progress + "%";
 
+
       barFill.style.width =
         progress + "%";
 
-      const index = Math.min(
-        Math.floor(progress / 20),
-        messages.length - 1
-      );
+
+      const index =
+        Math.min(
+          Math.floor(progress / 20),
+          messages.length - 1
+        );
+
 
       loaderText.textContent =
         messages[index];
 
+
       if (progress >= 100) {
 
         clearInterval(timer);
+
 
         setTimeout(() => {
 
@@ -567,33 +987,26 @@ document.addEventListener("DOMContentLoaded", () => {
             "loader-finished"
           );
 
-          loader.style.opacity = "0";
-          loader.style.pointerEvents = "none";
+          loader.style.opacity =
+            "0";
 
-          /*
-           * MAIN FIX:
-           * Authentication check happens
-           * after loading finishes.
-           */
-          loadCurrentUser();
+          loader.style.pointerEvents =
+            "none";
+
 
           setTimeout(() => {
-            loader.style.display = "none";
+
+            loader.style.display =
+              "none";
+
           }, 500);
 
         }, 300);
+
       }
 
     }, 20);
 
-  } else {
-
-    /*
-     * If loader elements are missing,
-     * still check authentication.
-     */
-    loadCurrentUser();
-  }
 
   /* =========================
      NAVIGATION
@@ -601,54 +1014,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showPage(page) {
 
-    if (homePage)
-      homePage.classList.add("hidden");
+    homePage.classList.add(
+      "hidden"
+    );
 
-    if (profilePage)
-      profilePage.classList.add("hidden");
+    profilePage.classList.add(
+      "hidden"
+    );
 
-    if (freePage)
-      freePage.classList.add("hidden");
+    freePage.classList.add(
+      "hidden"
+    );
+
 
     if (page === "profile") {
 
-      if (profilePage)
-        profilePage.classList.remove("hidden");
+      profilePage.classList.remove(
+        "hidden"
+      );
 
-    } else if (page === "free") {
+    }
 
-      if (freePage)
-        freePage.classList.remove("hidden");
+    else if (page === "free") {
+
+      freePage.classList.remove(
+        "hidden"
+      );
 
       renderFreeTasks();
+
       updateCoinStats();
 
-    } else {
+    }
 
-      if (homePage)
-        homePage.classList.remove("hidden");
+    else {
+
+      homePage.classList.remove(
+        "hidden"
+      );
+
 
       if (page === "store") {
 
         setTimeout(() => {
 
-          const store = $("store");
-
-          if (store) {
-            store.scrollIntoView({
-              behavior: "smooth"
-            });
-          }
+          $("store").scrollIntoView({
+            behavior: "smooth"
+          });
 
         }, 50);
+
       }
+
     }
+
 
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
+
   }
+
 
   document
     .querySelectorAll("[data-page]")
@@ -658,178 +1085,194 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         () => {
 
-          if (!currentUser) return;
+          if (!currentUser) {
+            return;
+          }
 
           showPage(
             button.dataset.page
           );
+
         }
       );
+
     });
 
-  if (profileBtn) {
 
-    profileBtn.addEventListener(
-      "click",
-      () => {
+  profileBtn.addEventListener(
+    "click",
+    () => {
 
-        if (!currentUser) return;
-
-        showPage("profile");
+      if (!currentUser) {
+        return;
       }
-    );
-  }
 
-  const backHome = $("backHome");
+      showPage("profile");
 
-  if (backHome) {
-    backHome.addEventListener(
-      "click",
-      () => showPage("home")
-    );
-  }
+    }
+  );
 
-  const backHomeFree = $("backHomeFree");
 
-  if (backHomeFree) {
-    backHomeFree.addEventListener(
-      "click",
-      () => showPage("home")
-    );
-  }
+  $("backHome").addEventListener(
+    "click",
+    () => {
+
+      showPage("home");
+
+    }
+  );
+
+
+  $("backHomeFree").addEventListener(
+    "click",
+    () => {
+
+      showPage("home");
+
+    }
+  );
+
 
   /* =========================
-     PROFILE
+     PROFILE SUB PAGES
   ========================= */
 
   const profileSections = [
+
     $("referBox"),
     $("ordersBox"),
     $("accountBox")
+
   ];
+
 
   function hideProfileSections() {
 
-    profileSections.forEach(section => {
+    profileSections.forEach(
+      section => {
 
-      if (section)
-        section.classList.add("hidden");
+        if (section) {
 
-    });
-  }
+          section.classList.add(
+            "hidden"
+          );
 
-  const referOpen = $("referOpen");
+        }
 
-  if (referOpen) {
-
-    referOpen.addEventListener(
-      "click",
-      () => {
-
-        hideProfileSections();
-
-        const box = $("referBox");
-
-        if (box)
-          box.classList.remove("hidden");
       }
     );
+
   }
 
-  const ordersOpen = $("ordersOpen");
 
-  if (ordersOpen) {
+  $("referOpen").addEventListener(
+    "click",
+    () => {
 
-    ordersOpen.addEventListener(
-      "click",
-      () => {
+      hideProfileSections();
 
-        hideProfileSections();
+      $("referBox").classList.remove(
+        "hidden"
+      );
 
-        const box = $("ordersBox");
+    }
+  );
 
-        if (box)
-          box.classList.remove("hidden");
 
-        renderOrderHistory();
-      }
-    );
-  }
+  $("ordersOpen").addEventListener(
+    "click",
+    () => {
 
-  const accountOpen = $("accountOpen");
+      hideProfileSections();
 
-  if (accountOpen) {
+      $("ordersBox").classList.remove(
+        "hidden"
+      );
 
-    accountOpen.addEventListener(
-      "click",
-      () => {
+      renderOrderHistory();
 
-        hideProfileSections();
+    }
+  );
 
-        const box = $("accountBox");
 
-        if (box)
-          box.classList.remove("hidden");
-      }
-    );
-  }
+  $("accountOpen").addEventListener(
+    "click",
+    () => {
+
+      hideProfileSections();
+
+      $("accountBox").classList.remove(
+        "hidden"
+      );
+
+    }
+  );
+
 
   /* =========================
      REFERRAL COPY
   ========================= */
 
-  if (copyRef) {
+  copyRef.addEventListener(
+    "click",
+    async () => {
 
-    copyRef.addEventListener(
-      "click",
-      async () => {
+      try {
 
-        try {
+        await navigator.clipboard.writeText(
+          referralCode
+        );
 
-          await navigator.clipboard.writeText(
-            referralCode
-          );
+
+        copyRef.textContent =
+          "Referral Code Copied ✓";
+
+
+        setTimeout(() => {
 
           copyRef.textContent =
-            "Referral Code Copied ✓";
+            "Copy Referral Code";
 
-          setTimeout(() => {
+        }, 1500);
 
-            copyRef.textContent =
-              "Copy Referral Code";
-
-          }, 1500);
-
-        } catch {
-
-          alert(
-            "Referral Code: " +
-            referralCode
-          );
-        }
       }
-    );
-  }
+
+      catch {
+
+        alert(
+          "Referral Code: " +
+          referralCode
+        );
+
+      }
+
+    }
+  );
+
 
   /* =========================
      FILTERS
   ========================= */
 
-  let selectedCategory = "ALL";
+  let selectedCategory =
+    "ALL";
+
 
   function renderFilters() {
 
-    if (!filtersBox) return;
-
     const categories = [
+
       "ALL",
       "VISA",
       "MASTERCARD",
       "RUPAY"
+
     ];
 
+
     filtersBox.innerHTML =
-      categories.map(category => `
+      categories.map(
+        category => `
 
         <button
           class="filter ${
@@ -842,10 +1285,14 @@ document.addEventListener("DOMContentLoaded", () => {
           ${category}
         </button>
 
-      `).join("");
+      `
+      ).join("");
 
-    filtersBox
-      .querySelectorAll("[data-category]")
+
+    document
+      .querySelectorAll(
+        "[data-category]"
+      )
       .forEach(button => {
 
         button.addEventListener(
@@ -855,7 +1302,8 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedCategory =
               button.dataset.category;
 
-            filtersBox
+
+            document
               .querySelectorAll(
                 "[data-category]"
               )
@@ -865,27 +1313,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 )
               );
 
-            button.classList.add("active");
+
+            button.classList.add(
+              "active"
+            );
+
 
             renderProducts();
+
           }
         );
+
       });
+
   }
 
-  /* =========================
-     ESCAPE HTML
-  ========================= */
-
-  function escapeHTML(value) {
-
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
 
   /* =========================
      PRODUCTS
@@ -893,12 +1335,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderProducts() {
 
-    if (!productsBox) return;
-
     const text =
-      searchBox
-        ? searchBox.value.trim().toLowerCase()
-        : "";
+      searchBox.value
+        .trim()
+        .toLowerCase();
+
 
     const list =
       products.filter(product => {
@@ -908,459 +1349,719 @@ document.addEventListener("DOMContentLoaded", () => {
           product.category ===
           selectedCategory;
 
+
         const searchMatch =
           text === "" ||
+
           product.category
             .toLowerCase()
             .includes(text) ||
+
           product.holder
             .toLowerCase()
-            .includes(text) ||
-          product.level
-            .toLowerCase()
             .includes(text);
+
 
         return (
           categoryMatch &&
           searchMatch
         );
+
       });
+
 
     if (!list.length) {
 
       productsBox.innerHTML = `
+
         <div class="empty-state">
-          No products found.
+
+          <div>⌕</div>
+
+          <h3>
+            No products found
+          </h3>
+
+          <p>
+            Try another category or search.
+          </p>
+
         </div>
+
       `;
 
       return;
+
     }
 
+
     productsBox.innerHTML =
-      list.map(product => `
+      list.map(
+        product => `
 
-        <article
-          class="product-card"
-          data-product-id="${product.id}"
-        >
+        <article class="product">
 
-          <div class="card-top">
-            <span>
-              ${escapeHTML(product.category)}
+          <div class="product-top">
+
+            <span class="tag">
+              ${product.category}
             </span>
 
-            <span>
-              ${escapeHTML(product.level)}
+            <span class="demo-badge">
+              DEMO
             </span>
+
           </div>
 
-          <div class="mock-card">
 
-            <div class="mock-number">
-              ${escapeHTML(product.card)}
-            </div>
+          <div
+            class="demo-card"
+            data-info="${product.id}"
+          >
 
-            <div class="mock-bottom">
+            <div class="demo-card-top">
 
               <span>
-                ${escapeHTML(product.holder)}
+                KX
               </span>
 
               <span>
-                ${escapeHTML(product.expiry)}
+                ${product.category}
+              </span>
+
+            </div>
+
+
+            <div class="demo-number">
+              ${product.card}
+            </div>
+
+
+            <div class="card-mid">
+
+              <div>
+
+                <small>
+                  MONTH/YEAR
+                </small>
+
+                <strong>
+                  ${product.expiry}
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <small>
+                  BALANCE
+                </small>
+
+                <strong>
+                  ${product.balance
+                    .toLocaleString("en-IN")}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="demo-card-bottom">
+
+              <span>
+                ${product.holder}
+              </span>
+
+              <span>
+                ${product.type}
               </span>
 
             </div>
 
           </div>
 
-          <div class="product-info">
+
+          <div class="product-meta">
 
             <div>
-              <small>BALANCE</small>
+
+              <span>
+                LEVEL
+              </span>
+
               <strong>
-                ₹${product.balance.toLocaleString("en-IN")}
+                ${product.level}
               </strong>
+
             </div>
 
+
             <div>
-              <small>STOCK</small>
+
+              <span>
+                BAL
+              </span>
+
               <strong>
-                ${product.stock}
+                ${product.balance
+                  .toLocaleString("en-IN")}
               </strong>
+
             </div>
 
           </div>
 
-          <div class="product-bottom">
+
+          <div class="stock-line">
+
+            <span>
+              STOCK PROTOCOL
+            </span>
 
             <strong>
-              ₹${product.price}
+              ONLY ${product.stock} LEFT
             </strong>
 
+          </div>
+
+
+          <div class="product-actions">
+
             <button
-              class="buy-btn"
-              data-buy="${product.id}"
-              type="button"
+              class="details-btn"
+              data-info="${product.id}"
             >
-              BUY NOW
+              DETAILS
+            </button>
+
+
+            <button
+              class="primary buy-btn"
+              data-buy="${product.id}"
+            >
+              BUY NOW · ₹${product.price}
             </button>
 
           </div>
 
         </article>
 
-      `).join("");
+      `
+      ).join("");
 
-    productsBox
-      .querySelectorAll("[data-product-id]")
-      .forEach(card => {
 
-        card.addEventListener(
+    document
+      .querySelectorAll("[data-info]")
+      .forEach(button => {
+
+        button.addEventListener(
           "click",
-          event => {
+          () => {
 
-            if (
-              event.target.closest(
-                "[data-buy]"
-              )
-            ) return;
-
-            const id =
-              Number(
-                card.dataset.productId
+            const product =
+              products.find(
+                p =>
+                  p.id ===
+                  Number(
+                    button.dataset.info
+                  )
               );
 
-            openProduct(id);
+
+            if (product) {
+
+              openProduct(
+                product
+              );
+
+            }
+
           }
         );
+
       });
 
-    productsBox
+
+    document
       .querySelectorAll("[data-buy]")
       .forEach(button => {
 
         button.addEventListener(
           "click",
-          event => {
+          () => {
 
-            event.stopPropagation();
-
-            const id =
-              Number(
-                button.dataset.buy
+            const product =
+              products.find(
+                p =>
+                  p.id ===
+                  Number(
+                    button.dataset.buy
+                  )
               );
 
-            openCheckout(id);
+
+            if (product) {
+
+              openCheckout(
+                product
+              );
+
+            }
+
           }
         );
+
       });
+
   }
 
+
+  searchBox.addEventListener(
+    "input",
+    renderProducts
+  );
+
+
   /* =========================
-     PRODUCT DETAIL
+     PRODUCT DETAILS
   ========================= */
 
-  function openProduct(id) {
+  function openProduct(product) {
 
-    const product =
-      products.find(
-        item => item.id === id
-      );
+    productDetail.innerHTML = `
 
-    if (!product || !productModal)
-      return;
+      <div class="detail-card">
 
-    if (productDetail) {
+        <div class="detail-brand">
 
-      productDetail.innerHTML = `
+          <span>
+            KX
+          </span>
 
-        <div class="product-detail-card">
-
-          <p class="section-label">
-            ${escapeHTML(product.category)}
-          </p>
-
-          <h2>
-            ${escapeHTML(product.level)}
-          </h2>
-
-          <div class="mock-card">
-
-            <div class="mock-number">
-              ${escapeHTML(product.card)}
-            </div>
-
-            <div class="mock-bottom">
-
-              <span>
-                ${escapeHTML(product.holder)}
-              </span>
-
-              <span>
-                ${escapeHTML(product.expiry)}
-              </span>
-
-            </div>
-
-          </div>
-
-          <p>
-            Type:
-            ${escapeHTML(product.type)}
-          </p>
-
-          <p>
-            Balance:
-            ₹${product.balance.toLocaleString("en-IN")}
-          </p>
-
-          <p>
-            Stock:
-            ${product.stock}
-          </p>
-
-          <h3>
-            ₹${product.price}
-          </h3>
-
-          <button
-            class="primary"
-            id="detailBuyBtn"
-            type="button"
-          >
-            BUY NOW
-          </button>
+          <strong>
+            ${product.category}
+          </strong>
 
         </div>
 
-      `;
 
-      const detailBuy =
-        $("detailBuyBtn");
+        <div class="detail-number">
+          ${product.card}
+        </div>
 
-      if (detailBuy) {
 
-        detailBuy.addEventListener(
-          "click",
-          () => {
+        <div class="detail-grid">
 
-            closeProductModal();
-            openCheckout(id);
+          <div>
 
-          }
-        );
-      }
-    }
+            <small>
+              MONTH/YEAR
+            </small>
+
+            <strong>
+              ${product.expiry}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <small>
+              BALANCE
+            </small>
+
+            <strong>
+              ${product.balance
+                .toLocaleString("en-IN")}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <small>
+              CARD TYPE
+            </small>
+
+            <strong>
+              ${product.type}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <small>
+              LEVEL
+            </small>
+
+            <strong>
+              ${product.level}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail-holder">
+
+          <small>
+            DEMO HOLDER
+          </small>
+
+          <strong>
+            ${product.holder}
+          </strong>
+
+        </div>
+
+
+        <div class="detail-stock">
+
+          STOCK PROTOCOL ·
+          ONLY ${product.stock} LEFT
+
+        </div>
+
+
+        <button
+          class="primary detail-buy"
+          data-detail-buy="${product.id}"
+        >
+          BUY NOW · ₹${product.price}
+        </button>
+
+      </div>
+
+    `;
+
 
     productModal.classList.remove(
       "hidden"
     );
+
+
+    const detailBuy =
+      document.querySelector(
+        "[data-detail-buy]"
+      );
+
+
+    if (detailBuy) {
+
+      detailBuy.addEventListener(
+        "click",
+        () => {
+
+          productModal.classList.add(
+            "hidden"
+          );
+
+          openCheckout(product);
+
+        }
+      );
+
+    }
+
   }
 
-  function closeProductModal() {
 
-    if (productModal)
+  $("closeProduct").addEventListener(
+    "click",
+    () => {
+
       productModal.classList.add(
         "hidden"
       );
-  }
 
-  const productClose =
-    $("productClose");
+    }
+  );
 
-  if (productClose) {
 
-    productClose.addEventListener(
-      "click",
-      closeProductModal
-    );
-  }
+  productModal.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target ===
+        productModal
+      ) {
+
+        productModal.classList.add(
+          "hidden"
+        );
+
+      }
+
+    }
+  );
+
 
   /* =========================
      CHECKOUT
   ========================= */
 
-  function openCheckout(id) {
+  let selectedCheckoutProduct =
+    null;
 
-    const product =
-      products.find(
-        item => item.id === id
-      );
 
-    if (!product || !modal)
-      return;
+  function openCheckout(product) {
 
-    if (selectedProduct) {
+    selectedCheckoutProduct =
+      product;
 
-      selectedProduct.innerHTML = `
 
-        <div>
-          <strong>
-            ${escapeHTML(product.category)}
-            ${escapeHTML(product.level)}
-          </strong>
+    selectedProduct.innerHTML = `
 
-          <span>
-            ₹${product.price}
-          </span>
-        </div>
+      Selected:
+      <strong>
+        ${product.category}
+      </strong>
+      · Balance ₹${product.balance
+        .toLocaleString("en-IN")}
+      · Price ₹${product.price}
 
-      `;
-    }
+    `;
 
-    if (utrInput)
-      utrInput.value = "";
 
-    if (emailInput && currentUser)
-      emailInput.value =
-        currentUser.email;
+    utrInput.value = "";
+
+
+    emailInput.value =
+      currentUser
+        ? currentUser.email
+        : "";
+
 
     modal.classList.remove(
       "hidden"
     );
 
-    modal.dataset.productId =
-      String(id);
   }
 
-  function closeCheckout() {
 
-    if (modal)
+  $("closeModal").addEventListener(
+    "click",
+    () => {
+
       modal.classList.add(
         "hidden"
       );
-  }
 
-  const modalClose =
-    $("modalClose");
+    }
+  );
 
-  if (modalClose) {
 
-    modalClose.addEventListener(
-      "click",
-      closeCheckout
-    );
-  }
+  modal.addEventListener(
+    "click",
+    event => {
 
-  if (copyUpi) {
+      if (
+        event.target === modal
+      ) {
 
-    copyUpi.addEventListener(
-      "click",
-      async () => {
+        modal.classList.add(
+          "hidden"
+        );
 
-        const upi =
-          "kaivexstore@ybl";
-
-        try {
-
-          await navigator.clipboard.writeText(
-            upi
-          );
-
-          copyUpi.textContent =
-            "COPIED ✓";
-
-          setTimeout(() => {
-
-            copyUpi.textContent =
-              "COPY UPI";
-
-          }, 1500);
-
-        } catch {
-
-          alert(
-            "UPI ID: " +
-            upi
-          );
-        }
       }
-    );
-  }
 
-  if (submitPayment) {
+    }
+  );
 
-    submitPayment.addEventListener(
-      "click",
-      () => {
 
-        if (!currentUser) return;
+  /* =========================
+     COPY UPI
+  ========================= */
 
-        const utr =
-          utrInput
-            ? utrInput.value.trim()
-            : "";
+  copyUpi.addEventListener(
+    "click",
+    async () => {
 
-        const email =
-          emailInput
-            ? emailInput.value.trim()
-            : "";
+      const upi =
+        "kaivexstore@ybl";
 
-        if (!utr) {
 
-          alert(
-            "Please enter your UTR / transaction ID."
-          );
+      try {
 
-          return;
-        }
+        await navigator.clipboard.writeText(
+          upi
+        );
 
-        if (!email) {
 
-          alert(
-            "Please enter your email."
-          );
+        copyUpi.innerHTML = `
 
-          return;
-        }
+          <span>
+            ${upi}
+          </span>
 
-        const productId =
-          Number(
-            modal.dataset.productId
-          );
+          <span>
+            Copied ✓
+          </span>
 
-        const product =
-          products.find(
-            item => item.id === productId
-          );
+        `;
 
-        if (!product) return;
 
-        currentUser.orders =
-          currentUser.orders || [];
+        setTimeout(() => {
 
-        currentUser.orders.push({
-          id:
-            Date.now(),
-          productId:
-            product.id,
-          category:
-            product.category,
-          price:
-            product.price,
-          status:
-            "PENDING",
-          utr:
-            utr,
-          email:
-            email,
-          createdAt:
-            new Date().toISOString()
-        });
+          copyUpi.innerHTML = `
 
-        saveCurrentUser();
+            <span>
+              ${upi}
+            </span>
 
-        closeCheckout();
-        renderOrderHistory();
+            <span>
+              Copy
+            </span>
+
+          `;
+
+        }, 1500);
+
+      }
+
+      catch {
 
         alert(
-          "Order submitted. Payment verification is pending."
+          "UPI ID: " + upi
         );
+
       }
-    );
-  }
+
+    }
+  );
+
+
+  /* =========================
+     PAYMENT SUBMIT
+  ========================= */
+
+  submitPayment.addEventListener(
+    "click",
+    () => {
+
+      const utr =
+        utrInput.value.trim();
+
+      const email =
+        emailInput.value.trim();
+
+
+      if (!currentUser) {
+
+        alert(
+          "Please login first."
+        );
+
+        return;
+
+      }
+
+
+      if (!utr) {
+
+        alert(
+          "Please enter your UTR / Transaction ID."
+        );
+
+        return;
+
+      }
+
+
+      if (!email) {
+
+        alert(
+          "Please enter your delivery email."
+        );
+
+        return;
+
+      }
+
+
+      if (!selectedCheckoutProduct) {
+
+        alert(
+          "No product selected."
+        );
+
+        return;
+
+      }
+
+
+      const order = {
+
+        id:
+          "ORD-" +
+          Date.now(),
+
+        productId:
+          selectedCheckoutProduct.id,
+
+        category:
+          selectedCheckoutProduct.category,
+
+        price:
+          selectedCheckoutProduct.price,
+
+        email:
+          email,
+
+        utr:
+          utr,
+
+        status:
+          "PENDING",
+
+        createdAt:
+          new Date().toISOString()
+
+      };
+
+
+      if (!Array.isArray(
+        currentUser.orders
+      )) {
+
+        currentUser.orders = [];
+
+      }
+
+
+      currentUser.orders.unshift(
+        order
+      );
+
+
+      saveCurrentUser();
+
+
+      alert(
+        "Payment submitted for verification.\n\n" +
+        "Status: PENDING\n\n" +
+        "Admin/merchant verification is required."
+      );
+
+
+      modal.classList.add(
+        "hidden"
+      );
+
+
+      renderOrderHistory();
+
+    }
+  );
+
 
   /* =========================
      ORDER HISTORY
@@ -1368,339 +2069,605 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderOrderHistory() {
 
-    if (!orderHistory) return;
+    if (!orderHistory) {
+      return;
+    }
+
 
     if (!currentUser) {
 
-      orderHistory.innerHTML =
-        "<p>No account logged in.</p>";
+      orderHistory.innerHTML = `
+
+        <div class="empty-box">
+          Please login first.
+        </div>
+
+      `;
 
       return;
+
     }
 
+
     const orders =
-      currentUser.orders || [];
+      Array.isArray(
+        currentUser.orders
+      )
+        ? currentUser.orders
+        : [];
+
 
     if (!orders.length) {
 
-      orderHistory.innerHTML =
-        "<p>No orders yet.</p>";
+      orderHistory.innerHTML = `
+
+        <div class="empty-box">
+          No orders yet.
+        </div>
+
+      `;
 
       return;
+
     }
+
 
     orderHistory.innerHTML =
-      orders.slice().reverse()
-        .map(order => `
+      orders.map(order => {
 
-          <div class="order-item">
+        const date =
+          new Date(
+            order.createdAt
+          ).toLocaleString(
+            "en-IN"
+          );
 
-            <strong>
-              ${escapeHTML(order.category)}
-            </strong>
-
-            <span>
-              ₹${order.price}
-            </span>
-
-            <small>
-              Status:
-              ${escapeHTML(order.status)}
-            </small>
-
-            <small>
-              UTR:
-              ${escapeHTML(order.utr)}
-            </small>
-
-          </div>
-
-        `).join("");
-  }
-
-  /* =========================
-     FREE COIN
-  ========================= */
-
-  const freeTasks = [
-    {
-      id: "telegram-1",
-      title: "Join Telegram Channel 1",
-      type: "Telegram",
-      url: "https://t.me/+lIJ6-tAMwBdiYTU1",
-      reward: 1
-    },
-    {
-      id: "telegram-2",
-      title: "Join Telegram Channel 2",
-      type: "Telegram",
-      url: "https://t.me/+cpHtijIv1eM4ZDM1",
-      reward: 1
-    },
-    {
-      id: "telegram-3",
-      title: "Open Telegram Channel",
-      type: "Telegram",
-      url: "https://t.me/kaivexmodssetup",
-      reward: 1
-    },
-    {
-      id: "telegram-4",
-      title: "Join Telegram Channel 4",
-      type: "Telegram",
-      url: "https://t.me/+F_wsXeD3Dt8zMjll",
-      reward: 1
-    },
-    {
-      id: "telegram-5",
-      title: "Join Telegram Channel 5",
-      type: "Telegram",
-      url: "https://t.me/+GIXruxf0uFVkNDdl",
-      reward: 1
-    },
-    {
-      id: "youtube-1",
-      title: "Visit YouTube Channel",
-      type: "YouTube",
-      url: "https://youtube.com/@kaivexmods?si=y0TTNew1OQTvaxOi",
-      reward: 1
-    },
-    {
-      id: "youtube-2",
-      title: "Visit YouTube Channel 2",
-      type: "YouTube",
-      url: "https://youtube.com/@akki.mods.2.0?si=uO0h-gd01DYcNS3g",
-      reward: 1
-    },
-    {
-      id: "youtube-3",
-      title: "Watch YouTube Video",
-      type: "YouTube",
-      url: "https://youtu.be/sqChhCblg5w?si=ah4UFAx6pL-L3rqt",
-      reward: 1
-    }
-  ];
-
-  function updateCoinStats() {
-
-    if (!currentUser) return;
-
-    const coinBalance =
-      $("coinBalance");
-
-    const availableTasks =
-      $("availableTasks");
-
-    const claimedTasks =
-      $("claimedTasks");
-
-    if (coinBalance)
-      coinBalance.textContent =
-        currentUser.coinBalance || 0;
-
-    if (availableTasks) {
-
-      const claimed =
-        currentUser.claimedTasks || [];
-
-      availableTasks.textContent =
-        freeTasks.filter(
-          task =>
-            !claimed.includes(task.id)
-        ).length;
-    }
-
-    if (claimedTasks) {
-
-      claimedTasks.textContent =
-        (currentUser.claimedTasks || [])
-          .length;
-    }
-  }
-
-  function renderFreeTasks() {
-
-    const channels =
-      $("channels");
-
-    if (!channels) return;
-
-    if (!currentUser) return;
-
-    const claimed =
-      currentUser.claimedTasks || [];
-
-    channels.innerHTML =
-      freeTasks.map(task => {
-
-        const isClaimed =
-          claimed.includes(task.id);
 
         return `
 
-          <div class="task-card">
+          <div class="order-card">
 
-            <div>
+            <div class="order-top">
 
               <strong>
-                ${escapeHTML(task.title)}
+                ${order.category}
               </strong>
 
-              <small>
-                ${escapeHTML(task.type)}
-                • +${task.reward} Coin
-              </small>
+              <span class="order-status">
+                ${order.status}
+              </span>
 
             </div>
 
-            <div class="task-actions">
 
-              ${
-                isClaimed
-                  ? `
-                    <button
-                      disabled
-                      type="button"
-                    >
-                      CLAIMED ✓
-                    </button>
-                  `
-                  : `
-                    <a
-                      href="${escapeHTML(task.url)}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      OPEN
-                    </a>
+            <div class="order-meta">
 
-                    <button
-                      type="button"
-                      data-claim="${escapeHTML(task.id)}"
-                    >
-                      VERIFY & CLAIM
-                    </button>
-                  `
-              }
+              Order:
+              ${order.id}
+
+              <br>
+
+              Price:
+              ₹${Number(
+                order.price
+              ).toLocaleString("en-IN")}
+
+              <br>
+
+              UTR:
+              ${order.utr}
+
+              <br>
+
+              Email:
+              ${order.email}
+
+              <br>
+
+              Date:
+              ${date}
 
             </div>
 
           </div>
 
         `;
+
       }).join("");
 
-    channels
-      .querySelectorAll("[data-claim]")
+  }
+
+
+  /* =========================
+     FREE COIN TASKS
+  ========================= */
+
+  const freeCoinTasks = [
+
+    {
+      id: "telegram-1",
+      title: "Join Telegram Channel 1",
+      icon: "✈",
+      reward: 2,
+      url: "https://t.me/+lIJ6-tAMwBdiYTU1"
+    },
+
+    {
+      id: "telegram-2",
+      title: "Join Telegram Channel 2",
+      icon: "✈",
+      reward: 2,
+      url: "https://t.me/+cpHtijIv1eM4ZDM1"
+    },
+
+    {
+      id: "telegram-3",
+      title: "Open Telegram Channel 3",
+      icon: "✈",
+      reward: 2,
+      url: "https://t.me/kaivexmodssetup"
+    },
+
+    {
+      id: "telegram-4",
+      title: "Join Telegram Channel 4",
+      icon: "✈",
+      reward: 2,
+      url: "https://t.me/+F_wsXeD3Dt8zMjll"
+    },
+
+    {
+      id: "telegram-5",
+      title: "Join Telegram Channel 5",
+      icon: "✈",
+      reward: 2,
+      url: "https://t.me/+GIXruxf0uFVkNDdl"
+    },
+
+    {
+      id: "youtube-1",
+      title: "Subscribe on YouTube",
+      icon: "▶",
+      reward: 2,
+      url: "https://youtube.com/@kaivexmods?si=y0TTNew1OQTvaxOi"
+    },
+
+    {
+      id: "youtube-2",
+      title: "Subscribe on YouTube",
+      icon: "▶",
+      reward: 2,
+      url: "https://youtube.com/@akki.mods.2.0?si=uO0h-gd01DYcNS3g"
+    },
+
+    {
+      id: "youtube-3",
+      title: "Like YouTube Video",
+      icon: "♥",
+      reward: 2,
+      url: "https://youtu.be/sqChhCblg5w?si=ah4UFAx6pL-L3rqt"
+    }
+
+  ];
+
+
+  let activeTaskId = null;
+
+
+  function getClaimedTasks() {
+
+    if (!currentUser) {
+      return [];
+    }
+
+
+    if (
+      !Array.isArray(
+        currentUser.claimedTasks
+      )
+    ) {
+
+      currentUser.claimedTasks = [];
+
+    }
+
+
+    return currentUser.claimedTasks;
+
+  }
+
+
+  function updateCoinStats() {
+
+    if (!currentUser) {
+      return;
+    }
+
+
+    const balance =
+      Number(
+        currentUser.coinBalance || 0
+      );
+
+
+    const claimed =
+      getClaimedTasks();
+
+
+    const available =
+      freeCoinTasks.filter(
+        task =>
+          !claimed.includes(
+            task.id
+          )
+      );
+
+
+    if ($("coinBalance")) {
+
+      $("coinBalance").textContent =
+        balance.toFixed(2);
+
+    }
+
+
+    if ($("availableTasks")) {
+
+      $("availableTasks").textContent =
+        available.length;
+
+    }
+
+
+    if ($("claimedTasks")) {
+
+      $("claimedTasks").textContent =
+        claimed.length;
+
+    }
+
+  }
+
+
+  function renderFreeTasks() {
+
+    const channels =
+      $("channels");
+
+
+    if (!channels) {
+      return;
+    }
+
+
+    if (!currentUser) {
+
+      channels.innerHTML = `
+
+        <div class="empty-box">
+          Please login to view tasks.
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    const claimed =
+      getClaimedTasks();
+
+
+    channels.innerHTML =
+      freeCoinTasks.map(
+        task => {
+
+          const isClaimed =
+            claimed.includes(
+              task.id
+            );
+
+
+          return `
+
+            <div
+              class="task-card ${
+                isClaimed
+                  ? "task-claimed"
+                  : ""
+              }"
+            >
+
+              <div class="task-info">
+
+                <div class="task-icon">
+
+                  ${task.icon}
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    ${task.title}
+                  </strong>
+
+                  <span class="tiny">
+                    Reward: 🪙 ${task.reward}
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              ${
+                isClaimed
+
+                  ? `
+
+                    <button
+                      class="task-btn"
+                      disabled
+                    >
+                      CLAIMED ✓
+                    </button>
+
+                  `
+
+                  : `
+
+                    <button
+                      class="task-btn"
+                      data-task-open="${task.id}"
+                    >
+                      OPEN
+                    </button>
+
+                  `
+              }
+
+            </div>
+
+          `;
+
+        }
+      ).join("");
+
+
+    document
+      .querySelectorAll(
+        "[data-task-open]"
+      )
       .forEach(button => {
 
         button.addEventListener(
           "click",
           () => {
 
-            claimTask(
-              button.dataset.claim
-            );
+            const task =
+              freeCoinTasks.find(
+                item =>
+                  item.id ===
+                  button.dataset.taskOpen
+              );
+
+
+            if (task) {
+
+              openTaskVerify(
+                task
+              );
+
+            }
+
           }
         );
+
       });
+
   }
 
-  function claimTask(taskId) {
 
-    if (!currentUser) return;
+  function openTaskVerify(task) {
 
-    const task =
-      freeTasks.find(
-        item => item.id === taskId
+    activeTaskId =
+      task.id;
+
+
+    const channels =
+      $("channels");
+
+
+    channels.innerHTML = `
+
+      <div class="verify-box">
+
+        <div class="verify-icon">
+
+          ${task.icon}
+
+        </div>
+
+
+        <p class="section-label">
+          TASK
+        </p>
+
+
+        <h3>
+          ${task.title}
+        </h3>
+
+
+        <p class="muted">
+          Open the task link, then return here
+          and claim the displayed reward.
+        </p>
+
+
+        <div class="verify-reward">
+
+          🪙 ${task.reward}
+
+        </div>
+
+
+        <button
+          class="primary claim-btn"
+          id="openTaskLink"
+        >
+          OPEN TASK
+        </button>
+
+
+        <button
+          class="task-btn verify-back"
+          id="claimTask"
+        >
+          CLAIM COINS
+        </button>
+
+
+        <button
+          class="task-btn verify-back"
+          id="backTasks"
+        >
+          ← BACK TO TASKS
+        </button>
+
+
+        <p class="tiny verify-note">
+
+          This is a self-claim flow.
+          This page does not independently verify
+          Telegram or YouTube membership.
+
+        </p>
+
+      </div>
+
+    `;
+
+
+    $("openTaskLink").addEventListener(
+      "click",
+      () => {
+
+        window.open(
+          task.url,
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+      }
+    );
+
+
+    $("claimTask").addEventListener(
+      "click",
+      () => {
+
+        claimTask(task);
+
+      }
+    );
+
+
+    $("backTasks").addEventListener(
+      "click",
+      () => {
+
+        activeTaskId = null;
+
+        renderFreeTasks();
+
+        updateCoinStats();
+
+      }
+    );
+
+  }
+
+
+  function claimTask(task) {
+
+    if (!currentUser) {
+
+      alert(
+        "Please login first."
       );
 
-    if (!task) return;
+      return;
 
-    currentUser.claimedTasks =
-      currentUser.claimedTasks || [];
+    }
+
+
+    const claimed =
+      getClaimedTasks();
+
 
     if (
-      currentUser.claimedTasks.includes(
-        taskId
+      claimed.includes(
+        task.id
       )
     ) {
 
+      alert(
+        "This task has already been claimed."
+      );
+
+      renderFreeTasks();
+
       return;
+
     }
 
+
     currentUser.claimedTasks.push(
-      taskId
+      task.id
     );
 
+
     currentUser.coinBalance =
-      (currentUser.coinBalance || 0) +
-      task.reward;
+      Number(
+        currentUser.coinBalance || 0
+      ) +
+      Number(
+        task.reward
+      );
+
 
     saveCurrentUser();
 
-    renderFreeTasks();
-    updateCoinStats();
+
+    activeTaskId = null;
+
 
     alert(
-      "+" +
-      task.reward +
-      " Coin added ✓"
+      "Coins claimed successfully!\n\n" +
+      "Reward: 🪙 " +
+      task.reward
     );
+
+
+    renderFreeTasks();
+
+    updateCoinStats();
+
   }
+
 
   /* =========================
-     SEARCH
-  ========================= */
-
-  if (searchBox) {
-
-    searchBox.addEventListener(
-      "input",
-      renderProducts
-    );
-  }
-
-  /* =========================
-     MODAL BACKDROP
-  ========================= */
-
-  if (modal) {
-
-    modal.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target === modal
-        ) {
-          closeCheckout();
-        }
-      }
-    );
-  }
-
-  if (productModal) {
-
-    productModal.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target ===
-          productModal
-        ) {
-          closeProductModal();
-        }
-      }
-    );
-  }
-
-  /* =========================
-     INITIAL STORE
+     INITIAL RENDER
   ========================= */
 
   renderFilters();
+
   renderProducts();
+
+  loadCurrentUser();
 
 });
