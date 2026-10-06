@@ -3,6 +3,10 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* =========================
+     PRODUCTS
+  ========================= */
+
   const products = [
 
     {
@@ -216,10 +220,21 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
 
-  const $ = id => document.getElementById(id);
+  /* =========================
+     SHORTCUT
+  ========================= */
+
+  const $ = id =>
+    document.getElementById(id);
+
+
+  /* =========================
+     ELEMENTS
+  ========================= */
 
   const loader = $("loader");
   const app = $("app");
+
   const barFill = $("barFill");
   const percent = $("percent");
   const loaderText = $("loaderText");
@@ -256,25 +271,34 @@ document.addEventListener("DOMContentLoaded", () => {
   let referralCode =
     localStorage.getItem("kaivexReferralCode");
 
+
   if (!referralCode) {
 
     referralCode =
-      "KS" + Math.floor(100000 + Math.random() * 900000);
+      "KS" +
+      Math.floor(
+        100000 +
+        Math.random() * 900000
+      );
 
     localStorage.setItem(
       "kaivexReferralCode",
       referralCode
     );
+
   }
 
-  const referralDisplay = $("referralDisplay");
+
+  const referralDisplay =
+    $("referralDisplay");
+
 
   if (referralDisplay) {
-    referralDisplay.textContent = referralCode;
+
+    referralDisplay.textContent =
+      referralCode;
+
   }
-
-
-  let selectedCategory = "ALL";
 
 
   /* =========================
@@ -284,50 +308,73 @@ document.addEventListener("DOMContentLoaded", () => {
   let progress = 0;
 
   const messages = [
+
     "Initializing security...",
+
     "Checking system...",
+
     "Verifying connection...",
+
     "Loading AKKIVEX STORE...",
+
     "Security check complete."
+
   ];
 
-  const timer = setInterval(() => {
 
-    progress++;
+  const timer =
+    setInterval(() => {
 
-    percent.textContent =
-      progress + "%";
+      progress++;
 
-    barFill.style.width =
-      progress + "%";
+      percent.textContent =
+        progress + "%";
 
-    const index = Math.min(
-      Math.floor(progress / 20),
-      messages.length - 1
-    );
+      barFill.style.width =
+        progress + "%";
 
-    loaderText.textContent =
-      messages[index];
 
-    if (progress >= 100) {
+      const index =
+        Math.min(
+          Math.floor(progress / 20),
+          messages.length - 1
+        );
 
-      clearInterval(timer);
 
-      setTimeout(() => {
+      loaderText.textContent =
+        messages[index];
 
-        app.classList.remove("hidden");
 
-        loader.style.opacity = "0";
-        loader.style.pointerEvents = "none";
+      if (progress >= 100) {
+
+        clearInterval(timer);
+
 
         setTimeout(() => {
-          loader.style.display = "none";
-        }, 500);
 
-      }, 300);
-    }
+          app.classList.remove(
+            "hidden"
+          );
 
-  }, 20);
+          loader.style.opacity =
+            "0";
+
+          loader.style.pointerEvents =
+            "none";
+
+
+          setTimeout(() => {
+
+            loader.style.display =
+              "none";
+
+          }, 500);
+
+        }, 300);
+
+      }
+
+    }, 20);
 
 
   /* =========================
@@ -340,21 +387,32 @@ document.addEventListener("DOMContentLoaded", () => {
     profilePage.classList.add("hidden");
     freePage.classList.add("hidden");
 
+
     if (page === "profile") {
 
-      profilePage.classList.remove("hidden");
+      profilePage.classList.remove(
+        "hidden"
+      );
 
     }
 
     else if (page === "free") {
 
-      freePage.classList.remove("hidden");
+      freePage.classList.remove(
+        "hidden"
+      );
+
+      renderFreeTasks();
+      updateCoinStats();
 
     }
 
     else {
 
-      homePage.classList.remove("hidden");
+      homePage.classList.remove(
+        "hidden"
+      );
+
 
       if (page === "store") {
 
@@ -369,6 +427,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
     }
+
 
     window.scrollTo({
       top: 0,
@@ -385,7 +444,11 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener(
         "click",
         () => {
-          showPage(button.dataset.page);
+
+          showPage(
+            button.dataset.page
+          );
+
         }
       );
 
@@ -395,7 +458,9 @@ document.addEventListener("DOMContentLoaded", () => {
   profileBtn.addEventListener(
     "click",
     () => {
+
       showPage("profile");
+
     }
   );
 
@@ -403,7 +468,9 @@ document.addEventListener("DOMContentLoaded", () => {
   $("backHome").addEventListener(
     "click",
     () => {
+
       showPage("home");
+
     }
   );
 
@@ -411,7 +478,119 @@ document.addEventListener("DOMContentLoaded", () => {
   $("backHomeFree").addEventListener(
     "click",
     () => {
+
       showPage("home");
+
+    }
+  );
+
+
+  /* =========================
+     PROFILE SUB PAGES
+  ========================= */
+
+  const profileSections = [
+
+    $("referBox"),
+    $("ordersBox"),
+    $("accountBox")
+
+  ];
+
+
+  function hideProfileSections() {
+
+    profileSections.forEach(section => {
+
+      if (section) {
+        section.classList.add(
+          "hidden"
+        );
+      }
+
+    });
+
+  }
+
+
+  $("referOpen").addEventListener(
+    "click",
+    () => {
+
+      hideProfileSections();
+
+      $("referBox").classList.remove(
+        "hidden"
+      );
+
+    }
+  );
+
+
+  $("ordersOpen").addEventListener(
+    "click",
+    () => {
+
+      hideProfileSections();
+
+      $("ordersBox").classList.remove(
+        "hidden"
+      );
+
+    }
+  );
+
+
+  $("accountOpen").addEventListener(
+    "click",
+    () => {
+
+      hideProfileSections();
+
+      $("accountBox").classList.remove(
+        "hidden"
+      );
+
+    }
+  );
+
+
+  /* =========================
+     REFERRAL COPY
+  ========================= */
+
+  copyRef.addEventListener(
+    "click",
+    async () => {
+
+      try {
+
+        await navigator.clipboard.writeText(
+          referralCode
+        );
+
+        copyRef.textContent =
+          "Referral Code Copied ✓";
+
+
+        setTimeout(() => {
+
+          copyRef.textContent =
+            "Copy Referral Code";
+
+        }, 1500);
+
+      }
+
+      catch {
+
+        alert(
+          "Referral Code: " +
+          referralCode
+        );
+
+      }
+
     }
   );
 
@@ -420,14 +599,21 @@ document.addEventListener("DOMContentLoaded", () => {
      FILTERS
   ========================= */
 
+  let selectedCategory =
+    "ALL";
+
+
   function renderFilters() {
 
     const categories = [
+
       "ALL",
       "VISA",
       "MASTERCARD",
       "RUPAY"
+
     ];
+
 
     filtersBox.innerHTML =
       categories.map(category => `
@@ -447,7 +633,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     document
-      .querySelectorAll("[data-category]")
+      .querySelectorAll(
+        "[data-category]"
+      )
       .forEach(button => {
 
         button.addEventListener(
@@ -456,6 +644,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             selectedCategory =
               button.dataset.category;
+
 
             document
               .querySelectorAll(
@@ -467,7 +656,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 )
               );
 
-            button.classList.add("active");
+
+            button.classList.add(
+              "active"
+            );
+
 
             renderProducts();
 
@@ -499,14 +692,18 @@ document.addEventListener("DOMContentLoaded", () => {
           product.category ===
           selectedCategory;
 
+
         const searchMatch =
           text === "" ||
+
           product.category
             .toLowerCase()
             .includes(text) ||
+
           product.holder
             .toLowerCase()
             .includes(text);
+
 
         return (
           categoryMatch &&
@@ -537,6 +734,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       return;
+
     }
 
 
@@ -565,7 +763,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div class="demo-card-top">
 
-              <span>KX</span>
+              <span>
+                KX
+              </span>
 
               <span>
                 ${product.category}
@@ -582,6 +782,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="card-mid">
 
               <div>
+
                 <small>
                   MONTH/YEAR
                 </small>
@@ -589,10 +790,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <strong>
                   ${product.expiry}
                 </strong>
+
               </div>
 
 
               <div>
+
                 <small>
                   BALANCE
                 </small>
@@ -601,6 +804,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   ${product.balance
                     .toLocaleString("en-IN")}
                 </strong>
+
               </div>
 
             </div>
@@ -625,7 +829,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div>
 
-              <span>LEVEL</span>
+              <span>
+                LEVEL
+              </span>
 
               <strong>
                 ${product.level}
@@ -636,7 +842,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div>
 
-              <span>BAL</span>
+              <span>
+                BAL
+              </span>
 
               <strong>
                 ${product.balance
@@ -670,6 +878,7 @@ document.addEventListener("DOMContentLoaded", () => {
               DETAILS
             </button>
 
+
             <button
               class="primary buy-btn"
               data-buy="${product.id}"
@@ -701,8 +910,13 @@ document.addEventListener("DOMContentLoaded", () => {
                   )
               );
 
+
             if (product) {
-              openProduct(product);
+
+              openProduct(
+                product
+              );
+
             }
 
           }
@@ -728,8 +942,13 @@ document.addEventListener("DOMContentLoaded", () => {
                   )
               );
 
+
             if (product) {
-              openCheckout(product);
+
+              openCheckout(
+                product
+              );
+
             }
 
           }
@@ -758,7 +977,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="detail-brand">
 
-          <span>KX</span>
+          <span>
+            KX
+          </span>
 
           <strong>
             ${product.category}
@@ -843,14 +1064,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         <div class="detail-stock">
-          STOCK PROTOCOL · ONLY
-          ${product.stock} LEFT
+
+          STOCK PROTOCOL ·
+          ONLY ${product.stock} LEFT
+
         </div>
 
 
         <button
-          class="primary"
-          id="detailBuy"
+          class="primary detail-buy"
+          data-detail-buy="${product.id}"
         >
           BUY NOW · ₹${product.price}
         </button>
@@ -860,37 +1083,46 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
 
-    $("detailBuy").addEventListener(
-      "click",
-      () => {
-
-        closeProductModal();
-
-        openCheckout(product);
-
-      }
-    );
-
-
     productModal.classList.remove(
       "hidden"
     );
 
-  }
+
+    const detailBuy =
+      document.querySelector(
+        "[data-detail-buy]"
+      );
 
 
-  function closeProductModal() {
+    if (detailBuy) {
 
-    productModal.classList.add(
-      "hidden"
-    );
+      detailBuy.addEventListener(
+        "click",
+        () => {
+
+          productModal.classList.add(
+            "hidden"
+          );
+
+          openCheckout(product);
+
+        }
+      );
+
+    }
 
   }
 
 
   $("closeProduct").addEventListener(
     "click",
-    closeProductModal
+    () => {
+
+      productModal.classList.add(
+        "hidden"
+      );
+
+    }
   );
 
 
@@ -899,10 +1131,13 @@ document.addEventListener("DOMContentLoaded", () => {
     event => {
 
       if (
-        event.target === productModal
+        event.target ===
+        productModal
       ) {
 
-        closeProductModal();
+        productModal.classList.add(
+          "hidden"
+        );
 
       }
 
@@ -918,22 +1153,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     selectedProduct.innerHTML = `
 
+      Selected:
       <strong>
-        ${product.category} Demo Product
+        ${product.category}
       </strong>
-
-      <br>
-
-      Demo balance:
-      ₹${product.balance
-        .toLocaleString("en-IN")}
-
-      <br>
-
-      Price:
-      ₹${product.price}
+      · Balance ₹${product.balance.toLocaleString("en-IN")}
+      · Price ₹${product.price}
 
     `;
+
+
+    utrInput.value = "";
+    emailInput.value = "";
+
 
     modal.classList.remove(
       "hidden"
@@ -945,7 +1177,11 @@ document.addEventListener("DOMContentLoaded", () => {
   $("closeModal").addEventListener(
     "click",
     () => {
-      modal.classList.add("hidden");
+
+      modal.classList.add(
+        "hidden"
+      );
+
     }
   );
 
@@ -969,34 +1205,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     UPI
+     COPY UPI
   ========================= */
-
-  const upiId =
-    "kaivexstore@ybl";
-
 
   copyUpi.addEventListener(
     "click",
     async () => {
 
+      const upi =
+        "kaivexstore@ybl";
+
+
       try {
 
-        await navigator.clipboard
-          .writeText(upiId);
+        await navigator.clipboard.writeText(
+          upi
+        );
 
-        copyUpi.innerHTML =
-          "<span>Copied ✓</span>" +
-          "<span>Done</span>";
+        copyUpi.innerHTML = `
+          <span>
+            ${upi}
+          </span>
+
+          <span>
+            Copied ✓
+          </span>
+        `;
 
 
         setTimeout(() => {
 
-          copyUpi.innerHTML =
-            "<span>" +
-            upiId +
-            "</span>" +
-            "<span>Copy</span>";
+          copyUpi.innerHTML = `
+            <span>
+              ${upi}
+            </span>
+
+            <span>
+              Copy
+            </span>
+          `;
 
         }, 1500);
 
@@ -1005,7 +1252,7 @@ document.addEventListener("DOMContentLoaded", () => {
       catch {
 
         alert(
-          "UPI ID: " + upiId
+          "UPI ID: " + upi
         );
 
       }
@@ -1015,7 +1262,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     PAYMENT
+     PAYMENT SUBMIT
   ========================= */
 
   submitPayment.addEventListener(
@@ -1029,11 +1276,21 @@ document.addEventListener("DOMContentLoaded", () => {
         emailInput.value.trim();
 
 
-      if (!utr || !email) {
+      if (!utr) {
 
         alert(
-          "Please enter Transaction ID " +
-          "and Delivery Email."
+          "Please enter your UTR / Transaction ID."
+        );
+
+        return;
+
+      }
+
+
+      if (!email) {
+
+        alert(
+          "Please enter your delivery email."
         );
 
         return;
@@ -1042,8 +1299,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       alert(
-        "Order submitted.\n\n" +
-        "Status: Pending Verification"
+        "Payment submitted for verification.\n\n" +
+        "Status: PENDING\n\n" +
+        "Admin/merchant verification is required."
+      );
+
+
+      modal.classList.add(
+        "hidden"
       );
 
     }
@@ -1051,190 +1314,530 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     FREE COINS
+     FREE COIN TASKS
   ========================= */
 
-  const channels = [
+  const freeTasks = [
 
     {
-      name: "Channel Task 01",
-      link:
-        "https://t.me/+lIJ6-tAMwBdiYTU1"
+      id: "telegram-01",
+      type: "telegram",
+      title: "Join Telegram Channel 01",
+      reward: 0.50,
+      link: "https://t.me/+lIJ6-tAMwBdiYTU1"
     },
 
     {
-      name: "Channel Task 02",
-      link:
-        "https://t.me/+cpHtijIv1eM4ZDM1"
+      id: "telegram-02",
+      type: "telegram",
+      title: "Join Telegram Channel 02",
+      reward: 0.50,
+      link: "https://t.me/+cpHtijIv1eM4ZDM1"
     },
 
     {
-      name: "Channel Task 03",
-      link:
-        "https://t.me/kaivexmodssetup"
+      id: "telegram-03",
+      type: "telegram",
+      title: "Join Telegram Channel 03",
+      reward: 0.50,
+      link: "https://t.me/kaivexmodssetup"
     },
 
     {
-      name: "Channel Task 04",
-      link:
-        "https://t.me/+F_wsXeD3Dt8zMjll"
+      id: "telegram-04",
+      type: "telegram",
+      title: "Join Telegram Channel 04",
+      reward: 0.50,
+      link: "https://t.me/+F_wsXeD3Dt8zMjll"
     },
 
     {
-      name: "Channel Task 05",
-      link:
-        "https://t.me/+GIXruxf0uFVkNDdl"
+      id: "telegram-05",
+      type: "telegram",
+      title: "Join Telegram Channel 05",
+      reward: 0.50,
+      link: "https://t.me/+GIXruxf0uFVkNDdl"
+    },
+
+    {
+      id: "youtube-01",
+      type: "youtube",
+      title: "Subscribe to KAIVEX MODS",
+      reward: 0.50,
+      link: "https://youtube.com/@kaivexmods?si=y0TTNew1OQTvaxOi"
+    },
+
+    {
+      id: "youtube-02",
+      type: "youtube",
+      title: "Subscribe to AKKI MODS",
+      reward: 0.50,
+      link: "https://youtube.com/@akki.mods.2.0?si=uO0h-gd01DYcNS3g"
+    },
+
+    {
+      id: "youtube-like-01",
+      type: "youtube-like",
+      title: "Like YouTube Video",
+      reward: 0.50,
+      link: "https://youtu.be/sqChhCblg5w?si=ah4UFAx6pL-L3rqt"
     }
 
   ];
 
 
-  $("channels").innerHTML =
-    channels.map(
-      (channel, index) => `
-
-        <div class="channel">
-
-          <div>
-
-            <strong>
-              ${channel.name}
-            </strong>
-
-            <div class="tiny">
-              Task ${index + 1} · ₹0.50
-            </div>
-
-          </div>
+  let coinBalance =
+    Number(
+      localStorage.getItem(
+        "kaivexCoins"
+      ) || 0
+    );
 
 
-          <button
-            class="task-btn"
-            data-telegram="${channel.link}"
-          >
-            JOIN
-          </button>
-
-        </div>
-
-      `
-    ).join("");
+  let claimedTasks =
+    JSON.parse(
+      localStorage.getItem(
+        "kaivexClaimedTasks"
+      ) || "[]"
+    );
 
 
-  document
-    .querySelectorAll(
-      "[data-telegram]"
-    )
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          const link =
-            button.dataset.telegram;
-
-          window.open(
-            link,
-            "_blank"
-          );
-
-        }
-      );
-
-    });
+  let openedTasks =
+    JSON.parse(
+      localStorage.getItem(
+        "kaivexOpenedTasks"
+      ) || "[]"
+    );
 
 
-  /* =========================
-     PROFILE SUB-SECTIONS
-  ========================= */
+  function saveCoinData() {
 
-  function closeProfileBoxes() {
+    localStorage.setItem(
+      "kaivexCoins",
+      coinBalance.toFixed(2)
+    );
 
-    $("referBox")
-      .classList.add("hidden");
 
-    $("ordersBox")
-      .classList.add("hidden");
+    localStorage.setItem(
+      "kaivexClaimedTasks",
+      JSON.stringify(
+        claimedTasks
+      )
+    );
 
-    $("accountBox")
-      .classList.add("hidden");
+
+    localStorage.setItem(
+      "kaivexOpenedTasks",
+      JSON.stringify(
+        openedTasks
+      )
+    );
 
   }
 
 
-  $("referOpen").addEventListener(
-    "click",
-    () => {
+  function updateCoinStats() {
 
-      closeProfileBoxes();
+    const balanceBox =
+      $("coinBalance");
 
-      $("referBox")
-        .classList.remove("hidden");
+    const availableBox =
+      $("availableTasks");
 
-    }
-  );
+    const claimedBox =
+      $("claimedTasks");
 
 
-  $("ordersOpen").addEventListener(
-    "click",
-    () => {
+    if (balanceBox) {
 
-      closeProfileBoxes();
-
-      $("ordersBox")
-        .classList.remove("hidden");
+      balanceBox.textContent =
+        coinBalance.toFixed(2);
 
     }
-  );
 
 
-  $("accountOpen").addEventListener(
-    "click",
-    () => {
+    if (availableBox) {
 
-      closeProfileBoxes();
-
-      $("accountBox")
-        .classList.remove("hidden");
+      availableBox.textContent =
+        freeTasks.filter(
+          task =>
+            !claimedTasks.includes(
+              task.id
+            )
+        ).length;
 
     }
-  );
 
 
-  copyRef.addEventListener(
-    "click",
-    async () => {
+    if (claimedBox) {
 
-      try {
+      claimedBox.textContent =
+        claimedTasks.length;
 
-        await navigator.clipboard
-          .writeText(referralCode);
+    }
 
-        copyRef.textContent =
-          "Referral Code Copied ✓";
+  }
 
 
-        setTimeout(() => {
+  function taskIcon(type) {
 
-          copyRef.textContent =
-            "Copy Referral Code";
+    if (type === "telegram") {
+      return "✈";
+    }
 
-        }, 1500);
+    if (type === "youtube") {
+      return "▶";
+    }
 
-      }
+    if (type === "youtube-like") {
+      return "♥";
+    }
 
-      catch {
+    return "◈";
+
+  }
+
+
+  function renderFreeTasks() {
+
+    const box =
+      $("channels");
+
+
+    if (!box) {
+      return;
+    }
+
+
+    box.innerHTML =
+      freeTasks.map(task => {
+
+        const claimed =
+          claimedTasks.includes(
+            task.id
+          );
+
+
+        const opened =
+          openedTasks.includes(
+            task.id
+          );
+
+
+        if (claimed) {
+
+          return `
+
+            <div class="task-card task-claimed">
+
+              <div class="task-info">
+
+                <div class="task-icon">
+                  ${taskIcon(task.type)}
+                </div>
+
+                <div>
+
+                  <strong>
+                    ${task.title}
+                  </strong>
+
+                  <div class="tiny">
+                    Reward ₹${task.reward.toFixed(2)}
+                    · Claimed ✓
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <button
+                class="task-btn"
+                disabled
+              >
+                CLAIMED
+              </button>
+
+            </div>
+
+          `;
+
+        }
+
+
+        return `
+
+          <div
+            class="task-card ${
+              opened
+                ? "task-verify"
+                : ""
+            }"
+          >
+
+            <div class="task-info">
+
+              <div class="task-icon">
+                ${taskIcon(task.type)}
+              </div>
+
+              <div>
+
+                <strong>
+                  ${task.title}
+                </strong>
+
+                <div class="tiny">
+                  Reward ₹${task.reward.toFixed(2)}
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="task-action">
+
+              ${
+                opened
+
+                ? `
+
+                  <button
+                    class="task-btn verify-btn"
+                    data-verify="${task.id}"
+                  >
+                    VERIFY
+                  </button>
+
+                `
+
+                : `
+
+                  <button
+                    class="task-btn"
+                    data-open-task="${task.id}"
+                  >
+                    OPEN
+                  </button>
+
+                `
+              }
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+
+    document
+      .querySelectorAll(
+        "[data-open-task]"
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const task =
+              freeTasks.find(
+                item =>
+                  item.id ===
+                  button.dataset.openTask
+              );
+
+
+            if (!task) {
+              return;
+            }
+
+
+            if (
+              !openedTasks.includes(
+                task.id
+              )
+            ) {
+
+              openedTasks.push(
+                task.id
+              );
+
+              saveCoinData();
+
+            }
+
+
+            /*
+              External task is opened.
+              The page does not independently
+              verify Telegram/YouTube action.
+            */
+
+            window.open(
+              task.link,
+              "_blank"
+            );
+
+
+            renderFreeTasks();
+
+          }
+        );
+
+      });
+
+
+    document
+      .querySelectorAll(
+        "[data-verify]"
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const task =
+              freeTasks.find(
+                item =>
+                  item.id ===
+                  button.dataset.verify
+              );
+
+
+            if (task) {
+
+              showTaskVerification(
+                task
+              );
+
+            }
+
+          }
+        );
+
+      });
+
+  }
+
+
+  function showTaskVerification(task) {
+
+    const box =
+      $("channels");
+
+
+    box.innerHTML = `
+
+      <div class="verify-box">
+
+        <div class="verify-icon">
+          ${taskIcon(task.type)}
+        </div>
+
+
+        <p class="section-label">
+          TASK CHECK
+        </p>
+
+
+        <h3>
+          ${task.title}
+        </h3>
+
+
+        <div class="verify-reward">
+          +₹${task.reward.toFixed(2)}
+        </div>
+
+
+        <p class="muted">
+          Continue only if you completed the task.
+        </p>
+
+
+        <button
+          class="primary claim-btn"
+          id="claimTask"
+        >
+          CLAIM ₹${task.reward.toFixed(2)}
+        </button>
+
+
+        <button
+          class="details-btn verify-back"
+          id="verifyBack"
+        >
+          ← BACK TO TASKS
+        </button>
+
+
+        <p class="tiny verify-note">
+          This frontend uses self-claiming and does not
+          independently verify the external action.
+        </p>
+
+      </div>
+
+    `;
+
+
+    $("claimTask").addEventListener(
+      "click",
+      () => {
+
+        if (
+          claimedTasks.includes(
+            task.id
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        coinBalance +=
+          Number(task.reward);
+
+
+        claimedTasks.push(
+          task.id
+        );
+
+
+        saveCoinData();
+
+        updateCoinStats();
+
+        renderFreeTasks();
+
 
         alert(
-          "Referral Code: " +
-          referralCode
+          `₹${task.reward.toFixed(2)} reward added to your coin balance.`
         );
 
       }
+    );
 
-    }
-  );
+
+    $("verifyBack").addEventListener(
+      "click",
+      () => {
+
+        renderFreeTasks();
+
+        updateCoinStats();
+
+      }
+    );
+
+  }
 
 
   /* =========================
@@ -1242,6 +1845,11 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   renderFilters();
+
   renderProducts();
+
+  renderFreeTasks();
+
+  updateCoinStats();
 
 });
