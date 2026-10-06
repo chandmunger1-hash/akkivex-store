@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
 
   const loader = document.getElementById("loader");
+  const app = document.getElementById("app");
   const percent = document.getElementById("percent");
   const loaderText = document.getElementById("loaderText");
 
@@ -45,6 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
 
+        // SHOW HOME
+        if (app) {
+          app.classList.remove("hidden");
+        }
+
+        // HIDE LOADER
         if (loader) {
 
           loader.style.opacity = "0";
