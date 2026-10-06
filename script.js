@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   const products = [
-
     {
       id: 1,
       category: "VISA",
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "HOFC PREMIUM",
       stock: 8
     },
-
     {
       id: 2,
       category: "VISA",
@@ -36,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 6
     },
-
     {
       id: 3,
       category: "VISA",
@@ -49,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 5
     },
-
     {
       id: 4,
       category: "VISA",
@@ -62,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 4
     },
-
     {
       id: 5,
       category: "VISA",
@@ -88,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 8
     },
-
     {
       id: 7,
       category: "MASTERCARD",
@@ -101,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 7
     },
-
     {
       id: 8,
       category: "MASTERCARD",
@@ -114,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 6
     },
-
     {
       id: 9,
       category: "MASTERCARD",
@@ -127,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 4
     },
-
     {
       id: 10,
       category: "MASTERCARD",
@@ -153,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 8
     },
-
     {
       id: 12,
       category: "RUPAY",
@@ -166,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 6
     },
-
     {
       id: 13,
       category: "RUPAY",
@@ -179,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 5
     },
-
     {
       id: 14,
       category: "RUPAY",
@@ -192,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 4
     },
-
     {
       id: 15,
       category: "RUPAY",
@@ -205,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 3
     },
-
     {
       id: 16,
       category: "RUPAY",
@@ -218,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: "PREMIUM",
       stock: 2
     }
-
   ];
 
 
@@ -226,8 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
      SHORTCUT
   ========================= */
 
-  const $ = id =>
-    document.getElementById(id);
+  const $ = id => document.getElementById(id);
 
 
   /* =========================
@@ -296,61 +280,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = $("logoutBtn");
 
   const profileGreeting = $("profileGreeting");
-
   const accountName = $("accountName");
   const accountEmail = $("accountEmail");
-
   const orderHistory = $("orderHistory");
+
+  const referralDisplay = $("referralDisplay");
 
 
   /* =========================
      AUTH STORAGE
   ========================= */
 
-  const USERS_KEY =
-    "akkivexUsers";
-
-  const SESSION_KEY =
-    "akkivexCurrentUser";
+  const USERS_KEY = "akkivexUsers";
+  const SESSION_KEY = "akkivexCurrentUser";
 
 
   function getUsers() {
-
     try {
-
       return JSON.parse(
-        localStorage.getItem(
-          USERS_KEY
-        )
+        localStorage.getItem(USERS_KEY)
       ) || {};
-
-    }
-
-    catch {
-
+    } catch {
       return {};
-
     }
-
   }
 
 
   function saveUsers(users) {
-
     localStorage.setItem(
       USERS_KEY,
       JSON.stringify(users)
     );
-
   }
 
 
   function normalizeEmail(email) {
-
-    return email
-      .trim()
-      .toLowerCase();
-
+    return email.trim().toLowerCase();
   }
 
 
@@ -358,53 +323,38 @@ document.addEventListener("DOMContentLoaded", () => {
      PASSWORD HASH
   ========================= */
 
-  async function hashPassword(
-    password,
-    salt
-  ) {
+  async function hashPassword(password, salt) {
 
-    const data =
-      new TextEncoder().encode(
-        salt + ":" + password
-      );
+    const data = new TextEncoder().encode(
+      salt + ":" + password
+    );
 
-
-    const hash =
-      await crypto.subtle.digest(
-        "SHA-256",
-        data
-      );
-
+    const hash = await crypto.subtle.digest(
+      "SHA-256",
+      data
+    );
 
     return Array.from(
       new Uint8Array(hash)
     )
       .map(byte =>
-        byte
-          .toString(16)
-          .padStart(2, "0")
+        byte.toString(16).padStart(2, "0")
       )
       .join("");
-
   }
 
 
   function createSalt() {
 
-    const array =
-      new Uint8Array(16);
+    const array = new Uint8Array(16);
 
     crypto.getRandomValues(array);
 
-
     return Array.from(array)
       .map(byte =>
-        byte
-          .toString(16)
-          .padStart(2, "0")
+        byte.toString(16).padStart(2, "0")
       )
       .join("");
-
   }
 
 
@@ -421,12 +371,10 @@ document.addEventListener("DOMContentLoaded", () => {
         Math.random() * 900000
       )
     );
-
   }
 
 
-  let referralCode =
-    "KS000000";
+  let referralCode = "KS000000";
 
 
   /* =========================
@@ -442,24 +390,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showLoginForm() {
 
-    loginForm.classList.remove(
-      "hidden"
-    );
+    if (!loginForm || !signupForm) return;
 
-    signupForm.classList.add(
-      "hidden"
-    );
+    loginForm.classList.remove("hidden");
+    signupForm.classList.add("hidden");
 
-    authTitle.textContent =
-      "Welcome Back";
+    if (authTitle) {
+      authTitle.textContent = "Welcome Back";
+    }
 
-    authSubtitle.textContent =
-      "Login to access your AKKIVEX STORE account.";
+    if (authSubtitle) {
+      authSubtitle.textContent =
+        "Login to access your AKKIVEX STORE account.";
+    }
 
-    loginMessage.textContent = "";
+    if (loginMessage) {
+      loginMessage.textContent = "";
+    }
 
-    signupMessage.textContent = "";
-
+    if (signupMessage) {
+      signupMessage.textContent = "";
+    }
   }
 
 
@@ -469,296 +420,262 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showSignupForm() {
 
-    signupForm.classList.remove(
-      "hidden"
-    );
+    if (!loginForm || !signupForm) return;
 
-    loginForm.classList.add(
-      "hidden"
-    );
+    signupForm.classList.remove("hidden");
+    loginForm.classList.add("hidden");
 
-    authTitle.textContent =
-      "Create Account";
+    if (authTitle) {
+      authTitle.textContent = "Create Account";
+    }
 
-    authSubtitle.textContent =
-      "Create your AKKIVEX STORE account.";
+    if (authSubtitle) {
+      authSubtitle.textContent =
+        "Create your AKKIVEX STORE account.";
+    }
 
-    loginMessage.textContent = "";
+    if (loginMessage) {
+      loginMessage.textContent = "";
+    }
 
-    signupMessage.textContent = "";
-
+    if (signupMessage) {
+      signupMessage.textContent = "";
+    }
   }
 
 
-  showSignup.addEventListener(
-    "click",
-    showSignupForm
-  );
+  if (showSignup) {
+    showSignup.addEventListener(
+      "click",
+      showSignupForm
+    );
+  }
 
 
-  showLogin.addEventListener(
-    "click",
-    showLoginForm
-  );
+  if (showLogin) {
+    showLogin.addEventListener(
+      "click",
+      showLoginForm
+    );
+  }
 
 
   /* =========================
      SIGNUP
   ========================= */
 
-  signupBtn.addEventListener(
-    "click",
-    async () => {
+  if (signupBtn) {
 
-      const name =
-        signupName.value.trim();
+    signupBtn.addEventListener(
+      "click",
+      async () => {
 
-      const email =
-        normalizeEmail(
-          signupEmail.value
+        const name =
+          signupName.value.trim();
+
+        const email =
+          normalizeEmail(
+            signupEmail.value
+          );
+
+        const password =
+          signupPassword.value;
+
+        const confirm =
+          signupConfirm.value;
+
+
+        if (!name) {
+          signupMessage.textContent =
+            "Please enter your name.";
+          return;
+        }
+
+
+        if (!email) {
+          signupMessage.textContent =
+            "Please enter your email.";
+          return;
+        }
+
+
+        if (
+          !email.includes("@") ||
+          !email.includes(".")
+        ) {
+          signupMessage.textContent =
+            "Please enter a valid email.";
+          return;
+        }
+
+
+        if (password.length < 6) {
+          signupMessage.textContent =
+            "Password must be at least 6 characters.";
+          return;
+        }
+
+
+        if (password !== confirm) {
+          signupMessage.textContent =
+            "Passwords do not match.";
+          return;
+        }
+
+
+        const users = getUsers();
+
+
+        if (users[email]) {
+          signupMessage.textContent =
+            "Account already exists. Please login.";
+          return;
+        }
+
+
+        const salt = createSalt();
+
+        const passwordHash =
+          await hashPassword(
+            password,
+            salt
+          );
+
+
+        users[email] = {
+
+          name: name,
+          email: email,
+
+          passwordHash: passwordHash,
+          salt: salt,
+
+          referralCode:
+            generateReferralCode(),
+
+          coinBalance: 0,
+
+          claimedTasks: [],
+
+          orders: [],
+
+          createdAt:
+            new Date().toISOString()
+        };
+
+
+        saveUsers(users);
+
+
+        localStorage.setItem(
+          SESSION_KEY,
+          email
         );
 
-      const password =
-        signupPassword.value;
 
-      const confirm =
-        signupConfirm.value;
+        currentUser = users[email];
 
-
-      if (!name) {
 
         signupMessage.textContent =
-          "Please enter your name.";
-
-        return;
-
-      }
+          "Account created successfully ✓";
 
 
-      if (!email) {
+        setTimeout(() => {
 
-        signupMessage.textContent =
-          "Please enter your email.";
+          authPage.classList.add("hidden");
+          app.classList.remove("hidden");
 
-        return;
+          loadCurrentUser();
+
+        }, 500);
 
       }
+    );
 
-
-      if (
-        !email.includes("@") ||
-        !email.includes(".")
-      ) {
-
-        signupMessage.textContent =
-          "Please enter a valid email.";
-
-        return;
-
-      }
-
-
-      if (password.length < 6) {
-
-        signupMessage.textContent =
-          "Password must be at least 6 characters.";
-
-        return;
-
-      }
-
-
-      if (password !== confirm) {
-
-        signupMessage.textContent =
-          "Passwords do not match.";
-
-        return;
-
-      }
-
-
-      const users =
-        getUsers();
-
-
-      if (users[email]) {
-
-        signupMessage.textContent =
-          "Account already exists. Please login.";
-
-        return;
-
-      }
-
-
-      const salt =
-        createSalt();
-
-
-      const passwordHash =
-        await hashPassword(
-          password,
-          salt
-        );
-
-
-      users[email] = {
-
-        name: name,
-
-        email: email,
-
-        passwordHash:
-          passwordHash,
-
-        salt: salt,
-
-        referralCode:
-          generateReferralCode(),
-
-        coinBalance: 0,
-
-        claimedTasks: [],
-
-        orders: [],
-
-        createdAt:
-          new Date().toISOString()
-
-      };
-
-
-      saveUsers(users);
-
-
-      localStorage.setItem(
-        SESSION_KEY,
-        email
-      );
-
-
-      currentUser =
-        users[email];
-
-
-      signupMessage.textContent =
-        "Account created successfully ✓";
-
-
-      setTimeout(() => {
-
-        authPage.classList.add(
-          "hidden"
-        );
-
-        app.classList.remove(
-          "hidden"
-        );
-
-        loadCurrentUser();
-
-      }, 500);
-
-    }
-  );
+  }
 
 
   /* =========================
      LOGIN
   ========================= */
 
-  loginBtn.addEventListener(
-    "click",
-    async () => {
+  if (loginBtn) {
 
-      const email =
-        normalizeEmail(
-          loginEmail.value
+    loginBtn.addEventListener(
+      "click",
+      async () => {
+
+        const email =
+          normalizeEmail(
+            loginEmail.value
+          );
+
+        const password =
+          loginPassword.value;
+
+
+        if (!email || !password) {
+          loginMessage.textContent =
+            "Enter email and password.";
+          return;
+        }
+
+
+        const users = getUsers();
+
+        const user = users[email];
+
+
+        if (!user) {
+          loginMessage.textContent =
+            "Account not found.";
+          return;
+        }
+
+
+        const passwordHash =
+          await hashPassword(
+            password,
+            user.salt
+          );
+
+
+        if (
+          passwordHash !==
+          user.passwordHash
+        ) {
+          loginMessage.textContent =
+            "Incorrect email or password.";
+          return;
+        }
+
+
+        localStorage.setItem(
+          SESSION_KEY,
+          email
         );
 
-      const password =
-        loginPassword.value;
 
+        currentUser = user;
 
-      if (!email || !password) {
 
         loginMessage.textContent =
-          "Enter email and password.";
-
-        return;
-
-      }
+          "Login successful ✓";
 
 
-      const users =
-        getUsers();
+        setTimeout(() => {
 
+          authPage.classList.add("hidden");
+          app.classList.remove("hidden");
 
-      const user =
-        users[email];
+          loadCurrentUser();
 
-
-      if (!user) {
-
-        loginMessage.textContent =
-          "Account not found.";
-
-        return;
+        }, 400);
 
       }
+    );
 
-
-      const passwordHash =
-        await hashPassword(
-          password,
-          user.salt
-        );
-
-
-      if (
-        passwordHash !==
-        user.passwordHash
-      ) {
-
-        loginMessage.textContent =
-          "Incorrect email or password.";
-
-        return;
-
-      }
-
-
-      localStorage.setItem(
-        SESSION_KEY,
-        email
-      );
-
-
-      currentUser =
-        user;
-
-
-      loginMessage.textContent =
-        "Login successful ✓";
-
-
-      setTimeout(() => {
-
-        authPage.classList.add(
-          "hidden"
-        );
-
-        app.classList.remove(
-          "hidden"
-        );
-
-        loadCurrentUser();
-
-      }, 400);
-
-    }
-  );
+  }
 
 
   /* =========================
@@ -767,15 +684,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadCurrentUser() {
 
-    const users =
-      getUsers();
-
+    const users = getUsers();
 
     const email =
       localStorage.getItem(
         SESSION_KEY
       );
 
+
+    /*
+      IMPORTANT:
+      No session = AUTH PAGE
+    */
 
     if (
       !email ||
@@ -784,36 +704,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       currentUser = null;
 
+      app.classList.add("hidden");
 
-      app.classList.add(
-        "hidden"
-      );
-
-
-      authPage.classList.remove(
-        "hidden"
-      );
-
+      authPage.classList.remove("hidden");
 
       showLoginForm();
 
       return;
-
     }
 
 
-    currentUser =
-      users[email];
+    currentUser = users[email];
 
 
-    app.classList.remove(
-      "hidden"
-    );
+    /*
+      Existing session = STORE
+    */
 
-
-    authPage.classList.add(
-      "hidden"
-    );
+    app.classList.remove("hidden");
+    authPage.classList.add("hidden");
 
 
     referralCode =
@@ -821,43 +730,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     if (referralDisplay) {
-
       referralDisplay.textContent =
         referralCode;
-
     }
 
 
     if (profileGreeting) {
-
       profileGreeting.textContent =
         "Welcome, " +
         currentUser.name +
         ". Manage your account and referral information.";
-
     }
 
 
     if (accountName) {
-
       accountName.textContent =
         currentUser.name;
-
     }
 
 
     if (accountEmail) {
-
       accountEmail.textContent =
         currentUser.email;
-
     }
 
 
     updateCoinStats();
-
     renderOrderHistory();
-
   }
 
 
@@ -867,22 +766,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function saveCurrentUser() {
 
-    if (!currentUser) {
-      return;
-    }
+    if (!currentUser) return;
 
+    const users = getUsers();
 
-    const users =
-      getUsers();
-
-
-    users[
-      currentUser.email
-    ] = currentUser;
-
+    users[currentUser.email] =
+      currentUser;
 
     saveUsers(users);
-
   }
 
 
@@ -890,43 +781,40 @@ document.addEventListener("DOMContentLoaded", () => {
      LOGOUT
   ========================= */
 
-  logoutBtn.addEventListener(
-    "click",
-    () => {
+  if (logoutBtn) {
 
-      localStorage.removeItem(
-        SESSION_KEY
-      );
+    logoutBtn.addEventListener(
+      "click",
+      () => {
 
+        localStorage.removeItem(
+          SESSION_KEY
+        );
 
-      currentUser = null;
+        currentUser = null;
 
+        if (loginEmail) {
+          loginEmail.value = "";
+        }
 
-      loginEmail.value = "";
+        if (loginPassword) {
+          loginPassword.value = "";
+        }
 
-      loginPassword.value = "";
+        app.classList.add("hidden");
 
+        authPage.classList.remove("hidden");
 
-      app.classList.add(
-        "hidden"
-      );
+        showLoginForm();
 
+        window.scrollTo({
+          top: 0,
+          behavior: "instant"
+        });
+      }
+    );
 
-      authPage.classList.remove(
-        "hidden"
-      );
-
-
-      showLoginForm();
-
-
-      window.scrollTo({
-        top: 0,
-        behavior: "instant"
-      });
-
-    }
-  );
+  }
 
 
   /* =========================
@@ -935,64 +823,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let progress = 0;
 
-
   const messages = [
-
     "Initializing security...",
-
     "Checking system...",
-
     "Verifying connection...",
-
     "Loading AKKIVEX STORE...",
-
     "Security check complete."
-
   ];
 
 
-  const timer =
-    setInterval(() => {
+  const timer = setInterval(() => {
 
-      progress++;
+    progress++;
 
-
+    if (percent) {
       percent.textContent =
         progress + "%";
+    }
 
-
+    if (barFill) {
       barFill.style.width =
         progress + "%";
+    }
 
 
-      const index =
-        Math.min(
-          Math.floor(progress / 20),
-          messages.length - 1
-        );
+    const index =
+      Math.min(
+        Math.floor(progress / 20),
+        messages.length - 1
+      );
 
 
+    if (loaderText) {
       loaderText.textContent =
         messages[index];
+    }
 
 
-      if (progress >= 100) {
+    if (progress >= 100) {
 
-        clearInterval(timer);
+      clearInterval(timer);
 
 
-        setTimeout(() => {
+      setTimeout(() => {
+
+        if (loader) {
 
           loader.classList.add(
             "loader-finished"
           );
 
-          loader.style.opacity =
-            "0";
+          loader.style.opacity = "0";
 
           loader.style.pointerEvents =
             "none";
-
 
           setTimeout(() => {
 
@@ -1001,11 +885,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
           }, 500);
 
-        }, 300);
+        }
 
-      }
+        /*
+          IMPORTANT:
+          Loader finished -> check auth
+        */
 
-    }, 20);
+        loadCurrentUser();
+
+      }, 300);
+    }
+
+  }, 20);
 
 
   /* =========================
@@ -1014,17 +906,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showPage(page) {
 
-    homePage.classList.add(
-      "hidden"
-    );
-
-    profilePage.classList.add(
-      "hidden"
-    );
-
-    freePage.classList.add(
-      "hidden"
-    );
+    homePage.classList.add("hidden");
+    profilePage.classList.add("hidden");
+    freePage.classList.add("hidden");
 
 
     if (page === "profile") {
@@ -1042,7 +926,6 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       renderFreeTasks();
-
       updateCoinStats();
 
     }
@@ -1058,9 +941,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
 
-          $("store").scrollIntoView({
-            behavior: "smooth"
-          });
+          const store =
+            $("store");
+
+          if (store) {
+
+            store.scrollIntoView({
+              behavior: "smooth"
+            });
+
+          }
 
         }, 50);
 
@@ -1073,7 +963,6 @@ document.addEventListener("DOMContentLoaded", () => {
       top: 0,
       behavior: "smooth"
     });
-
   }
 
 
@@ -1085,9 +974,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         () => {
 
-          if (!currentUser) {
-            return;
-          }
+          if (!currentUser) return;
 
           showPage(
             button.dataset.page
@@ -1099,38 +986,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  profileBtn.addEventListener(
-    "click",
-    () => {
+  if (profileBtn) {
 
-      if (!currentUser) {
-        return;
+    profileBtn.addEventListener(
+      "click",
+      () => {
+
+        if (!currentUser) return;
+
+        showPage("profile");
+
       }
+    );
 
-      showPage("profile");
-
-    }
-  );
+  }
 
 
-  $("backHome").addEventListener(
-    "click",
-    () => {
+  const backHome = $("backHome");
 
-      showPage("home");
+  if (backHome) {
 
-    }
-  );
+    backHome.addEventListener(
+      "click",
+      () => {
+        showPage("home");
+      }
+    );
+
+  }
 
 
-  $("backHomeFree").addEventListener(
-    "click",
-    () => {
+  const backHomeFree =
+    $("backHomeFree");
 
-      showPage("home");
+  if (backHomeFree) {
 
-    }
-  );
+    backHomeFree.addEventListener(
+      "click",
+      () => {
+        showPage("home");
+      }
+    );
+
+  }
 
 
   /* =========================
@@ -1138,11 +1036,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   const profileSections = [
-
     $("referBox"),
     $("ordersBox"),
     $("accountBox")
-
   ];
 
 
@@ -1152,9 +1048,116 @@ document.addEventListener("DOMContentLoaded", () => {
       section => {
 
         if (section) {
-
           section.classList.add(
             "hidden"
+          );
+        }
+
+      }
+    );
+
+  }
+
+
+  const referOpen =
+    $("referOpen");
+
+  if (referOpen) {
+
+    referOpen.addEventListener(
+      "click",
+      () => {
+
+        hideProfileSections();
+
+        $("referBox").classList.remove(
+          "hidden"
+        );
+
+      }
+    );
+
+  }
+
+
+  const ordersOpen =
+    $("ordersOpen");
+
+  if (ordersOpen) {
+
+    ordersOpen.addEventListener(
+      "click",
+      () => {
+
+        hideProfileSections();
+
+        $("ordersBox").classList.remove(
+          "hidden"
+        );
+
+        renderOrderHistory();
+
+      }
+    );
+
+  }
+
+
+  const accountOpen =
+    $("accountOpen");
+
+  if (accountOpen) {
+
+    accountOpen.addEventListener(
+      "click",
+      () => {
+
+        hideProfileSections();
+
+        $("accountBox").classList.remove(
+          "hidden"
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =========================
+     REFERRAL COPY
+  ========================= */
+
+  if (copyRef) {
+
+    copyRef.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            referralCode
+          );
+
+          copyRef.textContent =
+            "Referral Code Copied ✓";
+
+
+          setTimeout(() => {
+
+            copyRef.textContent =
+              "Copy Referral Code";
+
+          }, 1500);
+
+        }
+
+        catch {
+
+          alert(
+            "Referral Code: " +
+            referralCode
           );
 
         }
@@ -1165,131 +1168,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  $("referOpen").addEventListener(
-    "click",
-    () => {
-
-      hideProfileSections();
-
-      $("referBox").classList.remove(
-        "hidden"
-      );
-
-    }
-  );
-
-
-  $("ordersOpen").addEventListener(
-    "click",
-    () => {
-
-      hideProfileSections();
-
-      $("ordersBox").classList.remove(
-        "hidden"
-      );
-
-      renderOrderHistory();
-
-    }
-  );
-
-
-  $("accountOpen").addEventListener(
-    "click",
-    () => {
-
-      hideProfileSections();
-
-      $("accountBox").classList.remove(
-        "hidden"
-      );
-
-    }
-  );
-
-
-  /* =========================
-     REFERRAL COPY
-  ========================= */
-
-  copyRef.addEventListener(
-    "click",
-    async () => {
-
-      try {
-
-        await navigator.clipboard.writeText(
-          referralCode
-        );
-
-
-        copyRef.textContent =
-          "Referral Code Copied ✓";
-
-
-        setTimeout(() => {
-
-          copyRef.textContent =
-            "Copy Referral Code";
-
-        }, 1500);
-
-      }
-
-      catch {
-
-        alert(
-          "Referral Code: " +
-          referralCode
-        );
-
-      }
-
-    }
-  );
-
-
   /* =========================
      FILTERS
   ========================= */
 
-  let selectedCategory =
-    "ALL";
+  let selectedCategory = "ALL";
 
 
   function renderFilters() {
 
     const categories = [
-
       "ALL",
       "VISA",
       "MASTERCARD",
       "RUPAY"
-
     ];
+
+
+    if (!filtersBox) return;
 
 
     filtersBox.innerHTML =
       categories.map(
         category => `
 
-        <button
-          class="filter ${
-            category === "ALL"
-              ? "active"
-              : ""
-          }"
-          data-category="${category}"
-        >
-          ${category}
-        </button>
+          <button
+            class="filter ${
+              category === "ALL"
+                ? "active"
+                : ""
+            }"
+            data-category="${category}"
+          >
+            ${category}
+          </button>
 
-      `
+        `
       ).join("");
 
 
-    document
+    filtersBox
       .querySelectorAll(
         "[data-category]"
       )
@@ -1303,7 +1221,7 @@ document.addEventListener("DOMContentLoaded", () => {
               button.dataset.category;
 
 
-            document
+            filtersBox
               .querySelectorAll(
                 "[data-category]"
               )
@@ -1335,248 +1253,177 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderProducts() {
 
+    if (!productsBox) return;
+
+
     const text =
-      searchBox.value
-        .trim()
-        .toLowerCase();
+      searchBox
+        ? searchBox.value
+            .trim()
+            .toLowerCase()
+        : "";
 
 
     const list =
-      products.filter(product => {
+      products
+        .filter(product => {
 
-        const categoryMatch =
-          selectedCategory === "ALL" ||
-          product.category ===
-          selectedCategory;
-
-
-        const searchMatch =
-          text === "" ||
-
-          product.category
-            .toLowerCase()
-            .includes(text) ||
-
-          product.holder
-            .toLowerCase()
-            .includes(text);
+          const categoryMatch =
+            selectedCategory === "ALL" ||
+            product.category ===
+              selectedCategory;
 
 
-        return (
-          categoryMatch &&
-          searchMatch
+          const searchMatch =
+            text === "" ||
+            product.category
+              .toLowerCase()
+              .includes(text) ||
+            product.holder
+              .toLowerCase()
+              .includes(text) ||
+            product.level
+              .toLowerCase()
+              .includes(text) ||
+            String(product.price)
+              .includes(text);
+
+
+          return (
+            categoryMatch &&
+            searchMatch
+          );
+
+        })
+        .sort(
+          (a, b) =>
+            a.price - b.price
         );
-
-      });
-
-
-    if (!list.length) {
-
-      productsBox.innerHTML = `
-
-        <div class="empty-state">
-
-          <div>⌕</div>
-
-          <h3>
-            No products found
-          </h3>
-
-          <p>
-            Try another category or search.
-          </p>
-
-        </div>
-
-      `;
-
-      return;
-
-    }
 
 
     productsBox.innerHTML =
       list.map(
         product => `
 
-        <article class="product">
-
-          <div class="product-top">
-
-            <span class="tag">
-              ${product.category}
-            </span>
-
-            <span class="demo-badge">
-              DEMO
-            </span>
-
-          </div>
-
-
-          <div
-            class="demo-card"
-            data-info="${product.id}"
+          <article
+            class="product-card"
+            data-product-id="${product.id}"
           >
 
-            <div class="demo-card-top">
-
-              <span>
-                KX
-              </span>
-
-              <span>
-                ${product.category}
-              </span>
-
+            <div class="card-demo-badge">
+              DEMO
             </div>
 
+            <div class="mock-card">
 
-            <div class="demo-number">
-              ${product.card}
-            </div>
+              <div class="mock-top">
 
+                <span>
+                  ${product.category}
+                </span>
 
-            <div class="card-mid">
-
-              <div>
-
-                <small>
-                  MONTH/YEAR
-                </small>
-
-                <strong>
-                  ${product.expiry}
-                </strong>
+                <span>
+                  KX
+                </span>
 
               </div>
 
 
-              <div>
+              <div class="mock-number">
+                ${product.card}
+              </div>
 
-                <small>
-                  BALANCE
-                </small>
 
-                <strong>
-                  ${product.balance
-                    .toLocaleString("en-IN")}
-                </strong>
+              <div class="mock-bottom">
+
+                <div>
+                  <small>CARD HOLDER</small>
+                  <strong>
+                    ${product.holder}
+                  </strong>
+                </div>
+
+                <div>
+                  <small>VALID</small>
+                  <strong>
+                    ${product.expiry}
+                  </strong>
+                </div>
 
               </div>
 
             </div>
 
 
-            <div class="demo-card-bottom">
+            <div class="product-info">
 
-              <span>
-                ${product.holder}
-              </span>
+              <div>
+                <span class="section-label">
+                  ${product.level}
+                </span>
 
-              <span>
-                ${product.type}
-              </span>
+                <h3>
+                  ${product.category}
+                </h3>
 
-            </div>
+                <p>
+                  Balance: ₹${product.balance.toLocaleString("en-IN")}
+                </p>
 
-          </div>
-
-
-          <div class="product-meta">
-
-            <div>
-
-              <span>
-                LEVEL
-              </span>
-
-              <strong>
-                ${product.level}
-              </strong>
-
-            </div>
+                <p>
+                  Stock: ${product.stock}
+                </p>
+              </div>
 
 
-            <div>
+              <div class="product-price">
 
-              <span>
-                BAL
-              </span>
+                <strong>
+                  ₹${product.price}
+                </strong>
 
-              <strong>
-                ${product.balance
-                  .toLocaleString("en-IN")}
-              </strong>
+                <button
+                  class="primary buy-btn"
+                  data-id="${product.id}"
+                >
+                  BUY NOW
+                </button>
+
+              </div>
 
             </div>
 
-          </div>
+          </article>
+
+        `
+      )
+      .join("");
 
 
-          <div class="stock-line">
+    productsBox
+      .querySelectorAll(
+        ".product-card"
+      )
+      .forEach(card => {
 
-            <span>
-              STOCK PROTOCOL
-            </span>
-
-            <strong>
-              ONLY ${product.stock} LEFT
-            </strong>
-
-          </div>
-
-
-          <div class="product-actions">
-
-            <button
-              class="details-btn"
-              data-info="${product.id}"
-            >
-              DETAILS
-            </button>
-
-
-            <button
-              class="primary buy-btn"
-              data-buy="${product.id}"
-            >
-              BUY NOW · ₹${product.price}
-            </button>
-
-          </div>
-
-        </article>
-
-      `
-      ).join("");
-
-
-    document
-      .querySelectorAll("[data-info]")
-      .forEach(button => {
-
-        button.addEventListener(
+        card.addEventListener(
           "click",
-          () => {
+          event => {
 
-            const product =
-              products.find(
-                p =>
-                  p.id ===
-                  Number(
-                    button.dataset.info
-                  )
-              );
-
-
-            if (product) {
-
-              openProduct(
-                product
-              );
-
+            if (
+              event.target.closest(
+                ".buy-btn"
+              )
+            ) {
+              return;
             }
+
+            const id =
+              Number(
+                card.dataset.productId
+              );
+
+            openProductDetails(id);
 
           }
         );
@@ -1584,31 +1431,24 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
-    document
-      .querySelectorAll("[data-buy]")
+    productsBox
+      .querySelectorAll(
+        ".buy-btn"
+      )
       .forEach(button => {
 
         button.addEventListener(
           "click",
-          () => {
+          event => {
 
-            const product =
-              products.find(
-                p =>
-                  p.id ===
-                  Number(
-                    button.dataset.buy
-                  )
+            event.stopPropagation();
+
+            const id =
+              Number(
+                button.dataset.id
               );
 
-
-            if (product) {
-
-              openCheckout(
-                product
-              );
-
-            }
+            openCheckout(id);
 
           }
         );
@@ -1618,123 +1458,99 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  searchBox.addEventListener(
-    "input",
-    renderProducts
-  );
+  if (searchBox) {
+
+    searchBox.addEventListener(
+      "input",
+      renderProducts
+    );
+
+  }
 
 
   /* =========================
      PRODUCT DETAILS
   ========================= */
 
-  function openProduct(product) {
+  function openProductDetails(id) {
+
+    const product =
+      products.find(
+        item => item.id === id
+      );
+
+
+    if (!product || !productDetail) {
+      return;
+    }
+
 
     productDetail.innerHTML = `
 
       <div class="detail-card">
 
-        <div class="detail-brand">
+        <div class="mock-card">
 
-          <span>
-            KX
-          </span>
-
-          <strong>
-            ${product.category}
-          </strong>
-
-        </div>
-
-
-        <div class="detail-number">
-          ${product.card}
-        </div>
-
-
-        <div class="detail-grid">
-
-          <div>
-
-            <small>
-              MONTH/YEAR
-            </small>
-
-            <strong>
-              ${product.expiry}
-            </strong>
-
+          <div class="mock-top">
+            <span>${product.category}</span>
+            <span>KX</span>
           </div>
 
-
-          <div>
-
-            <small>
-              BALANCE
-            </small>
-
-            <strong>
-              ${product.balance
-                .toLocaleString("en-IN")}
-            </strong>
-
+          <div class="mock-number">
+            ${product.card}
           </div>
 
+          <div class="mock-bottom">
 
-          <div>
+            <div>
+              <small>CARD HOLDER</small>
+              <strong>
+                ${product.holder}
+              </strong>
+            </div>
 
-            <small>
-              CARD TYPE
-            </small>
-
-            <strong>
-              ${product.type}
-            </strong>
-
-          </div>
-
-
-          <div>
-
-            <small>
-              LEVEL
-            </small>
-
-            <strong>
-              ${product.level}
-            </strong>
+            <div>
+              <small>VALID</small>
+              <strong>
+                ${product.expiry}
+              </strong>
+            </div>
 
           </div>
 
         </div>
 
 
-        <div class="detail-holder">
-
-          <small>
-            DEMO HOLDER
-          </small>
-
-          <strong>
-            ${product.holder}
-          </strong>
-
+        <div class="info-row">
+          <span>Type</span>
+          <strong>${product.type}</strong>
         </div>
 
-
-        <div class="detail-stock">
-
-          STOCK PROTOCOL ·
-          ONLY ${product.stock} LEFT
-
+        <div class="info-row">
+          <span>Category</span>
+          <strong>${product.category}</strong>
         </div>
 
+        <div class="info-row">
+          <span>Balance</span>
+          <strong>₹${product.balance.toLocaleString("en-IN")}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Price</span>
+          <strong>₹${product.price}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Stock</span>
+          <strong>${product.stock}</strong>
+        </div>
 
         <button
           class="primary detail-buy"
-          data-detail-buy="${product.id}"
+          data-id="${product.id}"
         >
-          BUY NOW · ₹${product.price}
+          BUY NOW
         </button>
 
       </div>
@@ -1748,8 +1564,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     const detailBuy =
-      document.querySelector(
-        "[data-detail-buy]"
+      productDetail.querySelector(
+        ".detail-buy"
       );
 
 
@@ -1763,7 +1579,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "hidden"
           );
 
-          openCheckout(product);
+          openCheckout(id);
 
         }
       );
@@ -1773,71 +1589,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  $("closeProduct").addEventListener(
-    "click",
-    () => {
+  const closeProduct =
+    $("closeProduct");
 
-      productModal.classList.add(
-        "hidden"
-      );
+  if (closeProduct) {
 
-    }
-  );
-
-
-  productModal.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target ===
-        productModal
-      ) {
+    closeProduct.addEventListener(
+      "click",
+      () => {
 
         productModal.classList.add(
           "hidden"
         );
 
       }
+    );
 
-    }
-  );
+  }
 
 
   /* =========================
      CHECKOUT
   ========================= */
 
-  let selectedCheckoutProduct =
-    null;
+  function openCheckout(id) {
+
+    const product =
+      products.find(
+        item => item.id === id
+      );
 
 
-  function openCheckout(product) {
-
-    selectedCheckoutProduct =
-      product;
+    if (!product) return;
 
 
-    selectedProduct.innerHTML = `
-
-      Selected:
-      <strong>
-        ${product.category}
-      </strong>
-      · Balance ₹${product.balance
-        .toLocaleString("en-IN")}
-      · Price ₹${product.price}
-
-    `;
-
-
-    utrInput.value = "";
-
-
-    emailInput.value =
-      currentUser
-        ? currentUser.email
-        : "";
+    selectedProduct.textContent =
+      `${product.category} • Balance ₹${product.balance.toLocaleString("en-IN")} • ₹${product.price}`;
 
 
     modal.classList.remove(
@@ -1847,220 +1634,162 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  $("closeModal").addEventListener(
-    "click",
-    () => {
+  const closeModal =
+    $("closeModal");
 
-      modal.classList.add(
-        "hidden"
-      );
+  if (closeModal) {
 
-    }
-  );
-
-
-  modal.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target === modal
-      ) {
+    closeModal.addEventListener(
+      "click",
+      () => {
 
         modal.classList.add(
           "hidden"
         );
 
       }
+    );
 
-    }
-  );
+  }
 
 
   /* =========================
      COPY UPI
   ========================= */
 
-  copyUpi.addEventListener(
-    "click",
-    async () => {
+  if (copyUpi) {
 
-      const upi =
-        "kaivexstore@ybl";
+    copyUpi.addEventListener(
+      "click",
+      async () => {
 
+        try {
 
-      try {
+          await navigator.clipboard.writeText(
+            "kaivexstore@ybl"
+          );
 
-        await navigator.clipboard.writeText(
-          upi
-        );
-
-
-        copyUpi.innerHTML = `
-
-          <span>
-            ${upi}
-          </span>
-
-          <span>
-            Copied ✓
-          </span>
-
-        `;
+          copyUpi.innerHTML =
+            "<span>kaivexstore@ybl</span><span>Copied ✓</span>";
 
 
-        setTimeout(() => {
+          setTimeout(() => {
 
-          copyUpi.innerHTML = `
+            copyUpi.innerHTML =
+              "<span>kaivexstore@ybl</span><span>Copy</span>";
 
-            <span>
-              ${upi}
-            </span>
+          }, 1500);
 
-            <span>
-              Copy
-            </span>
+        }
 
-          `;
+        catch {
 
-        }, 1500);
+          alert(
+            "UPI ID: kaivexstore@ybl"
+          );
+
+        }
 
       }
+    );
 
-      catch {
-
-        alert(
-          "UPI ID: " + upi
-        );
-
-      }
-
-    }
-  );
+  }
 
 
   /* =========================
-     PAYMENT SUBMIT
+     PAYMENT SUBMISSION
   ========================= */
 
-  submitPayment.addEventListener(
-    "click",
-    () => {
+  if (submitPayment) {
 
-      const utr =
-        utrInput.value.trim();
+    submitPayment.addEventListener(
+      "click",
+      () => {
 
-      const email =
-        emailInput.value.trim();
+        if (!currentUser) {
+          return;
+        }
 
 
-      if (!currentUser) {
+        const utr =
+          utrInput.value.trim();
 
-        alert(
-          "Please login first."
+        const email =
+          emailInput.value.trim();
+
+
+        if (!utr) {
+
+          alert(
+            "Please enter UTR / Transaction ID."
+          );
+
+          return;
+
+        }
+
+
+        if (!email) {
+
+          alert(
+            "Please enter delivery email."
+          );
+
+          return;
+
+        }
+
+
+        const order = {
+
+          id:
+            "ORD-" +
+            Date.now(),
+
+          utr: utr,
+
+          email: email,
+
+          status: "PENDING",
+
+          createdAt:
+            new Date().toISOString()
+
+        };
+
+
+        if (!currentUser.orders) {
+          currentUser.orders = [];
+        }
+
+
+        currentUser.orders.unshift(
+          order
         );
 
-        return;
 
-      }
+        saveCurrentUser();
 
+        renderOrderHistory();
 
-      if (!utr) {
 
         alert(
-          "Please enter your UTR / Transaction ID."
+          "Order submitted. Status: PENDING"
         );
 
-        return;
 
-      }
+        utrInput.value = "";
+        emailInput.value = "";
 
 
-      if (!email) {
-
-        alert(
-          "Please enter your delivery email."
+        modal.classList.add(
+          "hidden"
         );
 
-        return;
-
       }
+    );
 
-
-      if (!selectedCheckoutProduct) {
-
-        alert(
-          "No product selected."
-        );
-
-        return;
-
-      }
-
-
-      const order = {
-
-        id:
-          "ORD-" +
-          Date.now(),
-
-        productId:
-          selectedCheckoutProduct.id,
-
-        category:
-          selectedCheckoutProduct.category,
-
-        price:
-          selectedCheckoutProduct.price,
-
-        email:
-          email,
-
-        utr:
-          utr,
-
-        status:
-          "PENDING",
-
-        createdAt:
-          new Date().toISOString()
-
-      };
-
-
-      if (!Array.isArray(
-        currentUser.orders
-      )) {
-
-        currentUser.orders = [];
-
-      }
-
-
-      currentUser.orders.unshift(
-        order
-      );
-
-
-      saveCurrentUser();
-
-
-      alert(
-        "Payment submitted for verification.\n\n" +
-        "Status: PENDING\n\n" +
-        "Admin/merchant verification is required."
-      );
-
-
-      modal.classList.add(
-        "hidden"
-      );
-
-
-      renderOrderHistory();
-
-    }
-  );
+  }
 
 
   /* =========================
@@ -2069,111 +1798,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderOrderHistory() {
 
-    if (!orderHistory) {
-      return;
-    }
+    if (!orderHistory) return;
 
 
-    if (!currentUser) {
-
-      orderHistory.innerHTML = `
-
-        <div class="empty-box">
-          Please login first.
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-
-    const orders =
-      Array.isArray(
-        currentUser.orders
-      )
-        ? currentUser.orders
-        : [];
-
-
-    if (!orders.length) {
+    if (
+      !currentUser ||
+      !currentUser.orders ||
+      currentUser.orders.length === 0
+    ) {
 
       orderHistory.innerHTML = `
-
         <div class="empty-box">
           No orders yet.
         </div>
-
       `;
 
       return;
-
     }
 
 
     orderHistory.innerHTML =
-      orders.map(order => {
+      currentUser.orders
+        .map(
+          order => `
 
-        const date =
-          new Date(
-            order.createdAt
-          ).toLocaleString(
-            "en-IN"
-          );
+            <div class="order-item">
 
+              <div>
 
-        return `
+                <strong>
+                  ${order.id}
+                </strong>
 
-          <div class="order-card">
+                <span>
+                  ${new Date(
+                    order.createdAt
+                  ).toLocaleString()}
+                </span>
 
-            <div class="order-top">
-
-              <strong>
-                ${order.category}
-              </strong>
-
-              <span class="order-status">
-                ${order.status}
-              </span>
-
-            </div>
+              </div>
 
 
-            <div class="order-meta">
+              <div>
 
-              Order:
-              ${order.id}
+                <strong>
+                  ${order.status}
+                </strong>
 
-              <br>
+                <span>
+                  UTR: ${escapeHTML(order.utr)}
+                </span>
 
-              Price:
-              ₹${Number(
-                order.price
-              ).toLocaleString("en-IN")}
-
-              <br>
-
-              UTR:
-              ${order.utr}
-
-              <br>
-
-              Email:
-              ${order.email}
-
-              <br>
-
-              Date:
-              ${date}
+              </div>
 
             </div>
 
-          </div>
-
-        `;
-
-      }).join("");
+          `
+        )
+        .join("");
 
   }
 
@@ -2182,151 +1864,81 @@ document.addEventListener("DOMContentLoaded", () => {
      FREE COIN TASKS
   ========================= */
 
-  const freeCoinTasks = [
+  const freeTasks = [
 
     {
-      id: "telegram-1",
+      id: "tg1",
+      type: "Telegram",
       title: "Join Telegram Channel 1",
-      icon: "✈",
       reward: 2,
-      url: "https://t.me/+lIJ6-tAMwBdiYTU1"
+      url:
+        "https://t.me/+lIJ6-tAMwBdiYTU1"
     },
 
     {
-      id: "telegram-2",
+      id: "tg2",
+      type: "Telegram",
       title: "Join Telegram Channel 2",
-      icon: "✈",
       reward: 2,
-      url: "https://t.me/+cpHtijIv1eM4ZDM1"
+      url:
+        "https://t.me/+cpHtijIv1eM4ZDM1"
     },
 
     {
-      id: "telegram-3",
-      title: "Open Telegram Channel 3",
-      icon: "✈",
+      id: "tg3",
+      type: "Telegram",
+      title: "Join Telegram Channel 3",
       reward: 2,
-      url: "https://t.me/kaivexmodssetup"
+      url:
+        "https://t.me/kaivexmodssetup"
     },
 
     {
-      id: "telegram-4",
+      id: "tg4",
+      type: "Telegram",
       title: "Join Telegram Channel 4",
-      icon: "✈",
       reward: 2,
-      url: "https://t.me/+F_wsXeD3Dt8zMjll"
+      url:
+        "https://t.me/+F_wsXeD3Dt8zMjll"
     },
 
     {
-      id: "telegram-5",
+      id: "tg5",
+      type: "Telegram",
       title: "Join Telegram Channel 5",
-      icon: "✈",
       reward: 2,
-      url: "https://t.me/+GIXruxf0uFVkNDdl"
+      url:
+        "https://t.me/+GIXruxf0uFVkNDdl"
     },
 
     {
-      id: "youtube-1",
-      title: "Subscribe on YouTube",
-      icon: "▶",
+      id: "yt1",
+      type: "YouTube",
+      title: "Subscribe to YouTube",
       reward: 2,
-      url: "https://youtube.com/@kaivexmods?si=y0TTNew1OQTvaxOi"
+      url:
+        "https://youtube.com/@kaivexmods?si=y0TTNew1OQTvaxOi"
     },
 
     {
-      id: "youtube-2",
-      title: "Subscribe on YouTube",
-      icon: "▶",
+      id: "yt2",
+      type: "YouTube",
+      title: "Subscribe to YouTube 2",
       reward: 2,
-      url: "https://youtube.com/@akki.mods.2.0?si=uO0h-gd01DYcNS3g"
+      url:
+        "https://youtube.com/@akki.mods.2.0?si=uO0h-gd01DYcNS3g"
     },
 
     {
-      id: "youtube-3",
+      id: "yt3",
+      type: "YouTube",
       title: "Like YouTube Video",
-      icon: "♥",
       reward: 2,
-      url: "https://youtu.be/sqChhCblg5w?si=ah4UFAx6pL-L3rqt"
+      url:
+        "https://youtu.be/sqChhCblg5w?si=ah4UFAx6pL-L3rqt"
     }
 
   ];
-
-
-  let activeTaskId = null;
-
-
-  function getClaimedTasks() {
-
-    if (!currentUser) {
-      return [];
-    }
-
-
-    if (
-      !Array.isArray(
-        currentUser.claimedTasks
-      )
-    ) {
-
-      currentUser.claimedTasks = [];
-
-    }
-
-
-    return currentUser.claimedTasks;
-
-  }
-
-
-  function updateCoinStats() {
-
-    if (!currentUser) {
-      return;
-    }
-
-
-    const balance =
-      Number(
-        currentUser.coinBalance || 0
-      );
-
-
-    const claimed =
-      getClaimedTasks();
-
-
-    const available =
-      freeCoinTasks.filter(
-        task =>
-          !claimed.includes(
-            task.id
-          )
-      );
-
-
-    if ($("coinBalance")) {
-
-      $("coinBalance").textContent =
-        balance.toFixed(2);
-
-    }
-
-
-    if ($("availableTasks")) {
-
-      $("availableTasks").textContent =
-        available.length;
-
-    }
-
-
-    if ($("claimedTasks")) {
-
-      $("claimedTasks").textContent =
-        claimed.length;
-
-    }
-
-  }
 
 
   function renderFreeTasks() {
@@ -2335,36 +1947,22 @@ document.addEventListener("DOMContentLoaded", () => {
       $("channels");
 
 
-    if (!channels) {
+    if (!channels || !currentUser) {
       return;
     }
 
 
-    if (!currentUser) {
-
-      channels.innerHTML = `
-
-        <div class="empty-box">
-          Please login to view tasks.
-        </div>
-
-      `;
-
-      return;
-
+    if (!currentUser.claimedTasks) {
+      currentUser.claimedTasks = [];
     }
-
-
-    const claimed =
-      getClaimedTasks();
 
 
     channels.innerHTML =
-      freeCoinTasks.map(
-        task => {
+      freeTasks
+        .map(task => {
 
-          const isClaimed =
-            claimed.includes(
+          const claimed =
+            currentUser.claimedTasks.includes(
               task.id
             );
 
@@ -2372,74 +1970,70 @@ document.addEventListener("DOMContentLoaded", () => {
           return `
 
             <div
-              class="task-card ${
-                isClaimed
-                  ? "task-claimed"
-                  : ""
+              class="task-item ${
+                claimed ? "task-complete" : ""
               }"
             >
 
               <div class="task-info">
 
-                <div class="task-icon">
+                <span class="task-type">
+                  ${task.type}
+                </span>
 
-                  ${task.icon}
+                <strong>
+                  ${task.title}
+                </strong>
 
-                </div>
-
-
-                <div>
-
-                  <strong>
-                    ${task.title}
-                  </strong>
-
-                  <span class="tiny">
-                    Reward: 🪙 ${task.reward}
-                  </span>
-
-                </div>
+                <small>
+                  Reward: 🪙 ${task.reward}
+                </small>
 
               </div>
 
 
-              ${
-                isClaimed
+              <div class="task-actions">
 
-                  ? `
+                ${
+                  claimed
+                    ? `
+                      <button
+                        class="task-btn claimed"
+                        disabled
+                      >
+                        CLAIMED ✓
+                      </button>
+                    `
+                    : `
+                      <button
+                        class="task-btn open-task"
+                        data-id="${task.id}"
+                      >
+                        OPEN
+                      </button>
 
-                    <button
-                      class="task-btn"
-                      disabled
-                    >
-                      CLAIMED ✓
-                    </button>
+                      <button
+                        class="task-btn verify-task"
+                        data-id="${task.id}"
+                      >
+                        VERIFY
+                      </button>
+                    `
+                }
 
-                  `
-
-                  : `
-
-                    <button
-                      class="task-btn"
-                      data-task-open="${task.id}"
-                    >
-                      OPEN
-                    </button>
-
-                  `
-              }
+              </div>
 
             </div>
 
           `;
 
-        }
-      ).join("");
+        })
+        .join("");
 
 
-    document
+    channels
       .querySelectorAll(
-        "[data-task-open]"
+        ".open-task"
       )
       .forEach(button => {
 
@@ -2448,17 +2042,18 @@ document.addEventListener("DOMContentLoaded", () => {
           () => {
 
             const task =
-              freeCoinTasks.find(
+              freeTasks.find(
                 item =>
                   item.id ===
-                  button.dataset.taskOpen
+                  button.dataset.id
               );
 
 
             if (task) {
 
-              openTaskVerify(
-                task
+              window.open(
+                task.url,
+                "_blank"
               );
 
             }
@@ -2468,166 +2063,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
       });
 
-  }
 
+    channels
+      .querySelectorAll(
+        ".verify-task"
+      )
+      .forEach(button => {
 
-  function openTaskVerify(task) {
+        button.addEventListener(
+          "click",
+          () => {
 
-    activeTaskId =
-      task.id;
+            claimTask(
+              button.dataset.id
+            );
 
-
-    const channels =
-      $("channels");
-
-
-    channels.innerHTML = `
-
-      <div class="verify-box">
-
-        <div class="verify-icon">
-
-          ${task.icon}
-
-        </div>
-
-
-        <p class="section-label">
-          TASK
-        </p>
-
-
-        <h3>
-          ${task.title}
-        </h3>
-
-
-        <p class="muted">
-          Open the task link, then return here
-          and claim the displayed reward.
-        </p>
-
-
-        <div class="verify-reward">
-
-          🪙 ${task.reward}
-
-        </div>
-
-
-        <button
-          class="primary claim-btn"
-          id="openTaskLink"
-        >
-          OPEN TASK
-        </button>
-
-
-        <button
-          class="task-btn verify-back"
-          id="claimTask"
-        >
-          CLAIM COINS
-        </button>
-
-
-        <button
-          class="task-btn verify-back"
-          id="backTasks"
-        >
-          ← BACK TO TASKS
-        </button>
-
-
-        <p class="tiny verify-note">
-
-          This is a self-claim flow.
-          This page does not independently verify
-          Telegram or YouTube membership.
-
-        </p>
-
-      </div>
-
-    `;
-
-
-    $("openTaskLink").addEventListener(
-      "click",
-      () => {
-
-        window.open(
-          task.url,
-          "_blank",
-          "noopener,noreferrer"
+          }
         );
 
-      }
-    );
-
-
-    $("claimTask").addEventListener(
-      "click",
-      () => {
-
-        claimTask(task);
-
-      }
-    );
-
-
-    $("backTasks").addEventListener(
-      "click",
-      () => {
-
-        activeTaskId = null;
-
-        renderFreeTasks();
-
-        updateCoinStats();
-
-      }
-    );
+      });
 
   }
 
 
-  function claimTask(task) {
+  function claimTask(taskId) {
 
-    if (!currentUser) {
+    if (!currentUser) return;
 
-      alert(
-        "Please login first."
-      );
 
-      return;
-
+    if (!currentUser.claimedTasks) {
+      currentUser.claimedTasks = [];
     }
-
-
-    const claimed =
-      getClaimedTasks();
 
 
     if (
-      claimed.includes(
-        task.id
+      currentUser.claimedTasks.includes(
+        taskId
       )
     ) {
-
-      alert(
-        "This task has already been claimed."
-      );
-
-      renderFreeTasks();
-
       return;
-
     }
 
 
+    const task =
+      freeTasks.find(
+        item =>
+          item.id === taskId
+      );
+
+
+    if (!task) return;
+
+
     currentUser.claimedTasks.push(
-      task.id
+      taskId
     );
 
 
@@ -2635,39 +2124,130 @@ document.addEventListener("DOMContentLoaded", () => {
       Number(
         currentUser.coinBalance || 0
       ) +
-      Number(
-        task.reward
-      );
+      Number(task.reward);
 
 
     saveCurrentUser();
 
 
-    activeTaskId = null;
+    renderFreeTasks();
+    updateCoinStats();
 
 
     alert(
-      "Coins claimed successfully!\n\n" +
-      "Reward: 🪙 " +
-      task.reward
+      `🪙 ${task.reward} coins added!`
     );
 
+  }
 
-    renderFreeTasks();
 
-    updateCoinStats();
+  function updateCoinStats() {
+
+    if (!currentUser) return;
+
+
+    const balance =
+      $("coinBalance");
+
+    const available =
+      $("availableTasks");
+
+    const claimed =
+      $("claimedTasks");
+
+
+    const claimedCount =
+      currentUser.claimedTasks
+        ? currentUser.claimedTasks.length
+        : 0;
+
+
+    if (balance) {
+
+      balance.textContent =
+        Number(
+          currentUser.coinBalance || 0
+        ).toFixed(2);
+
+    }
+
+
+    if (available) {
+
+      available.textContent =
+        Math.max(
+          freeTasks.length -
+          claimedCount,
+          0
+        );
+
+    }
+
+
+    if (claimed) {
+
+      claimed.textContent =
+        claimedCount;
+
+    }
 
   }
 
 
   /* =========================
-     INITIAL RENDER
+     ESCAPE HTML
+  ========================= */
+
+  function escapeHTML(value) {
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  /* =========================
+     INITIALIZE STORE
   ========================= */
 
   renderFilters();
-
   renderProducts();
 
-  loadCurrentUser();
+
+  /* =========================
+     IMPORTANT:
+     INITIAL AUTH CHECK
+  ========================= */
+
+  /*
+    This is the missing part that
+    was causing the authentication
+    screen to be skipped.
+
+    First page load:
+    Loader -> loadCurrentUser()
+    No session -> Login/Signup
+
+    Existing session:
+    Loader -> loadCurrentUser()
+    Session exists -> Store
+  */
+
+  app.classList.add("hidden");
+  authPage.classList.add("hidden");
+
+  setTimeout(() => {
+
+    /*
+      If loader is still running,
+      loadCurrentUser() will also
+      be called when loader finishes.
+    */
+
+  }, 0);
 
 });
