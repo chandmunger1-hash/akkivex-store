@@ -1,4 +1,4 @@
-// KAIVEX STORE
+/// KAIVEX STORE
 // Fictional/demo frontend data only.
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 150,
       balance: 3000,
       holder: "Alex Carter",
-      card: "DEMO •••• 3548",
+      card: "5722 XXXX XXXX 3548",
       expiry: "09/32",
       type: "DEBIT CARD",
       level: "HOFC PREMIUM",
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 210,
       balance: 5000,
       holder: "Daniel Wilson",
-      card: "DEMO •••• 4821",
+      card: "5722 XXXX XXXX 4821",
       expiry: "07/33",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 270,
       balance: 6000,
       holder: "James Anderson",
-      card: "DEMO •••• 4217",
+      card: "5722 XXXX XXXX 4217",
       expiry: "11/32",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 330,
       balance: 8000,
       holder: "Robert Miller",
-      card: "DEMO •••• 4532",
+      card: "5722 XXXX XXXX 4532",
       expiry: "04/34",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 390,
       balance: 9000,
       holder: "William Davis",
-      card: "DEMO •••• 4916",
+      card: "5722 XXXX XXXX 4916",
       expiry: "12/33",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 170,
       balance: 3200,
       holder: "Chris Brown",
-      card: "DEMO •••• 5234",
+      card: "5234 XXXX XXXX 5234",
       expiry: "08/33",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 230,
       balance: 4000,
       holder: "Matthew Johnson",
-      card: "DEMO •••• 5487",
+      card: "5234 XXXX XXXX 5487",
       expiry: "03/34",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 290,
       balance: 6000,
       holder: "Andrew Thompson",
-      card: "DEMO •••• 5271",
+      card: "5234 XXXX XXXX 5271",
       expiry: "10/33",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 350,
       balance: 8000,
       holder: "Joseph Martinez",
-      card: "DEMO •••• 5548",
+      card: "5234 XXXX XXXX 5548",
       expiry: "06/34",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 410,
       balance: 10000,
       holder: "Anthony Taylor",
-      card: "DEMO •••• 5103",
+      card: "5234 XXXX XXXX 5103",
       expiry: "01/35",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 190,
       balance: 3500,
       holder: "Joshua Thomas",
-      card: "DEMO •••• 6071",
+      card: "6071 XXXX XXXX 6071",
       expiry: "05/33",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 250,
       balance: 4500,
       holder: "Ryan Jackson",
-      card: "DEMO •••• 6521",
+      card: "6071 XXXX XXXX 6521",
       expiry: "09/34",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 310,
       balance: 6000,
       holder: "Brandon White",
-      card: "DEMO •••• 6384",
+      card: "6071 XXXX XXXX 6384",
       expiry: "02/34",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 370,
       balance: 8000,
       holder: "Kevin Harris",
-      card: "DEMO •••• 6214",
+      card: "6071 XXXX XXXX 6214",
       expiry: "07/34",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 430,
       balance: 10000,
       holder: "Jason Martin",
-      card: "DEMO •••• 6528",
+      card: "6071 XXXX XXXX 6528",
       expiry: "11/34",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: 500,
       balance: 15000,
       holder: "Eric Robinson",
-      card: "DEMO •••• 6712",
+      card: "6071 XXXX XXXX 6712",
       expiry: "12/35",
       type: "DEBIT CARD",
       level: "PREMIUM",
@@ -247,6 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = $("email");
 
   const copyRef = $("copyRef");
+
+  let referralCode =
+    "KS" + Math.floor(100000 + Math.random() * 900000);
 
   let selectedCategory = "ALL";
 
@@ -889,7 +892,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
 
-        await navigator.clipboard.writeText("AKV8457");
+        await navigator.clipboard.writeText(referralCode);
 
         copyRef.textContent =
           "Referral Code Copied ✓";
@@ -901,7 +904,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       } catch {
 
-        alert("Referral Code: AKV8457");
+        alert("Referral Code: " + referralCode);
 
       }
 
